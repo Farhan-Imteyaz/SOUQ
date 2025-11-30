@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Package, Mail, Lock, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
-
+import axios from 'axios';
 export default function LoginPage() {
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -13,17 +13,23 @@ export default function LoginPage() {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsLoading(true);
 
-    // Simulate API call
-    setTimeout(() => {
-      setIsLoading(false);
-      // After successful login, redirect to DASHBOARD (not home page)
-      router.push('/dashboard');
-    }, 2000);
-  };
+  try {
+    const res = axios.post('/api/user', formData)
+    console.log(res)
+    setIsLoading(false);
+
+    router.push("/dashboard");
+
+  } catch (error) {
+    console.error(error);
+    setIsLoading(false);
+    alert("Something went wrong");
+  }
+};
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({

@@ -1,12 +1,10 @@
 'use client';
 import axios from 'axios'
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { Package, Mail, Lock, User, Phone, MapPin, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
 
 export default function RegisterPage() {
-  const router = useRouter();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -21,7 +19,7 @@ export default function RegisterPage() {
     e.preventDefault();
     setIsLoading(true);
     try{
-    const res = axios.post('http://192.168.68.108:4000/users', formData)
+    const res = axios.post('/api/user', formData)
     console.log(res)        
     }
     catch(err){
