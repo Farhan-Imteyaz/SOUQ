@@ -31,9 +31,10 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           source: "."
           target: "/root/main/app"
-          rm: true
+          rm: false
 
-      - name: Restart PM2 on server
+
+      - name: Deploy and Restart Application
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -41,5 +42,14 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             cd /root/main/app
+            
+            # 1. Install production dependencies
             npm install --omit=dev
+            
+            # 2. Apply new migrations to the production database
+            # This uses the connection string defined in the server's .env file
+            npx prisma generate
+            npx prisma migrate deploy 
+            
+            # 3. Restart the application using PM2
             pm2 restart next-app || pm2 start npm --name "next-app" -- start
