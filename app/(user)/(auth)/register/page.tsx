@@ -19,8 +19,10 @@ export default function RegisterPage() {
     e.preventDefault();
     setIsLoading(true);
     try{
-    const res = axios.post('/api/user', formData)
-    console.log(res)        
+    const res = axios.post('/api/user/register', formData)
+    console.log(res)  
+    alert("Registered successfully")   
+     setIsLoading(false);   
     }
     catch(err){
       console.log('error', err)

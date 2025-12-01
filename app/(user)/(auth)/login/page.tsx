@@ -18,11 +18,10 @@ const handleSubmit = async (e: React.FormEvent) => {
   setIsLoading(true);
 
   try {
-    const res = axios.post('/api/user', formData)
-    console.log(res)
+    const res = axios.post('/api/user/login', formData, {withCredentials: true})
+    console.log((await res).data)
     setIsLoading(false);
-
-    router.push("/dashboard");
+    router.push('/dashboard')
 
   } catch (error) {
     console.error(error);
