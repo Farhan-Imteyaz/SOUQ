@@ -3,6 +3,8 @@ import axios from 'axios'
 import Link from 'next/link';
 import { Package, Mail, Lock, User, Phone, MapPin, CheckCircle } from 'lucide-react';
 import { useState } from 'react';
+import { toast } from "sonner";
+
 
 export default function RegisterPage() {
   const [formData, setFormData] = useState({
@@ -16,17 +18,70 @@ export default function RegisterPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    try{
-    const res = axios.post('/api/user/register', formData)
-    console.log(res)  
-    alert("Registered successfully")   
-     setIsLoading(false);   
-    }
-    catch(err){
-      console.log('error', err)
-    }  };
+  e.preventDefault();
+
+  // 1️⃣ Full Name
+  if (!formData.fullName.trim()) {
+    toast.error("Full name is required");
+    return;
+  }
+
+  // 2️⃣ Email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(formData.email)) {
+    toast.error("Please enter a valid email address");
+    return;
+  }
+
+  // 3️⃣ Phone
+  const phoneRegex = /^[0-9+()\-\s]{7,20}$/;
+  if (!phoneRegex.test(formData.phone)) {
+    toast.error("Please enter a valid phone number");
+    return;
+  }
+
+  // 4️⃣ Country
+  if (!formData.country) {
+    toast.error("Please select your country");
+    return;
+  }
+
+  // 5️⃣ Password complexity
+  if (formData.password.length < 8 || !/\d/.test(formData.password) || !/[a-zA-Z]/.test(formData.password)) {
+    toast.error("Password must be at least 8 characters long and include letters and numbers");
+    return;
+  }
+
+  // 6️⃣ Password match
+  if (formData.password !== formData.confirmPassword) {
+    toast.error("Passwords do not match");
+    return;
+  }
+
+  // ✅ Passed all validation, now submit
+  setIsLoading(true);
+
+  try {
+    const res = await axios.post('/api/user/register', {
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      country: formData.country,
+      password: formData.password,
+    });
+
+    console.log("API Success:", res.data);
+    toast.success("Registered successfully 🎉");
+
+  } catch (err: any) {
+    console.log("API Error:", err);
+    toast.error(err?.response?.data?.message || "Registration failed");
+  } finally {
+    setIsLoading(false);
+  }
+};
+
+
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({
@@ -119,6 +174,15 @@ export default function RegisterPage() {
               <h2 className="text-3xl font-bold mb-2">Create Your Account</h2>
               <p className="text-gray-600">Start your international shopping journey</p>
             </div>
+
+            <button
+  type="button"
+  onClick={() => toast.success("Toast is working ✅")}
+  className="mb-4 bg-green-600 text-white px-4 py-2 rounded"
+>
+  Test Toast
+</button>
+
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {/* Full Name */}
