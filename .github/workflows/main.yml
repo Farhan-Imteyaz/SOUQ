@@ -30,8 +30,9 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           source: "."
-          target: "/root/main/app"
+          target: "/home/souqza/app"
           rm: false
+          port: ${{ secrets.SSH_PORT }}
 
 
       - name: Deploy and Restart Application
@@ -40,6 +41,7 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
             cd /root/main/app
             
