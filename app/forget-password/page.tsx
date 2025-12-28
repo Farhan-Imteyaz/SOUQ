@@ -32,7 +32,7 @@ export default function ForgotPasswordPage() {
   });
   const onSubmit = async (data: ForgotPasswordFormType) => {
     try {
-      const res = await axios.post("/api/user/forget-password", data, {
+      const res = await axios.post("/api/user/auth/forget-password", data, {
         withCredentials: true,
       });
       if (res.status === 200) {

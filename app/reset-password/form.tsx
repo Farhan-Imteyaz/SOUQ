@@ -34,7 +34,7 @@ const Form = ({ token }: { token: string }) => {
   });
   const onSubmit = async (data: FormType) => {
     try {
-      const res = await axios.post("/api/user/reset-password", {
+      const res = await axios.post("/api/user/auth/reset-password", {
         token,
         password: data.password,
       });

@@ -92,7 +92,7 @@ export const Form = () => {
   const onSubmit = async (data: SignupFormType) => {
     const { confirmPassword, terms, ...payload } = data;
     try {
-      const res = await axios.post("/api/user/register", payload);
+      const res = await axios.post("/api/user/auth/register", payload);
 
       if (res.status === 201) {
         toast.success("Account created successfully!", {
