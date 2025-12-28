@@ -1,6 +1,8 @@
 import { Albert_Sans, Tenor_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import Loading from "./loading";
+
 const albertSans = Albert_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
