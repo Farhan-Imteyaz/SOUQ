@@ -42,7 +42,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /souqza/app
+            cd /home/souqza/app
 
             # 1. Install production dependencies
             npm install --omit=dev
