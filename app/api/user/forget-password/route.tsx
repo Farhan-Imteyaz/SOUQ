@@ -7,7 +7,7 @@ import getClientIP from "@/lib/get-client-ip";
 const EMAIL_LIMIT = 3;
 const IP_LIMIT = 10;
 const WINDOW_MINUTES = 15;
-export function getResend() {
+function getResend() {
   const key = process.env.RESEND_API_KEY;
   if (!key) throw new Error("RESEND_API_KEY missing");
   return new Resend(key);
@@ -93,6 +93,7 @@ export async function POST(req: NextRequest) {
        Send email
     ---------------------------------- */
     try {
+      const resend = getResend();
       await resend.emails.send({
         from: "onboarding@resend.dev",
         to: [email],
