@@ -9,9 +9,36 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { LayoutDashboard, LogOut } from "lucide-react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 import { ChevronDown } from "lucide-react";
-
+import axios from "axios";
 const NavBtns = ({ isLoggedIn, user }: { isLoggedIn: boolean; user: any }) => {
+  const router = useRouter();
+  const Logout = async () => {
+    try {
+      const res = await axios.post("/api/user/auth/logout");
+      if (res.status === 200) {
+        toast.success("Logged out successfully", {
+          className:
+            "!bg-green-600/60 border !border-green-500/10 !text-white backdrop-blur-xl",
+        });
+        router.push("/");
+        router.refresh();
+        return;
+      }
+      toast.error("Something went wrong", {
+        className:
+          "!bg-red-600/60 border !border-red-500/10 !text-white backdrop-blur-xl",
+      });
+    } catch (error: any) {
+      toast.error(error.response.data.message || "Something went wrong", {
+        className:
+          "!bg-red-600/60 border !border-red-500/10 !text-white backdrop-blur-xl",
+      });
+    }
+  };
   return (
     <div className="flex gap-4">
       {isLoggedIn ? (
@@ -26,9 +53,18 @@ const NavBtns = ({ isLoggedIn, user }: { isLoggedIn: boolean; user: any }) => {
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Logout</DropdownMenuItem>
+            <DropdownMenuItem className="flex items-center gap-2">
+              <LayoutDashboard />
+              Dashboard
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              className="hover:bg-red-500! hover:text-red-50! flex  items-center gap-2"
+              onSelect={Logout}
+            >
+              <LogOut />
+              Logout
+            </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       ) : (

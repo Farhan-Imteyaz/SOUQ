@@ -1,8 +1,5 @@
 import Form from "./form";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 export default async function Page() {
-  
   return (
     <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50">
       <div className="container mx-auto px-4 py-12">

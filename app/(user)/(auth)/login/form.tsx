@@ -48,6 +48,7 @@ const Form = () => {
         });
         setStatus("ok");
         router.push("/");
+        router.refresh();
         return;
       }
       toast.error("Invalid email or password", {
