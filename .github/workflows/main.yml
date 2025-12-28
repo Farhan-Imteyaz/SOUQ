@@ -50,7 +50,9 @@ jobs:
           EOF
           
           # Create tarball excluding unnecessary files
-          tar --exclude-from=.deployignore -czf deploy.tar.gz .
+          tar --warning=no-file-changed \
+            --exclude-from=.deployignore \
+            -czf deploy.tar.gz .
 
       - name: Upload deployment package
         uses: appleboy/scp-action@v0.1.7
@@ -111,6 +113,7 @@ jobs:
             # Install production dependencies (including dotenv for Prisma)
             npm install --omit=dev
             
+
             # Generate Prisma client
             npx prisma generate
             
