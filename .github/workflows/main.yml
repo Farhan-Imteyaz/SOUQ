@@ -17,28 +17,51 @@ jobs:
         with:
           node-version: 20
 
+      - name: Create .env file for build
+        run: |
+          cat > .env << EOF
+          DATABASE_URL="${{ secrets.DATABASE_URL }}"
+          JWT_SECRET="${{ secrets.JWT_SECRET }}"
+          RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}"
+          NEXT_PUBLIC_APP_URL="${{ secrets.NEXT_PUBLIC_APP_URL }}"
+          EMAIL_FROM="${{ secrets.EMAIL_FROM }}"
+          NODE_ENV=production
+          EOF
+
       - name: Install dependencies
         run: npm install
 
       - name: Build Next.js App
         run: npm run build
-        env:
-          # Environment variables needed during build
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
-          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
 
-      - name: Upload build + project to server
+      - name: Create deployment package
+        run: |
+          # Create a list of files to exclude
+          cat > .deployignore << EOF
+          node_modules
+          .git
+          .github
+          .env.local
+          .env.development
+          .env.test
+          README.md
+          .gitignore
+          .deployignore
+          EOF
+          
+          # Create tarball excluding unnecessary files
+          tar --exclude-from=.deployignore -czf deploy.tar.gz .
+
+      - name: Upload deployment package
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
-          source: "."
-          target: "/home/souqza/app"
-          rm: false
           port: ${{ secrets.SSH_PORT }}
+          source: "deploy.tar.gz"
+          target: "/home/souqza/"
+          overwrite: true
 
       - name: Create .env file on server
         uses: appleboy/ssh-action@v1.0.3
@@ -49,17 +72,17 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /home/souqza/app
-
+            
             # Create .env file with secrets
             cat > .env << EOF
             DATABASE_URL="${{ secrets.DATABASE_URL }}"
             JWT_SECRET="${{ secrets.JWT_SECRET }}"
             RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}"
-            NEXT_PUBLIC_BASE_URL="${{ secrets.NEXT_PUBLIC_BASE_URL }}"
+            NEXT_PUBLIC_APP_URL="${{ secrets.NEXT_PUBLIC_APP_URL }}"
             EMAIL_FROM="${{ secrets.EMAIL_FROM }}"
             NODE_ENV=production
             EOF
-
+            
             # Secure the .env file
             chmod 600 .env
 
@@ -71,18 +94,40 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /home/souqza/app
-
-            # 1. Install production dependencies
+            cd /home/souqza
+            
+            # Extract deployment package
+            tar -xzf deploy.tar.gz -C app/
+            rm deploy.tar.gz
+            
+            cd app
+            
+            # Verify .next directory exists
+            if [ ! -d ".next" ]; then
+              echo "Error: .next directory not found!"
+              exit 1
+            fi
+            
+            # Install production dependencies (including dotenv for Prisma)
             npm install --omit=dev
-
-            # 2. Apply new migrations to the production database
+            
+            # Generate Prisma client
             npx prisma generate
-            npx prisma migrate deploy 
-
-            # 3. Restart the application using PM2
-            pm2 restart next-app || pm2 start npm --name "next-app" -- start
-
-            # 4. Show PM2 status
+            
+            # Run migrations
+            npx prisma migrate deploy
+            
+            # Stop PM2 process if running
+            pm2 stop souqza || true
+            pm2 delete souqza || true
+            
+            # Start application with PM2
+            pm2 start npm --name "souqza" -- start
+            
+            # Save PM2 configuration
+            pm2 save
+            
+            # Show status
+            echo "Deployment completed!"
             pm2 status
-            pm2 logs next-app --lines 20
+            pm2 logs souqza --lines 10 --nostream
