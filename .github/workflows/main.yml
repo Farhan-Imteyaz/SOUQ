@@ -99,7 +99,7 @@ jobs:
               exit 1
             fi
 
-            # Install production dependencies (including dotenv for Prisma)
+        
             npm install --omit=dev
 
 
@@ -108,7 +108,7 @@ jobs:
 
             # Run migrations
             npx prisma migrate deploy
-
+            rm -rf deploy.tar.gz
             # Stop PM2 process if running
             pm2 stop souqza || true
             pm2 delete souqza || true

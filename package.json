@@ -37,7 +37,8 @@
     "tailwind-merge": "^3.4.0",
     "tailwindcss": "^4.1.18",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^4.1.11"
+    "zod": "^4.1.11",
+    "dotenv": "^17.2.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -47,7 +48,6 @@
     "@types/pg": "^8.15.6",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "dotenv": "^17.2.3",
     "eslint": "^9",
     "eslint-config-next": "15.5.4",
     "prisma": "^7.0.1",
