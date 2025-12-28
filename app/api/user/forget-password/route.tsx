@@ -83,7 +83,7 @@ export async function POST(req: NextRequest) {
     });
 
     const resetUrl = `${
-      process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"
+      process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
     }/reset-password?token=${token}`;
 
     /* ----------------------------------

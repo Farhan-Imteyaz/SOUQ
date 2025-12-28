@@ -22,6 +22,12 @@ jobs:
 
       - name: Build Next.js App
         run: npm run build
+        env:
+          # Environment variables needed during build
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          NEXT_PUBLIC_BASE_URL: ${{ secrets.NEXT_PUBLIC_BASE_URL }}
 
       - name: Upload build + project to server
         uses: appleboy/scp-action@v0.1.7
@@ -33,6 +39,29 @@ jobs:
           target: "/home/souqza/app"
           rm: false
           port: ${{ secrets.SSH_PORT }}
+
+      - name: Create .env file on server
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /home/souqza/app
+
+            # Create .env file with secrets
+            cat > .env << EOF
+            DATABASE_URL="${{ secrets.DATABASE_URL }}"
+            JWT_SECRET="${{ secrets.JWT_SECRET }}"
+            RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}"
+            NEXT_PUBLIC_BASE_URL="${{ secrets.NEXT_PUBLIC_BASE_URL }}"
+            EMAIL_FROM="${{ secrets.EMAIL_FROM }}"
+            NODE_ENV=production
+            EOF
+
+            # Secure the .env file
+            chmod 600 .env
 
       - name: Deploy and Restart Application
         uses: appleboy/ssh-action@v1.0.3
@@ -48,9 +77,12 @@ jobs:
             npm install --omit=dev
 
             # 2. Apply new migrations to the production database
-            # This uses the connection string defined in the server's .env file
             npx prisma generate
             npx prisma migrate deploy 
 
             # 3. Restart the application using PM2
             pm2 restart next-app || pm2 start npm --name "next-app" -- start
+
+            # 4. Show PM2 status
+            pm2 status
+            pm2 logs next-app --lines 20
