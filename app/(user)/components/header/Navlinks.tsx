@@ -1,6 +1,5 @@
-import React from "react";
 import Link from "next/link";
-const Navlinks = () => {
+const Navlinks = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   return (
     <div className="hidden lg:flex items-center space-x-6">
       <Link
