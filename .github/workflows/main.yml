@@ -17,16 +17,18 @@ jobs:
         with:
           node-version: 20
 
-      - name: Create .env file for build
+      - name: Create deployment package
         run: |
-          cat > .env << EOF
-          DATABASE_URL="${{ secrets.DATABASE_URL }}"
-          JWT_SECRET="${{ secrets.JWT_SECRET }}"
-          RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}"
-          NEXT_PUBLIC_APP_URL="${{ secrets.NEXT_PUBLIC_APP_URL }}"
-          EMAIL_FROM="${{ secrets.EMAIL_FROM }}"
-          NODE_ENV=production
-          EOF
+          printf "node_modules\n.git\n.github\n.env\n.env.local\n.env.development\n.env.test\nREADME.md\n.gitignore\n.deployignore\n" > .deployignore
+
+          ls -la .deployignore
+
+          tar \
+            --exclude-from=.deployignore \
+            --warning=no-file-changed \
+            --ignore-failed-read \
+            -czf deploy.tar.gz .
+
 
       - name: Install dependencies
         run: npm install
