@@ -12,7 +12,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Upload project to server
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js App
+        run: npm run build
+
+      - name: Upload build + project to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -23,7 +34,7 @@ jobs:
           rm: false
           port: ${{ secrets.SSH_PORT }}
 
-      - name: Build & Deploy on Server
+      - name: Deploy and Restart Application
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -33,15 +44,13 @@ jobs:
           script: |
             cd /home/souqza/app
 
-            # 1. Install dependencies (production only)
+            # 1. Install production dependencies
             npm install --omit=dev
 
-            # 2. Build the Next.js app (uses .env on server)
-            npm run build
-
-            # 3. Generate Prisma client & apply migrations
+            # 2. Apply new migrations to the production database
+            # This uses the connection string defined in the server's .env file
             npx prisma generate
-            npx prisma migrate deploy
+            npx prisma migrate deploy 
 
-            # 4. Restart the app with PM2
+            # 3. Restart the application using PM2
             pm2 restart next-app || pm2 start npm --name "next-app" -- start
