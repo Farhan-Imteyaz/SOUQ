@@ -40,11 +40,9 @@ jobs:
         run: |
           printf "node_modules\n.git\n.github\n.env\n.env.local\n.env.development\n.env.test\nREADME.md\n.gitignore\n.deployignore\n" > .deployignore
 
-          ls -la .deployignore
-
           tar --warning=no-file-changed \
               --exclude-from=.deployignore \
-              -czf deploy.tar.gz .
+              -czf deploy.tar.gz . || true
       - name: Upload deployment package
         uses: appleboy/scp-action@v0.1.7
         with:
