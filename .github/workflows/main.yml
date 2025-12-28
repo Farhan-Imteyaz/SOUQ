@@ -36,23 +36,13 @@ jobs:
 
       - name: Create deployment package
         run: |
-          cat > .deployignore <<'EOF'
-          node_modules
-          .git
-          .github
-          .env
-          .env.local
-          .env.development
-          .env.test
-          README.md
-          .gitignore
-          .deployignore
-          EOF
+          printf "node_modules\n.git\n.github\n.env\n.env.local\n.env.development\n.env.test\nREADME.md\n.gitignore\n.deployignore\n" > .deployignore
 
-              tar --warning=no-file-changed \
-                  --exclude-from=.deployignore \
-                  -czf deploy.tar.gz .
+          ls -la .deployignore
 
+          tar --warning=no-file-changed \
+              --exclude-from=.deployignore \
+              -czf deploy.tar.gz .
       - name: Upload deployment package
         uses: appleboy/scp-action@v0.1.7
         with:
