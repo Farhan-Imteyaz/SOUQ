@@ -27,7 +27,7 @@ export default function ShopShipPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-green-400 text-white py-20">
+      <section className="bg-linear-to-br from-blue-600 to-green-400 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -272,15 +272,15 @@ export default function ShopShipPage() {
                 <h3 className="font-bold text-lg mb-4">You only pay for:</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-green-600 shrink-0 mt-0.5" />
                     <span className="text-gray-700">International shipping costs based on weight and destination</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-green-600 shrink-0 mt-0.5" />
                     <span className="text-gray-700">Optional services like consolidation and repackaging (saves you money!)</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-green-600 shrink-0 mt-0.5" />
                     <span className="text-gray-700">Optional package insurance for valuable items</span>
                   </li>
                 </ul>
@@ -408,7 +408,7 @@ export default function ShopShipPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-green-400 text-white py-20">
+      <section className="bg-linear-to-br from-blue-600 to-green-400 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Start Shopping from India?</h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">

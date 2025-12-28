@@ -1,72 +1,67 @@
-'use client';
+"use client";
+import { Input } from "@/components/ui/input";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Mail, Lock } from "lucide-react";
+import { toast } from "sonner";
+import axios from "axios";
+import { Button } from "@/components/ui/button";
+import { Label } from "@/components/ui/label";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import z from "zod";
+import { Icon } from "@/app/register/form";
+const loginSchema = z.object({
+  email: z.string().email("Enter a valid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+});
 
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { Package, Mail, Lock, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
-import axios from 'axios';
-import { toast } from 'sonner'; // ✅ Import toast
+type LoginFormType = z.infer<typeof loginSchema>;
 
-export default function LoginPage() {
+const fieldOrder: (keyof LoginFormType)[] = ["email", "password"];
+
+const Page = () => {
   const router = useRouter();
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-
+  const onSubmit = async (data: LoginFormType) => {
     try {
-      // ✅ Use await so we wait for response
-      const res = await axios.post('/api/user/login', formData, { withCredentials: true });
+      const res = await axios.post("/api/user/login", data, {
+        withCredentials: true,
+      });
 
       console.log("Login Success:", res.data);
 
-      toast.success("Logged in successfully 🎉"); // ✅ Success toast
-
-      setIsLoading(false);
-
-      router.push('/dashboard');
-
+      router.push("/dashboard");
     } catch (error: any) {
       console.error("Login Error:", error);
-
-      toast.error(
-        error?.response?.data?.message || "Something went wrong"
-      ); // ✅ Error toast
-
-      setIsLoading(false);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const onError = (errors: any) => {
+    for (const field of fieldOrder) {
+      const error = errors[field];
+      if (error?.message) {
+        toast.error(error.message, {
+          className:
+            "border !border-red-500/10 !bg-red-500/30 backdrop-blur-lg",
+        });
+      }
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-      {/* Header */}
-      <header className="border-b bg-white/80 backdrop-blur-sm">
-        <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <Package className="h-8 w-8 text-blue-600" />
-            <span className="text-2xl font-bold">ParcelForward</span>
-          </Link>
-          <div className="flex items-center space-x-4">
-            <span className="text-gray-600">New to ParcelForward?</span>
-            <Link href="/register" className="px-4 py-2 text-blue-600 font-semibold hover:bg-blue-50 rounded-lg">
-              Sign Up
-            </Link>
-          </div>
-        </nav>
-      </header>
-
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50">
       <div className="container mx-auto px-4 py-12">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           {/* Left Side - Benefits */}
@@ -81,77 +76,66 @@ export default function LoginPage() {
           {/* Right Side - Login Form */}
           <div className="bg-white rounded-2xl shadow-xl p-8 md:p-10">
             <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold mb-2"></h2>
-              <p className="text-gray-600">Sign in to your account</p>
+              <h2 className="text-3xl font-bold mb-2">
+                Sign in to your account
+              </h2>
             </div>
 
-            {/* ✅ TEST TOAST BUTTON (Optional) */}
-            <button
-              type="button"
-              onClick={() => toast.success("Toast is working ✅")}
-              className="mb-4 bg-green-600 text-white px-4 py-2 rounded"
+            <form
+              onSubmit={handleSubmit(onSubmit, onError)}
+              className="space-y-5"
             >
-              Test Toast
-            </button>
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {/* Email */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                <Label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Email Address *
+                </Label>
                 <div className="relative">
-                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <input
+                  <Icon
+                    icon={<Mail />}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+                    error={errors.email ? true : false}
+                  />
+                  <Input
                     type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
+                    {...register("email")}
                     required
+                    className={`pl-10 ${
+                      errors.email &&
+                      "focus:border-red-500 focus:outline-red-500 border-red-200/60 bg-red-500/10 placeholder:text-red-700"
+                    }`}
                     placeholder="john@example.com"
-                    className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               {/* Password */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">Password *</label>
+                <Label className="block text-sm font-semibold text-gray-700 mb-2">
+                  Password *
+                </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-                  <input
+                  <Input
                     type="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
+                    {...register("password")}
+                    className={`pl-10 ${
+                      errors.password &&
+                      "focus:border-red-500 focus:outline-red-500 border-red-200/60 bg-red-500/10 placeholder:text-red-700"
+                    }`}
                     placeholder="Enter your password"
-                    className="w-full pl-11 pr-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-600 focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
-              {/* Submit Button */}
-              <button
-                type="submit"
-                disabled={isLoading}
-                className="w-full py-4 bg-blue-600 text-white rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
-              >
-                {isLoading ? (
-                  <span className="flex items-center justify-center gap-2">
-                    <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                    </svg>
-                    Signing In...
-                  </span>
-                ) : (
-                  'Sign In to Dashboard'
-                )}
-              </button>
+              <Button className={"w-full h-11"}>Log in</Button>
 
               {/* Sign Up Link */}
               <p className="text-center text-gray-600">
-                Don't have an account?{' '}
-                <Link href="/register" className="text-blue-600 font-semibold hover:underline">
+                Don't have an account?{" "}
+                <Link
+                  href="/register"
+                  className="text-blue-600 font-semibold hover:underline"
+                >
                   Create account
                 </Link>
               </p>
@@ -161,4 +145,5 @@ export default function LoginPage() {
       </div>
     </div>
   );
-}
+};
+export default Page;

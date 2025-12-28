@@ -5,30 +5,35 @@ import bcrypt from "bcryptjs";
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { fullName, email, phone, country, password } = body;
+    const { firstName, lastName, email, phone, country, password } = body;
+    const findUser = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
 
-    if (!fullName || !email || !phone || !country || !password) {
+    if (findUser) {
       return NextResponse.json(
-        { error: "All fields are required" },
+        { error: "Email already Registered" },
         { status: 400 }
       );
     }
-
-    // 🔐 Hash password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await prisma.user.create({
       data: {
-        fullName,
+        firstName,
+        lastName,
         email,
         phone,
         country,
-        password: hashedPassword, // secure password
+        password: hashedPassword,
       },
     });
 
     return NextResponse.json(user, { status: 201 });
   } catch (error: any) {
+    console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

@@ -147,7 +147,7 @@ export default function GuidePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-indigo-700 text-white py-12 md:py-16">
+      <section className="bg-linear-to-br from-purple-600 to-indigo-700 text-white py-12 md:py-16">
         <div className="container mx-auto px-4 text-center">
           <div className="inline-flex items-center justify-center h-12 w-12 md:h-16 md:w-16 bg-white/20 rounded-full mb-4">
             <BookOpen className="h-6 w-6 md:h-8 md:w-8" />
@@ -167,7 +167,7 @@ export default function GuidePage() {
               <a
                 key={section.id}
                 href={`#${section.id}`}
-                className="flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-full whitespace-nowrap transition-colors text-sm md:text-base flex-shrink-0"
+                className="flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-full whitespace-nowrap transition-colors text-sm md:text-base shrink-0"
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById(section.id)?.scrollIntoView({ behavior: 'smooth' });
@@ -180,7 +180,7 @@ export default function GuidePage() {
             ))}
             <a
               href="#resources"
-              className="flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-full whitespace-nowrap transition-colors text-sm md:text-base flex-shrink-0"
+              className="flex items-center gap-2 px-3 py-2 bg-gray-100 hover:bg-gray-200 rounded-full whitespace-nowrap transition-colors text-sm md:text-base shrink-0"
               onClick={(e) => {
                 e.preventDefault();
                 document.getElementById('resources')?.scrollIntoView({ behavior: 'smooth' });
@@ -204,12 +204,12 @@ export default function GuidePage() {
                 <section key={section.id} id={section.id} className="scroll-mt-32">
                   <div className="bg-white rounded-xl md:rounded-2xl shadow-lg border overflow-hidden">
                     {/* Section Header */}
-                    <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 md:p-8 border-b">
+                    <div className="bg-linear-to-r from-blue-50 to-purple-50 p-4 md:p-8 border-b">
                       <div className="flex items-start justify-between">
                         <div className="flex items-start gap-3 md:gap-4">
                           <span className="text-2xl md:text-3xl">{section.icon}</span>
                           <div className="flex-1 min-w-0">
-                            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 break-words">
+                            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 wrap-break-word">
                               {section.title}
                             </h2>
                             <p className="text-sm md:text-lg text-gray-600 mt-1 md:mt-2">
@@ -217,7 +217,7 @@ export default function GuidePage() {
                             </p>
                           </div>
                         </div>
-                        <div className="hidden md:flex items-center gap-2 px-3 py-1 md:px-4 md:py-2 bg-white rounded-full border flex-shrink-0 ml-2">
+                        <div className="hidden md:flex items-center gap-2 px-3 py-1 md:px-4 md:py-2 bg-white rounded-full border shrink-0 ml-2">
                           <Video className="h-3 w-3 md:h-4 md:w-4 text-blue-600" />
                           <span className="text-xs md:text-sm font-medium text-blue-600">Video Guide</span>
                         </div>
@@ -269,7 +269,7 @@ export default function GuidePage() {
                             <div className="space-y-2 md:space-y-3">
                               {section.steps.map((step, stepIndex) => (
                                 <div key={stepIndex} className="flex items-start gap-2 md:gap-3">
-                                  <div className="flex-shrink-0 h-5 w-5 md:h-6 md:w-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs md:text-sm font-bold mt-0.5">
+                                  <div className="shrink-0 h-5 w-5 md:h-6 md:w-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs md:text-sm font-bold mt-0.5">
                                     {stepIndex + 1}
                                   </div>
                                   <span className="text-sm md:text-base text-gray-700 leading-relaxed">{step}</span>
@@ -287,7 +287,7 @@ export default function GuidePage() {
                             <div className="grid gap-1 md:gap-2">
                               {section.features.map((feature, featureIndex) => (
                                 <div key={featureIndex} className="flex items-center gap-2">
-                                  <CheckCircle className="h-3 w-3 md:h-4 md:w-4 text-green-500 flex-shrink-0" />
+                                  <CheckCircle className="h-3 w-3 md:h-4 md:w-4 text-green-500 shrink-0" />
                                   <span className="text-sm md:text-base text-gray-700">{feature}</span>
                                 </div>
                               ))}
@@ -308,7 +308,7 @@ export default function GuidePage() {
                                   className="flex items-center justify-between p-2 md:p-3 bg-gray-50 hover:bg-gray-100 rounded-lg border transition-colors group text-sm md:text-base"
                                 >
                                   <span className="text-gray-700 font-medium truncate pr-2">{resource.name}</span>
-                                  <ArrowRight className="h-3 w-3 md:h-4 md:w-4 text-gray-400 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+                                  <ArrowRight className="h-3 w-3 md:h-4 md:w-4 text-gray-400 group-hover:translate-x-1 transition-transform shrink-0" />
                                 </a>
                               ))}
                             </div>
@@ -353,7 +353,7 @@ export default function GuidePage() {
                       href="/faq"
                       className="flex items-center gap-3 md:gap-4 p-4 md:p-6 bg-blue-50 hover:bg-blue-100 rounded-xl border border-blue-200 transition-colors group"
                     >
-                      <div className="flex-shrink-0 h-8 w-8 md:h-12 md:w-12 bg-blue-600 rounded-lg flex items-center justify-center">
+                      <div className="shrink-0 h-8 w-8 md:h-12 md:w-12 bg-blue-600 rounded-lg flex items-center justify-center">
                         <BookOpen className="h-4 w-4 md:h-6 md:w-6 text-white" />
                       </div>
                       <div className="flex-1">
@@ -367,7 +367,7 @@ export default function GuidePage() {
                       href="/contact"
                       className="flex items-center gap-3 md:gap-4 p-4 md:p-6 bg-green-50 hover:bg-green-100 rounded-xl border border-green-200 transition-colors group"
                     >
-                      <div className="flex-shrink-0 h-8 w-8 md:h-12 md:w-12 bg-green-600 rounded-lg flex items-center justify-center">
+                      <div className="shrink-0 h-8 w-8 md:h-12 md:w-12 bg-green-600 rounded-lg flex items-center justify-center">
                         <Video className="h-4 w-4 md:h-6 md:w-6 text-white" />
                       </div>
                       <div className="flex-1">
@@ -382,7 +382,7 @@ export default function GuidePage() {
             </section>
 
             {/* Bottom CTA */}
-            <div className="mt-12 md:mt-16 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-xl md:rounded-2xl p-6 md:p-8 text-white text-center">
+            <div className="mt-12 md:mt-16 bg-linear-to-br from-blue-600 to-indigo-700 rounded-xl md:rounded-2xl p-6 md:p-8 text-white text-center">
               <h3 className="text-xl md:text-2xl font-bold mb-3 md:mb-4">Ready to Get Started?</h3>
               <p className="text-sm md:text-lg opacity-90 mb-4 md:mb-6 max-w-2xl mx-auto">
                 Join thousands of customers who are already enjoying hassle-free parcel forwarding from India.

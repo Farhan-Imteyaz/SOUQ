@@ -27,7 +27,7 @@ export default function ConsolidationPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-pink-700 text-white py-20">
+      <section className="bg-linear-to-br from-purple-600 to-pink-700 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -94,7 +94,7 @@ export default function ConsolidationPage() {
           <div className="max-w-4xl mx-auto">
             <div className="space-y-8">
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="h-16 w-16 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-2xl">
                     1
                   </div>
@@ -123,7 +123,7 @@ export default function ConsolidationPage() {
               </div>
 
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="h-16 w-16 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-2xl">
                     2
                   </div>
@@ -155,7 +155,7 @@ export default function ConsolidationPage() {
               </div>
 
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="h-16 w-16 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-2xl">
                     3
                   </div>
@@ -180,7 +180,7 @@ export default function ConsolidationPage() {
               </div>
 
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="h-16 w-16 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-2xl">
                     4
                   </div>
@@ -191,7 +191,7 @@ export default function ConsolidationPage() {
                     Your consolidated package is professionally repackaged and shipped internationally. 
                     Track your single shipment all the way to your door and enjoy massive savings!
                   </p>
-                  <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-500 p-6 rounded-lg">
+                  <div className="bg-linear-to-r from-green-50 to-emerald-50 border-2 border-green-500 p-6 rounded-lg">
                     <div className="flex items-center gap-3">
                       <TrendingDown className="h-12 w-12 text-green-600" />
                       <div>
@@ -378,7 +378,7 @@ export default function ConsolidationPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <div className="bg-white p-6 rounded-xl">
                 <div className="flex items-start gap-4">
-                  <div className="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
                     <CheckCircle className="h-6 w-6 text-purple-600" />
                   </div>
                   <div>
@@ -391,7 +391,7 @@ export default function ConsolidationPage() {
               </div>
               <div className="bg-white p-6 rounded-xl">
                 <div className="flex items-start gap-4">
-                  <div className="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
                     <CheckCircle className="h-6 w-6 text-purple-600" />
                   </div>
                   <div>
@@ -404,7 +404,7 @@ export default function ConsolidationPage() {
               </div>
               <div className="bg-white p-6 rounded-xl">
                 <div className="flex items-start gap-4">
-                  <div className="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
                     <CheckCircle className="h-6 w-6 text-purple-600" />
                   </div>
                   <div>
@@ -417,7 +417,7 @@ export default function ConsolidationPage() {
               </div>
               <div className="bg-white p-6 rounded-xl">
                 <div className="flex items-start gap-4">
-                  <div className="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <div className="h-10 w-10 bg-purple-100 rounded-lg flex items-center justify-center shrink-0">
                     <CheckCircle className="h-6 w-6 text-purple-600" />
                   </div>
                   <div>
@@ -434,7 +434,7 @@ export default function ConsolidationPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-pink-700 text-white py-20">
+      <section className="bg-linear-to-br from-purple-600 to-pink-700 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Start Saving on Shipping Today</h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">

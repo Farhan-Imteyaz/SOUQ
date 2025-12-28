@@ -34,7 +34,6 @@ jobs:
           rm: false
           port: ${{ secrets.SSH_PORT }}
 
-
       - name: Deploy and Restart Application
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -43,15 +42,15 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            cd /root/main/app
-            
+            cd /souqza/app
+
             # 1. Install production dependencies
             npm install --omit=dev
-            
+
             # 2. Apply new migrations to the production database
             # This uses the connection string defined in the server's .env file
             npx prisma generate
             npx prisma migrate deploy 
-            
+
             # 3. Restart the application using PM2
             pm2 restart next-app || pm2 start npm --name "next-app" -- start

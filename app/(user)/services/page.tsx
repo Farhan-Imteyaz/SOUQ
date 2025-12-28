@@ -123,7 +123,7 @@ export default function ServicesPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-pink-700 text-white py-20">
+      <section className="bg-linear-to-br from-purple-600 to-pink-700 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
             Our Services
@@ -162,7 +162,7 @@ export default function ServicesPage() {
                   <ul className="space-y-3 mb-6">
                     {service.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-sm">
-                        <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
+                        <CheckCircle className="h-5 w-5 text-green-600 shrink-0 mt-0.5" />
                         <span className="text-gray-700">{feature}</span>
                       </li>
                     ))}
@@ -238,7 +238,7 @@ export default function ServicesPage() {
 
             <div className="space-y-8">
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="h-12 w-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg">
                     1
                   </div>
@@ -253,7 +253,7 @@ export default function ServicesPage() {
               </div>
 
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="h-12 w-12 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-lg">
                     2
                   </div>
@@ -267,7 +267,7 @@ export default function ServicesPage() {
               </div>
 
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="h-12 w-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-lg">
                     3
                   </div>
@@ -281,7 +281,7 @@ export default function ServicesPage() {
               </div>
 
               <div className="flex gap-6 items-start">
-                <div className="flex-shrink-0">
+                <div className="shrink-0">
                   <div className="h-12 w-12 rounded-full bg-orange-600 text-white flex items-center justify-center font-bold text-lg">
                     4
                   </div>
@@ -299,7 +299,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-pink-700 text-white py-20">
+      <section className="bg-linear-to-br from-purple-600 to-pink-700 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Experience Our Services?</h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">

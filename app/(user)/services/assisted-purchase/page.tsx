@@ -27,7 +27,7 @@ export default function AssistedPurchasePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-emerald-700 text-white py-20">
+      <section className="bg-linear-to-br from-blue-600 to-emerald-700 text-white py-20">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
@@ -284,23 +284,23 @@ export default function AssistedPurchasePage() {
                 <h3 className="font-bold text-lg mb-4">What's included in the service fee:</h3>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-green-600 shrink-0 mt-0.5" />
                     <span className="text-gray-700">Product research and price verification</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-green-600 shrink-0 mt-0.5" />
                     <span className="text-gray-700">Payment processing in Indian Rupees</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-green-600 shrink-0 mt-0.5" />
                     <span className="text-gray-700">Order placement and tracking</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-green-600 shrink-0 mt-0.5" />
                     <span className="text-gray-700">Customer service and return handling</span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
+                    <CheckCircle className="h-6 w-6 text-green-600 shrink-0 mt-0.5" />
                     <span className="text-gray-700">Quality inspection upon arrival</span>
                   </li>
                 </ul>
@@ -428,7 +428,7 @@ export default function AssistedPurchasePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-green-600 to-emerald-700 text-white py-20">
+      <section className="bg-linear-to-br from-green-600 to-emerald-700 text-white py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Ready to Shop from Any Indian Website?</h2>
           <p className="text-xl opacity-90 mb-8 max-w-2xl mx-auto">

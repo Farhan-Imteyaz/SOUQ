@@ -236,7 +236,7 @@ export default function FAQPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-blue-600 to-indigo-700 text-white py-16">
+      <section className="bg-linear-to-br from-blue-600 to-indigo-700 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Frequently Asked Questions</h1>
           <p className="text-xl opacity-90 max-w-2xl mx-auto">
@@ -288,7 +288,7 @@ export default function FAQPage() {
                 </div>
 
                 {/* Quick Help */}
-                <div className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-xl border border-green-200 p-6">
+                <div className="bg-linear-to-br from-green-50 to-emerald-100 rounded-xl border border-green-200 p-6">
                   <h3 className="font-bold text-lg mb-3">Need More Help?</h3>
                   <p className="text-sm text-gray-600 mb-4">
                     Can't find what you're looking for? Our support team is here to help.
@@ -384,7 +384,7 @@ export default function FAQPage() {
               )}
 
               {/* Bottom CTA */}
-              <div className="mt-12 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl p-8 text-white text-center">
+              <div className="mt-12 bg-linear-to-br from-blue-600 to-indigo-700 rounded-2xl p-8 text-white text-center">
                 <h3 className="text-2xl font-bold mb-4">Still have questions?</h3>
                 <p className="text-lg opacity-90 mb-6 max-w-2xl mx-auto">
                   Our customer support team is available 24/7 to help you with any questions about parcel forwarding.

@@ -28,7 +28,7 @@ export default function ProhibitedItemsPage() {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-red-600 to-orange-700 text-white py-16">
+      <section className="bg-linear-to-br from-red-600 to-orange-700 text-white py-16">
         <div className="container mx-auto px-4 text-center">
           <div className="inline-flex items-center justify-center h-16 w-16 bg-white/20 rounded-full mb-4">
             <Ban className="h-8 w-8" />
@@ -44,7 +44,7 @@ export default function ProhibitedItemsPage() {
       <section className="bg-orange-50 border-b border-orange-200">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-start gap-3">
-            <AlertTriangle className="h-6 w-6 text-orange-600 flex-shrink-0 mt-0.5" />
+            <AlertTriangle className="h-6 w-6 text-orange-600 shrink-0 mt-0.5" />
             <div>
               <p className="text-orange-800 font-semibold">
                 Important: Shipments containing prohibited items may be refused, seized, destroyed, or incur penalties.
@@ -88,51 +88,51 @@ export default function ProhibitedItemsPage() {
                 <div className="p-6">
                   <ul className="grid md:grid-cols-2 gap-3 text-gray-700">
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Flammable liquids, gases, or vapors</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Perfumes, colognes, fragrance sprays</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Nail polish, nail polish removers, solvents</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Alcohol-based sanitizers, aftershaves</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Fuels, gasoline, kerosene, lighter fluid</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Paints, thinners, turpentine</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Adhesives, glues with volatile solvents</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Compressed gases, aerosol cans, spray cans</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Bleach, oxidizers, peroxides</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Fertilizers, pesticides, herbicides, insecticides</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Battery fluids and corrosive chemicals</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Any material that may release toxic fumes</span>
                     </li>
                   </ul>
@@ -159,31 +159,31 @@ export default function ProhibitedItemsPage() {
                 <div className="p-6">
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Firearms, ammunition, and explosives</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Firearm parts (barrels, triggers, magazines, etc.)</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Imitation or replica weapons (toy guns, replica grenades, etc.)</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Sharp weapons: swords, hunting knives, daggers</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Police or military gear: handcuffs, batons, restraints</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Fireworks, flares, firecrackers</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Devices resembling weapons (e.g. cigarette lighters shaped like guns)</span>
                     </li>
                   </ul>
@@ -201,15 +201,15 @@ export default function ProhibitedItemsPage() {
                 <div className="p-6">
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Narcotics, psychotropic substances, illicit drugs</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Prescription medicines without valid prescription documentation</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Unlicensed or unauthorized pharmaceuticals or medical compounds</span>
                     </li>
                   </ul>
@@ -230,35 +230,35 @@ export default function ProhibitedItemsPage() {
                 <div className="p-6">
                   <ul className="grid md:grid-cols-2 gap-3 text-gray-700">
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Currency notes, coins, traveler's cheques, bullion</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Precious metals (gold, silver, platinum)</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Precious stones, gemstones, diamonds</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>High-value jewelry</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Antiques, rare art pieces, museum-grade artifacts</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Counterfeit, replica, or pirated goods</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Pornographic or obscene material</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Magnetic or radioactive materials</span>
                     </li>
                   </ul>
@@ -279,23 +279,23 @@ export default function ProhibitedItemsPage() {
                 <div className="p-6">
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Fresh fruits, vegetables, seeds, plants</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Meat, fish, dairy products, eggs</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Live animals, insects, or biological specimens</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Soil, sand, compost, or fertilizers requiring quarantine</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Items requiring strict temperature control (unless prior approved)</span>
                     </li>
                   </ul>
@@ -313,19 +313,19 @@ export default function ProhibitedItemsPage() {
                 <div className="p-6">
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Items requiring special licensing or approval under export control</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Items that are illegal or prohibited in destination countries under local law</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Objects misdeclared or falsely labeled</span>
                     </li>
                     <li className="flex items-start gap-2">
-                      <Ban className="h-5 w-5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <Ban className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                       <span>Items violating import regulations not specifically listed above</span>
                     </li>
                   </ul>

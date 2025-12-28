@@ -85,8 +85,8 @@ export default function DashboardLayout({
       <aside
         className={`
         fixed lg:static inset-y-0 left-0 z-50
-        w-64 bg-gradient-to-b from-gray-900 to-gray-800 text-white 
-        flex-shrink-0 overflow-y-auto
+        w-64 bg-linear-to-b from-gray-900 to-gray-800 text-white 
+        shrink-0 overflow-y-auto
         transform transition-transform duration-300 ease-in-out
         ${
           isMobileMenuOpen

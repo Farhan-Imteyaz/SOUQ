@@ -98,7 +98,7 @@ Phone: ${virtualAddress.phone}`;
 
         {/* Right Column - Virtual Address */}
         <div className="lg:col-span-1">
-          <div className="bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
+          <div className="bg-linear-to-br from-cyan-500 to-blue-600 rounded-2xl p-6 text-white shadow-xl relative overflow-hidden">
             {/* "Use it" Badge */}
             <div className="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-xs font-bold transform rotate-12 shadow-lg">
               USE IT
@@ -213,7 +213,7 @@ Phone: ${virtualAddress.phone}`;
               {/* Copy Address Button */}
               <button
                 onClick={handleCopyAddress}
-                className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-bold text-sm shadow-lg transition-all transform hover:scale-105"
+                className="mt-4 w-full flex items-center justify-center gap-2 px-4 py-3 bg-linear-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 rounded-xl font-bold text-sm shadow-lg transition-all transform hover:scale-105"
               >
                 {copied ? (
                   <>
@@ -268,7 +268,7 @@ Phone: ${virtualAddress.phone}`;
         <div className="lg:col-span-2 space-y-6">
           {/* Shop n Ship Card */}
           <div className="bg-white rounded-2xl shadow-sm border overflow-hidden">
-            <div className="bg-gradient-to-r from-blue-500 to-blue-600 h-2"></div>
+            <div className="bg-linear-to-r from-blue-500 to-blue-600 h-2"></div>
             <div className="p-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
                 <div className="flex items-center gap-3">
@@ -312,7 +312,7 @@ Phone: ${virtualAddress.phone}`;
 
           {/* Assisted Purchase Card */}
           <div className="bg-white rounded-2xl shadow-sm border overflow-hidden">
-            <div className="bg-gradient-to-r from-green-500 to-green-600 h-2"></div>
+            <div className="bg-linear-to-r from-green-500 to-green-600 h-2"></div>
             <div className="p-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
                 <div className="flex items-center gap-3">
@@ -356,7 +356,7 @@ Phone: ${virtualAddress.phone}`;
 
           {/* International Shipment Card */}
           <div className="bg-white rounded-2xl shadow-sm border overflow-hidden">
-            <div className="bg-gradient-to-r from-purple-500 to-purple-600 h-2"></div>
+            <div className="bg-linear-to-r from-purple-500 to-purple-600 h-2"></div>
             <div className="p-6">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
                 <div className="flex items-center gap-3">

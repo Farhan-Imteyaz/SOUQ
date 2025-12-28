@@ -221,7 +221,7 @@ export default function ProfilePage() {
                   WhatsApp Number*
                 </label>
                 <div className="flex gap-3">
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     <div className="px-4 py-3 bg-gray-100 border border-gray-300 rounded-lg text-gray-700 font-medium">
                       +91
                     </div>
@@ -362,7 +362,7 @@ export default function ProfilePage() {
           </div>
 
           {/* Support Card */}
-          <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-6 text-white">
+          <div className="bg-linear-to-br from-blue-500 to-blue-700 rounded-xl p-6 text-white">
             <h3 className="text-lg font-bold mb-2">Need Help?</h3>
             <p className="text-sm opacity-90 mb-4">
               Contact our support team for any account-related issues.

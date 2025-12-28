@@ -4,19 +4,19 @@ import jwt from "jsonwebtoken";
 
 const SECRET = process.env.JWT_SECRET!;
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
- 
+  
   // Protected routes
   const protectedRoutes = ["/dashboard"];
 
   const currentPath = req.nextUrl.pathname;
 
-  const isProtectedRoute = protectedRoutes.some(route =>
+  const isProtectedRoute = protectedRoutes.some((route) =>
     currentPath.startsWith(route)
   );
 
-   console.log("Token in middleware:", isProtectedRoute, token);
+  console.log("Token in middleware:", isProtectedRoute, token);
 
   if (isProtectedRoute) {
     if (!token) {
@@ -34,10 +34,6 @@ export function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
- 
 export const config = {
-  matcher: [
-    "/dashboard/:path*",
-  ],
-    runtime: "nodejs",
+  matcher: ["/dashboard/:path*"],
 };

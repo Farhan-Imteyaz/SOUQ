@@ -9,77 +9,11 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      <header className="border-b bg-white sticky top-0 z-50">
-        <nav className="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Package className="h-6 w-6 sm:h-8 sm:w-8 text-blue-600" />
-            <span className="text-xl sm:text-2xl font-bold">ParcelForward</span>
-          </div>
-          
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-6">
-            <Link href="/how-it-works" className="hover:text-blue-600 transition-colors">How It Works</Link>
-            <Link href="/services" className="hover:text-blue-600 transition-colors">Services</Link>
-            <Link href="/pricing" className="hover:text-blue-600 transition-colors">Pricing</Link>
-            <Link href="/contact" className="hover:text-blue-600 transition-colors">Contact</Link>
-          </div>
-          
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link href="/dashboard" className="hover:text-blue-600 transition-colors">My Dashboard</Link>
-            <Link href="/login" className="hover:text-blue-600 transition-colors">Login</Link>
-            <Link href="/register" className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all">
-              Sign Up
-            </Link>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button 
-            className="lg:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </nav>
-
-        {/* Mobile Navigation */}
-        {isMenuOpen && (
-          <div className="lg:hidden bg-white border-t py-4 px-4">
-            <div className="flex flex-col space-y-4">
-              <Link href="/how-it-works" className="py-2 hover:text-blue-600" onClick={() => setIsMenuOpen(false)}>
-                How It Works
-              </Link>
-              <Link href="/services" className="py-2 hover:text-blue-600" onClick={() => setIsMenuOpen(false)}>
-                Services
-              </Link>
-              <Link href="/pricing" className="py-2 hover:text-blue-600" onClick={() => setIsMenuOpen(false)}>
-                Pricing
-              </Link>
-              <Link href="/contact" className="py-2 hover:text-blue-600" onClick={() => setIsMenuOpen(false)}>
-                Contact
-              </Link>
-              <div className="border-t pt-4 flex flex-col space-y-3">
-                <Link href="/dashboard" className="py-2 hover:text-blue-600" onClick={() => setIsMenuOpen(false)}>
-                  My Dashboard
-                </Link>
-                <Link href="/login" className="py-2 hover:text-blue-600" onClick={() => setIsMenuOpen(false)}>
-                  Login
-                </Link>
-                <Link 
-                  href="/register" 
-                  className="px-4 py-3 bg-blue-600 text-white rounded-lg text-center font-semibold hover:bg-blue-700"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Sign Up
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
-      </header>
+     
+      
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-pink-700 text-white py-12 sm:py-16 lg:py-20">
+      <section className="bg-linear-to-br from-purple-600 to-pink-700 text-white py-12 sm:py-16 lg:py-20">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
             Shop From India,<br />Ship Worldwide
@@ -176,7 +110,7 @@ export default function HomePage() {
       </section>
 
       {/* Pricing Calculator CTA */}
-      <section id="pricing" className="bg-gradient-to-r from-purple-600 to-pink-700 text-white py-12 sm:py-16 lg:py-20">
+      <section id="pricing" className="bg-linear-to-r from-purple-600 to-pink-700 text-white py-12 sm:py-16 lg:py-20">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <Calculator className="h-12 w-12 sm:h-14 sm:w-14 lg:h-16 lg:w-16 mx-auto mb-4 sm:mb-6" />
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">Calculate Your Shipping Cost</h2>
@@ -217,7 +151,7 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-gradient-to-br from-purple-600 to-pink-700 text-white py-12 sm:py-16 lg:py-20">
+      <section className="bg-linear-to-br from-purple-600 to-pink-700 text-white py-12 sm:py-16 lg:py-20">
         <div className="container mx-auto px-4 sm:px-6 text-center">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6">Ready to Start Shopping?</h2>
           <p className="text-base sm:text-lg lg:text-xl opacity-90 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed">
@@ -230,48 +164,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8 sm:py-12">
-        <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            <div className="sm:col-span-2 lg:col-span-1">
-              <div className="flex items-center space-x-2 mb-3 sm:mb-4">
-                <Package className="h-6 w-6 sm:h-8 sm:w-8" />
-                <span className="text-lg sm:text-xl font-bold">ParcelForward</span>
-              </div>
-              <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
-                Your trusted partner for international parcel forwarding from India.
-              </p>
-            </div>
-            <div>
-              <h3 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">Services</h3>
-              <ul className="space-y-2 text-gray-400 text-sm sm:text-base">
-                <li><Link href="/services/shop-ship" className="hover:text-white transition-colors">Shop & Ship</Link></li>
-                <li><Link href="/services/consolidation" className="hover:text-white transition-colors">Consolidation</Link></li>
-                <li><Link href="/services/assisted-purchase" className="hover:text-white transition-colors">Assisted Purchase</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">Company</h3>
-              <ul className="space-y-2 text-gray-400 text-sm sm:text-base">
-                <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
-                <li><Link href="/faq" className="hover:text-white transition-colors">FAQ</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">Legal</h3>
-              <ul className="space-y-2 text-gray-400 text-sm sm:text-base">
-                <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
-                <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/shipping-policy" className="hover:text-white transition-colors">Shipping Policy</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 mt-6 sm:mt-8 pt-6 sm:pt-8 text-center text-gray-400 text-sm sm:text-base">
-            <p>&copy; 2025 ParcelForward. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+     
     </div>
   );
 }
