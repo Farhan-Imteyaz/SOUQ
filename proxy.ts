@@ -6,19 +6,20 @@ const SECRET = process.env.JWT_SECRET!;
 
 export function proxy(req: NextRequest) {
   const token = req.cookies.get("token")?.value;
-  
-  // Protected routes
-  const protectedRoutes = ["/dashboard"];
-
   const currentPath = req.nextUrl.pathname;
 
-  const isProtectedRoute = protectedRoutes.some((route) =>
-    currentPath.startsWith(route)
-  );
+  // Redirect logged-in users away from /login
+  if (currentPath === "/login" && token) {
+    try {
+      jwt.verify(token, SECRET);
+      return NextResponse.redirect(new URL("/", req.url));
+    } catch {
+      // invalid token, allow to login
+      return NextResponse.next();
+    }
+  }
 
-  console.log("Token in middleware:", isProtectedRoute, token);
-
-  if (isProtectedRoute) {
+  if (currentPath.startsWith("/dashboard")) {
     if (!token) {
       return NextResponse.redirect(new URL("/login", req.url));
     }
@@ -26,7 +27,7 @@ export function proxy(req: NextRequest) {
     try {
       jwt.verify(token, SECRET);
       return NextResponse.next();
-    } catch (err) {
+    } catch {
       return NextResponse.redirect(new URL("/login", req.url));
     }
   }
@@ -35,5 +36,5 @@ export function proxy(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/login", "/dashboard/:path*"], // apply middleware to login and dashboard
 };
