@@ -94,8 +94,8 @@ export async function POST(req: NextRequest) {
     ---------------------------------- */
     try {
       const resend = getResend();
-      await resend.emails.send({
-        from: "onboarding@resend.dev",
+      const mail = await resend.emails.send({
+        from: "no-reply@souqza.com",
         to: [email],
         subject: "Reset Your Password",
         html: `
@@ -134,6 +134,7 @@ export async function POST(req: NextRequest) {
         `,
         text: `Reset your password: ${resetUrl}`,
       });
+      console.log("Password reset email sent:", mail);
     } catch (emailError) {
       console.error("Email sending failed:", emailError);
     }
