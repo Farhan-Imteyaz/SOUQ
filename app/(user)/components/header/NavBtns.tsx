@@ -14,7 +14,15 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ChevronDown } from "lucide-react";
 import axios from "axios";
-const NavBtns = ({ isLoggedIn, user }: { isLoggedIn: boolean; user: any }) => {
+const NavBtns = ({
+  isLoggedIn,
+  user,
+  scrolled,
+}: {
+  isLoggedIn: boolean;
+  user: any;
+  scrolled: boolean;
+}) => {
   const router = useRouter();
   const Logout = async () => {
     try {
@@ -70,11 +78,15 @@ const NavBtns = ({ isLoggedIn, user }: { isLoggedIn: boolean; user: any }) => {
       ) : (
         <>
           <Link href="/login">
-            <Button className={"bg-blue-500 text-blue-50"}>Log in</Button>
+            <Button className={"bg-yellow-300  text-black"}>Log in</Button>
           </Link>
           <Link href="/register">
             <Button
-              className={"border border-blue-500 bg-transparent text-blue-800"}
+              className={`border transition-colors duration-300  bg-transparent  ${
+                scrolled
+                  ? "text-black! border-black!"
+                  : "border-blue-50 text-blue-50"
+              }`}
             >
               Create a free account
             </Button>
