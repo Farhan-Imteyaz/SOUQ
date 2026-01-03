@@ -1,4 +1,4 @@
-import { Albert_Sans, Tenor_Sans } from "next/font/google";
+import { Albert_Sans, Tenor_Sans, Reddit_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -13,11 +13,16 @@ const tenorSans = Tenor_Sans({
   display: "swap",
   weight: "400",
 });
+const redditSans = Reddit_Sans({
+  subsets: ["latin"],
+  variable: "--font-reddit-sans",
+  display: "swap",
+});
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html>
       <body
-        className={`${albertSans.variable} ${tenorSans.variable} antialiased`}
+        className={`${albertSans.variable} ${tenorSans.variable} ${redditSans.variable} antialiased`}
       >
         <Toaster position="top-right" />
         {children}
