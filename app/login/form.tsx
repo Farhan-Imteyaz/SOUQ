@@ -128,7 +128,7 @@ const Form = () => {
       <Button
         isLoading={isSubmitting}
         variant={status === "error" ? "destructive" : "default"}
-        className={`w-full h-11 `}
+        className={`w-full h-11 text-lg`}
         onClick={handleSubmit(onSubmit, onError)}
       >
         Log in
