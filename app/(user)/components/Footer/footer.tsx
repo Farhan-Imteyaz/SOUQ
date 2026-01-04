@@ -1,7 +1,21 @@
-import React from "react";
+"use client";
 import { Package } from "lucide-react";
 import Link from "next/link";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Circle } from "lucide-react";
 const Footer = () => {
+  const [systemInfo, setSystemInfo] = useState<any>(null);
+  useEffect(() => {
+    const fetchSystemInfo = async () => {
+      const res = await axios.get("/api/system-health");
+      console.log(res.data, "resdata");
+      setSystemInfo(res.data);
+    };
+    fetchSystemInfo();
+  }, []);
+  console.log(systemInfo, "systemInfo");
+
   return (
     <footer className="bg-gray-900 text-white py-8 sm:py-12">
       <div className="container mx-auto px-4 sm:px-6">
@@ -17,6 +31,23 @@ const Footer = () => {
               Your trusted partner for international parcel forwarding from
               India.
             </p>
+            <div className="border mt-3 w-fit pr-4 pl-3 py-2 rounded-lg">
+              {systemInfo?.status === "up" ? (
+                <p className="flex items-center gap-2 text-xs">
+                  <span>
+                    <Circle className="w-2 h-2 stroke-green-500 fill-green-500" />
+                  </span>
+                  Connected
+                </p>
+              ) : (
+                <p className="flex items-center gap-2 text-xs">
+                  <span>
+                    <Circle className="w-2 h-2 stroke-red-500 fill-red-500" />
+                  </span>
+                  Disconnected
+                </p>
+              )}
+            </div>
           </div>
           <div>
             <h3 className="font-bold mb-3 sm:mb-4 text-sm sm:text-base">

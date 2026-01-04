@@ -1,10 +1,13 @@
+import Link from "next/link";
 import Logo from "../components/logo";
 import Form from "./form";
 export default async function Page() {
   return (
     <div className="min-h-screen flex relative items-center justify-center ">
       <div className="absolute top-5 left-14">
-        <Logo />
+        <Link href={"/"}>
+          <Logo />
+        </Link>
       </div>
       <div className="container  mx-auto px-4 py-12">
         <div className="max-w-lg  mx-auto">
