@@ -7,9 +7,12 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useAuth } from "@/app/providers/authProvider";
+import { usePathname } from "next/navigation";
 export default function Header() {
   const { isLoggedIn, user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+  const pathName = usePathname();
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 100);
@@ -22,6 +25,12 @@ export default function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (pathName === "/dashboard") {
+      setIsDark(true);
+    }
+  }, [pathName]);
 
   return (
     <motion.header
@@ -43,15 +52,20 @@ export default function Header() {
         <Link href={"/"}>
           <Logo
             className={`transition-colors duration-300 ${
-              scrolled ? "text-black!" : "text-white!"
+              isDark || scrolled ? "text-black!" : "text-white!"
             }`}
           />
         </Link>
         <div>
-          <Navlinks scrolled={scrolled} isLoggedIn={isLoggedIn} />
+          <Navlinks isDark={isDark} scrolled={scrolled} />
         </div>
         <div>
-          <NavBtns scrolled={scrolled} isLoggedIn={isLoggedIn} user={user} />
+          <NavBtns
+            isDark={isDark}
+            scrolled={scrolled}
+            isLoggedIn={isLoggedIn}
+            user={user}
+          />
         </div>
       </nav>
     </motion.header>
