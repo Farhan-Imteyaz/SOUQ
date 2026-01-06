@@ -18,10 +18,12 @@ const NavBtns = ({
   isLoggedIn,
   user,
   scrolled,
+  isDark,
 }: {
   isLoggedIn: boolean;
   user: any;
   scrolled: boolean;
+  isDark: boolean;
 }) => {
   const router = useRouter();
   const Logout = async () => {
@@ -51,7 +53,11 @@ const NavBtns = ({
     <div className="flex gap-4">
       {isLoggedIn ? (
         <DropdownMenu>
-          <DropdownMenuTrigger className="flex items-center group gap-2 border border-slate-300 data-[state=open]:bg-slate-200 hover:bg-slate-200 rounded-lg p-1">
+          <DropdownMenuTrigger
+            className={`flex items-center group ${
+              isDark || scrolled ? "text-black" : "text-white"
+            } gap-2 border border-slate-300 data-[state=open]:bg-slate-200 hover:bg-slate-200 rounded-lg p-1`}
+          >
             <ProfileIcon name={user.firstName} />
             {user.firstName}
             <span className="">
@@ -83,7 +89,7 @@ const NavBtns = ({
           <Link href="/register">
             <Button
               className={`border transition-colors duration-300  bg-transparent  ${
-                scrolled
+                isDark || scrolled
                   ? "text-black! border-black!"
                   : "border-blue-50 text-blue-50"
               }`}

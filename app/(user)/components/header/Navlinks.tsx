@@ -1,9 +1,9 @@
 import Link from "next/link";
 const Navlinks = ({
-  isLoggedIn,
+  isDark,
   scrolled,
 }: {
-  isLoggedIn: boolean;
+  isDark: boolean;
   scrolled: boolean;
 }) => {
   const links = [
@@ -15,7 +15,7 @@ const Navlinks = ({
   return (
     <ul
       className={`hidden lg:flex  items-center transition-colors duration-100 space-x-6 ${
-        scrolled ? "text-black!" : "text-white"
+        isDark || scrolled ? "text-black!" : "text-white"
       }`}
     >
       {links.map((link, idx) => (
