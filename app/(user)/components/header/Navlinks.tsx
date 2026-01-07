@@ -21,6 +21,7 @@ const Navlinks = ({
       {links.map((link, idx) => (
         <li key={idx}>
           <Link
+            prefetch={false}
             href={link.link}
             className="hover:bg-yellow-100 hover:text-slate-950 px-3 rounded-lg py-2 transition-colors"
           >

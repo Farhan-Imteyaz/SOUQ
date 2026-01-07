@@ -61,10 +61,10 @@ const NavBtns = ({
         </DropdownMenu>
       ) : (
         <>
-          <Link href="/login">
+          <Link href="/login" prefetch={false}>
             <Button className={"bg-yellow-300  text-black"}>Log in</Button>
           </Link>
-          <Link href="/register">
+          <Link href="/register" prefetch={false}>
             <Button
               className={`border transition-colors duration-300  bg-transparent  ${
                 isDark || scrolled
