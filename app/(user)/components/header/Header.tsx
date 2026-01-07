@@ -27,6 +27,8 @@ export default function Header() {
   useEffect(() => {
     if (pathName === "/dashboard") {
       setIsDark(true);
+    } else {
+      setIsDark(false);
     }
   }, [pathName]);
 

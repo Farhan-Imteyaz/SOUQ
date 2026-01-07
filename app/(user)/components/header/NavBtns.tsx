@@ -12,7 +12,7 @@ import {
 import { LayoutDashboard, LogOut } from "lucide-react";
 import { useAuth } from "@/app/providers/authProvider";
 import { ChevronDown } from "lucide-react";
-
+import { useRouter } from "next/navigation";
 const NavBtns = ({
   scrolled,
   isDark,
@@ -21,6 +21,7 @@ const NavBtns = ({
   isDark: boolean;
 }) => {
   const { isLoggedIn, user, logout } = useAuth();
+  const router = useRouter();
   return (
     <div className="flex gap-4">
       {isLoggedIn && user ? (
@@ -41,7 +42,10 @@ const NavBtns = ({
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="flex items-center gap-2">
+            <DropdownMenuItem
+              onSelect={() => router.push("/dashboard")}
+              className="flex items-center gap-2"
+            >
               <LayoutDashboard />
               Dashboard
             </DropdownMenuItem>
