@@ -1,6 +1,6 @@
 "use client";
-import { useRef, useState } from "react";
-import type { EmblaOptionsType, EmblaCarouselType } from "embla-carousel";
+import { useState } from "react";
+import type { EmblaOptionsType } from "embla-carousel";
 import {
   Carousel,
   Slider,
@@ -53,7 +53,6 @@ const HowItWorks = () => {
         "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&auto=format&fit=crop",
     },
   ];
-  const emblaRef = useRef<EmblaCarouselType | null>(null);
 
   const OPTIONS: EmblaOptionsType = { loop: false };
   const [emblaApi, setEmblaApi] = useState<any>(null);
