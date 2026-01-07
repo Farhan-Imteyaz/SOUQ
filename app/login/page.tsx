@@ -10,7 +10,7 @@ export default async function Page() {
         </Link>
       </div>
       <div className="container  mx-auto px-4 py-12">
-        <div className="max-w-lg  mx-auto">
+        <div className="max-w-md  mx-auto">
           {/* Right Side - Login Form */}
           <div className="bg-white border border-slate-200/70 rounded-2xl shadow-sm p-8 ">
             <div className="text-center mb-8">
