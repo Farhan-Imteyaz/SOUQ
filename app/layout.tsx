@@ -2,6 +2,7 @@ import { Albert_Sans, Tenor_Sans, Reddit_Sans } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { AuthProvider } from "./providers/authProvider";
+import AuthGate from "./providers/authProvider";
 const albertSans = Albert_Sans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -25,8 +26,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         className={`${albertSans.variable} ${tenorSans.variable} ${redditSans.variable} antialiased`}
       >
         <AuthProvider>
-          <Toaster position="top-right" />
-          {children}
+          <AuthGate>
+            <Toaster position="top-right" />
+            {children}
+          </AuthGate>
         </AuthProvider>
       </body>
     </html>

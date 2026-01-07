@@ -6,10 +6,8 @@ import NavBtns from "./NavBtns";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { useAuth } from "@/app/providers/authProvider";
 import { usePathname } from "next/navigation";
 export default function Header() {
-  const { isLoggedIn, user } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const pathName = usePathname();

@@ -9,7 +9,7 @@ import {
 } from "react";
 import { getCurrentUser } from "../actions/auth/userAuth";
 import axios from "axios";
-
+import Loading from "../loading";
 type User = {
   id: string;
   email: string;
@@ -84,7 +84,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     </AuthContext.Provider>
   );
 }
+export default function AuthGate({ children }: { children: React.ReactNode }) {
+  const { loading } = useAuth();
 
+  if (loading) {
+    return <Loading />; // ⛔ block entire app
+  }
+
+  return <>{children}</>;
+}
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
