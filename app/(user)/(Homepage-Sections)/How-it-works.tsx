@@ -1,5 +1,5 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import type { EmblaOptionsType, EmblaCarouselType } from "embla-carousel";
 import {
   Carousel,
@@ -56,29 +56,27 @@ const HowItWorks = () => {
   const emblaRef = useRef<EmblaCarouselType | null>(null);
 
   const OPTIONS: EmblaOptionsType = { loop: false };
+  const [emblaApi, setEmblaApi] = useState<any>(null);
+
+  const scrollPrev = () => emblaApi?.scrollPrev();
+  const scrollNext = () => emblaApi?.scrollNext();
   return (
     <section className="container py-10">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-5xl font-semibold">How It Works</h1>
 
         <div className="flex gap-2">
-          <button
-            onClick={() => emblaRef.current?.scrollPrev()}
-            className="p-2 rounded-lg border"
-          >
+          <button onClick={scrollPrev} className="p-2 rounded-lg border">
             <ChevronLeft />
           </button>
 
-          <button
-            onClick={() => emblaRef.current?.scrollNext()}
-            className="p-2 rounded-lg border"
-          >
+          <button onClick={scrollNext} className="p-2 rounded-lg border">
             <ChevronRight />
           </button>
         </div>
       </div>
 
-      <Carousel options={OPTIONS}>
+      <Carousel onInit={(api) => setEmblaApi(api)} options={OPTIONS}>
         <SliderContainer className="gap-3">
           {steps.map((step, idx) => (
             <Slider className="w-1/4 h-112.5 " key={idx}>
