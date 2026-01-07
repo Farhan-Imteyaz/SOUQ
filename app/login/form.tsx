@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Mail, Lock } from "lucide-react";
 import { toast } from "sonner";
-import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useForm } from "react-hook-form";
@@ -12,6 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import z from "zod";
 import { Icon } from "@/app/register/form";
 import { useState } from "react";
+import { useAuth } from "../providers/authProvider";
 const loginSchema = z.object({
   email: z.string().email("Enter a valid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
@@ -22,6 +22,7 @@ type LoginFormType = z.infer<typeof loginSchema>;
 const fieldOrder: (keyof LoginFormType)[] = ["email", "password"];
 const Form = () => {
   const router = useRouter();
+  const { login } = useAuth();
   const [status, setStatus] = useState("");
   const {
     register,
@@ -38,28 +39,18 @@ const Form = () => {
 
   const onSubmit = async (data: LoginFormType) => {
     try {
-      const res = await axios.post("/api/user/auth/login", data, {
-        withCredentials: true,
+      await login(data);
+
+      toast.success("Login Successful", {
+        className:
+          "border !border-green-500/10 !bg-green-500/60 backdrop-blur-lg",
       });
-      if (res.status === 200) {
-        toast.success("Login Successful", {
-          className:
-            "border !border-green-500/10 !bg-green-500/60 backdrop-blur-lg",
-        });
-        setStatus("ok");
-        router.push("/");
-        router.refresh();
-        return;
-      }
-      toast.error("Invalid email or password", {
-        className: "border !border-red-500/10 !bg-red-500/60 backdrop-blur-sm",
-      });
-      setStatus("error");
+
+      router.push("/");
     } catch (error: any) {
-      toast.error(error.response.data.error, {
+      toast.error(error?.response?.data?.error || "Invalid email or password", {
         className: "border !border-red-500/10 !bg-red-500/60 backdrop-blur-sm",
       });
-      setStatus("error");
     }
   };
 

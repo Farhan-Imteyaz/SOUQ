@@ -8,6 +8,7 @@ import {
   ReactNode,
 } from "react";
 import { getCurrentUser } from "../actions/auth/userAuth";
+import axios from "axios";
 
 type User = {
   id: string;
@@ -20,25 +21,50 @@ type AuthContextType = {
   user: User | null;
   loading: boolean;
   refreshUser: () => Promise<void>;
+  logout: () => Promise<void>;
+  login: (data: { email: string; password: string }) => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [authState, setAuthState] = useState<{
-    isLoggedIn: boolean;
-    user: User | null;
-    loading: boolean;
-  }>({
+  const [authState, setAuthState] = useState({
     isLoggedIn: false,
-    user: null,
+    user: null as User | null,
     loading: true,
   });
 
   const refreshUser = async () => {
     setAuthState((prev) => ({ ...prev, loading: true }));
-    const data = await getCurrentUser();
-    setAuthState({ ...data, loading: false });
+    try {
+      const data = await getCurrentUser();
+      setAuthState({ ...data, loading: false });
+    } catch {
+      setAuthState({ isLoggedIn: false, user: null, loading: false });
+    }
+  };
+
+  const logout = async () => {
+    await axios.post("/api/user/auth/logout");
+
+    setAuthState({
+      isLoggedIn: false,
+      user: null,
+      loading: false,
+    });
+  };
+  const login = async (data: { email: string; password: string }) => {
+    await axios.post("/api/user/auth/login", data, {
+      withCredentials: true,
+    });
+
+    // 🔥 fetch user immediately after login
+    const userData = await getCurrentUser();
+
+    setAuthState({
+      ...userData,
+      loading: false,
+    });
   };
 
   useEffect(() => {
@@ -46,7 +72,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ ...authState, refreshUser }}>
+    <AuthContext.Provider
+      value={{
+        ...authState,
+        refreshUser,
+        logout,
+        login,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

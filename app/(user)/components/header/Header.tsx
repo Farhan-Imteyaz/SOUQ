@@ -60,12 +60,7 @@ export default function Header() {
           <Navlinks isDark={isDark} scrolled={scrolled} />
         </div>
         <div>
-          <NavBtns
-            isDark={isDark}
-            scrolled={scrolled}
-            isLoggedIn={isLoggedIn}
-            user={user}
-          />
+          <NavBtns isDark={isDark} scrolled={scrolled} />
         </div>
       </nav>
     </motion.header>

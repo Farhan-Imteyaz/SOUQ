@@ -10,53 +10,27 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { LayoutDashboard, LogOut } from "lucide-react";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
+import { useAuth } from "@/app/providers/authProvider";
 import { ChevronDown } from "lucide-react";
-import axios from "axios";
+
 const NavBtns = ({
-  isLoggedIn,
-  user,
   scrolled,
   isDark,
 }: {
-  isLoggedIn: boolean;
-  user: any;
   scrolled: boolean;
   isDark: boolean;
 }) => {
-  const router = useRouter();
-  const Logout = async () => {
-    try {
-      const res = await axios.post("/api/user/auth/logout");
-      if (res.status === 200) {
-        toast.success("Logged out successfully", {
-          className:
-            "!bg-green-600/60 border !border-green-500/10 !text-white backdrop-blur-xl",
-        });
-        router.push("/");
-        router.refresh();
-        return;
-      }
-      toast.error("Something went wrong", {
-        className:
-          "!bg-red-600/60 border !border-red-500/10 !text-white backdrop-blur-xl",
-      });
-    } catch (error: any) {
-      toast.error(error.response.data.message || "Something went wrong", {
-        className:
-          "!bg-red-600/60 border !border-red-500/10 !text-white backdrop-blur-xl",
-      });
-    }
-  };
+  const { isLoggedIn, user, logout } = useAuth();
   return (
     <div className="flex gap-4">
-      {isLoggedIn ? (
+      {isLoggedIn && user ? (
         <DropdownMenu>
           <DropdownMenuTrigger
             className={`flex items-center group ${
-              isDark || scrolled ? "text-black" : "text-white"
-            } gap-2 border border-slate-300 data-[state=open]:bg-slate-200 hover:bg-slate-200 rounded-lg p-1`}
+              isDark || scrolled
+                ? "text-black hover:bg-slate-200 data-[state=open]:bg-slate-200"
+                : "text-white"
+            } gap-2 border border-slate-300   rounded-lg p-1`}
           >
             <ProfileIcon name={user.firstName} />
             {user.firstName}
@@ -74,7 +48,7 @@ const NavBtns = ({
             <DropdownMenuSeparator />
             <DropdownMenuItem
               className="hover:bg-red-500! hover:text-red-50! flex  items-center gap-2"
-              onSelect={Logout}
+              onSelect={logout}
             >
               <LogOut />
               Logout
