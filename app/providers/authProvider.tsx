@@ -1,5 +1,5 @@
 "use client";
-
+import { useRouter } from "next/navigation";
 import {
   createContext,
   useContext,
@@ -33,7 +33,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     user: null as User | null,
     loading: true,
   });
-
+  const router = useRouter();
   const refreshUser = async () => {
     setAuthState((prev) => ({ ...prev, loading: true }));
     try {
@@ -45,13 +45,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = async () => {
+  
     await axios.post("/api/user/auth/logout");
-
     setAuthState({
       isLoggedIn: false,
       user: null,
       loading: false,
     });
+    router.push('/')
   };
   const login = async (data: { email: string; password: string }) => {
     await axios.post("/api/user/auth/login", data, {
