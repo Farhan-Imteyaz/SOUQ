@@ -1,6 +1,7 @@
 import { AppSidebar } from "./components/sidebar/app-sidebar";
 import Header from "./components/sidebar/header";
 import { SidebarProvider } from "@/components/ui/sidebar";
+import "@/app/globals.css";
 export default function DashboardLayout({
   children,
 }: {
@@ -8,15 +9,15 @@ export default function DashboardLayout({
 }) {
   return (
     <SidebarProvider>
-      <div className="flex min-h-screen">
+      <div className="w-[calc(100vw-var(--sidebar-width))] ml-auto">
         {/* Static sidebar */}
         <AppSidebar />
 
         {/* Main content */}
-        <div className="ml-65">
+        <main className="">
           <Header />
-          <main className="flex-1 p-6 bg-gray-50">{children}</main>
-        </div>
+          <div className=" p-8 bg-slate-50 ">{children}</div>
+        </main>
       </div>
     </SidebarProvider>
   );

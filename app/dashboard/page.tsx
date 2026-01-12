@@ -10,7 +10,6 @@ export default function DashboardPage() {
     <section className=" mb-12 grid grid-cols-1 gap-6 lg:grid-cols-[1.5fr_.8fr]">
       {/* LEFT: Context & Actions */}
       <div className="space-y-8">
-        {/* 1. Orientation + onboarding */}
         <Header />
 
         <Process />

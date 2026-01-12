@@ -5,7 +5,7 @@ import { RainbowButton } from "@/components/ui/rainbow-button";
 import { DollarSign } from "lucide-react";
 const Header = () => {
   return (
-    <div className="bg-slate-100 border-b py-3 flex justify-between items-center px-6">
+    <div className="bg-slate-100 border-b py-3 flex justify-between items-center px-8">
       <RainbowButton variant="default" className="text-slate-50 ">
         <Link href={"/dashboard"} className="flex items-center gap-1">
           <span className="mt-px">

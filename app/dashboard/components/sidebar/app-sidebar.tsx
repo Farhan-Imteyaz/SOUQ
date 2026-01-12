@@ -23,7 +23,7 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar";
 import Logo from "@/app/components/logo";
-
+import "@/app/globals.css";
 const items = [
   {
     title: "Dashboard",
@@ -37,12 +37,12 @@ const items = [
   },
   {
     title: "Shipments",
-    url: "#",
+    url: "",
     icon: Calendar,
   },
   {
     title: "Shop N Ship",
-    url: "#",
+    url: "/dashboard/shop-n-ship",
     icon: ShoppingCart,
   },
   {
@@ -81,7 +81,7 @@ const footerItems = [
 export function AppSidebar() {
   const path = usePathname();
   return (
-    <Sidebar variant="inset" className="w-64 bg-gray-900">
+    <Sidebar variant="inset" className="w-[var(--sidebar-width)] bg-gray-900 sidebar-width">
       <SidebarContent className="bg-gray-900">
         <SidebarHeader className=" ">
           <Logo className="text-white flex justify-center" />
