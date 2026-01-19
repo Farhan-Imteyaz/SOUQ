@@ -53,7 +53,10 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   PasswordResetRequest: 'PasswordResetRequest',
-  PasswordResetToken: 'PasswordResetToken'
+  PasswordResetToken: 'PasswordResetToken',
+  Order: 'Order',
+  OrderItem: 'OrderItem',
+  ItemImage: 'ItemImage'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -98,13 +101,62 @@ export type PasswordResetRequestScalarFieldEnum = (typeof PasswordResetRequestSc
 
 
 export const PasswordResetTokenScalarFieldEnum = {
+  id: 'id',
   userId: 'userId',
   token: 'token',
   used: 'used',
-  expiresAt: 'expiresAt'
+  expiresAt: 'expiresAt',
+  createdAt: 'createdAt'
 } as const
 
 export type PasswordResetTokenScalarFieldEnum = (typeof PasswordResetTokenScalarFieldEnum)[keyof typeof PasswordResetTokenScalarFieldEnum]
+
+
+export const OrderScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  userId: 'userId',
+  trackingNumber: 'trackingNumber',
+  totalAmount: 'totalAmount',
+  totalItems: 'totalItems',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderUuid: 'orderUuid',
+  itemType: 'itemType',
+  itemName: 'itemName',
+  storeName: 'storeName',
+  storeOrderId: 'storeOrderId',
+  itemColor: 'itemColor',
+  itemSize: 'itemSize',
+  itemQuantity: 'itemQuantity',
+  itemPrice: 'itemPrice',
+  remarks: 'remarks',
+  purchaseDate: 'purchaseDate',
+  itemWeight: 'itemWeight',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
+
+
+export const ItemImageScalarFieldEnum = {
+  id: 'id',
+  itemId: 'itemId',
+  imagePath: 'imagePath',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type ItemImageScalarFieldEnum = (typeof ItemImageScalarFieldEnum)[keyof typeof ItemImageScalarFieldEnum]
 
 
 export const SortOrder = {

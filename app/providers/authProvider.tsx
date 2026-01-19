@@ -45,21 +45,19 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const logout = async () => {
-  
     await axios.post("/api/user/auth/logout");
     setAuthState({
       isLoggedIn: false,
       user: null,
       loading: false,
     });
-    router.push('/')
+    router.push("/");
   };
   const login = async (data: { email: string; password: string }) => {
     await axios.post("/api/user/auth/login", data, {
       withCredentials: true,
     });
 
-    // 🔥 fetch user immediately after login
     const userData = await getCurrentUser();
 
     setAuthState({

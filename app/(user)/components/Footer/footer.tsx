@@ -8,13 +8,14 @@ const Footer = () => {
   const [systemInfo, setSystemInfo] = useState<any>(null);
   useEffect(() => {
     const fetchSystemInfo = async () => {
+  
       const res = await axios.get("/api/system-health");
-      console.log(res.data, "resdata");
+     
       setSystemInfo(res.data);
     };
     fetchSystemInfo();
   }, []);
-  console.log(systemInfo, "systemInfo");
+  
 
   return (
     <footer className="bg-gray-900 text-white py-8 sm:py-12">

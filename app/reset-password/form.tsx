@@ -50,10 +50,7 @@ const Form = ({ token }: { token: string }) => {
     for (const field of fieldOrder) {
       const error = errors[field];
       if (error?.message) {
-        toast.error(error.message, {
-          className:
-            "border !border-red-500/10 !bg-red-500/60 backdrop-blur-lg",
-        });
+        toast.error(error.message);
       }
     }
   };

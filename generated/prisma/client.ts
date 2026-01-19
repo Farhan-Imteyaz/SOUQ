@@ -54,3 +54,18 @@ export type PasswordResetRequest = Prisma.PasswordResetRequestModel
  * 
  */
 export type PasswordResetToken = Prisma.PasswordResetTokenModel
+/**
+ * Model Order
+ * 
+ */
+export type Order = Prisma.OrderModel
+/**
+ * Model OrderItem
+ * 
+ */
+export type OrderItem = Prisma.OrderItemModel
+/**
+ * Model ItemImage
+ * 
+ */
+export type ItemImage = Prisma.ItemImageModel

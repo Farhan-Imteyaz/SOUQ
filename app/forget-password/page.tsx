@@ -36,15 +36,10 @@ export default function ForgotPasswordPage() {
         withCredentials: true,
       });
       if (res.status === 200) {
-        toast.success("Email Sucessfully Sent", {
-          className:
-            "border !border-green-500/10 !bg-green-500/60 backdrop-blur-lg",
-        });
+        toast.success("Email Sucessfully Sent");
       }
     } catch (error: any) {
-      toast.error(error.response.data.error, {
-        className: "border !border-red-500/10 !bg-red-500/60 backdrop-blur-sm",
-      });
+      toast.error(error.response.data.error);
     }
   };
 
@@ -52,10 +47,7 @@ export default function ForgotPasswordPage() {
     for (const field of fieldOrder) {
       const error = errors[field];
       if (error?.message) {
-        toast.error(error.message, {
-          className:
-            "border !border-red-500/10 !bg-red-500/60 backdrop-blur-lg",
-        });
+        toast.error(error.message);
       }
     }
   };

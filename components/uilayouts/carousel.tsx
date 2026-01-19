@@ -649,8 +649,8 @@ export const ThumbsSlider = forwardRef<
               "shrink-0 cursor-pointer transition-opacity",
               "border-2 rounded-md",
               orientation === "vertical"
-                ? "basis-[15%] h-20"
-                : "basis-[15%] h-24",
+                ? "basis-[17%] h-24"
+                : "basis-[17%] h-24",
               selectedIndex === index
                 ? "opacity-100 border-primary"
                 : "opacity-30 border-transparent",

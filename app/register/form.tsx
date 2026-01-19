@@ -95,18 +95,13 @@ export const Form = () => {
       const res = await axios.post("/api/user/auth/register", payload);
 
       if (res.status === 201) {
-        toast.success("Account created successfully!", {
-          className:
-            "border !border-green-500/10 !bg-green-500/60 backdrop-blur-lg",
-        });
+        toast.success("Account created successfully!");
         router.push("/login");
       }
     } catch (error: any) {
       const message = error.response?.data?.error || "Something went wrong";
 
-      toast.error(message, {
-        className: "border !border-red-500/10 !bg-red-500/60 backdrop-blur-sm",
-      });
+      toast.error(message);
     }
   };
 
@@ -114,10 +109,7 @@ export const Form = () => {
     for (const field of fieldOrder) {
       const error = errors[field];
       if (error?.message) {
-        toast.error(error.message, {
-          className:
-            "border !border-red-500/10 !bg-red-500/30 backdrop-blur-lg",
-        });
+        toast.error(error.message);
       }
     }
   };

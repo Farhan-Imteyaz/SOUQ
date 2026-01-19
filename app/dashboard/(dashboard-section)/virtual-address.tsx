@@ -105,9 +105,7 @@ function FormField({ label, id, value, container }: FormFieldProps) {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(value);
-      toast.success(`${label} copied to clipboard`, {
-        className: "bg-gray-800 text-white",
-      });
+      toast.success(`${label} copied to clipboard`);
     } catch (err) {
       console.error("Copy failed", err);
     }

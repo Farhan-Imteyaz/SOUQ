@@ -41,16 +41,11 @@ const Form = () => {
     try {
       await login(data);
 
-      toast.success("Login Successful", {
-        className:
-          "border !border-green-500/10 !bg-green-500/60 backdrop-blur-lg",
-      });
+      toast.success("Login Successful");
 
       router.push("/");
     } catch (error: any) {
-      toast.error(error?.response?.data?.error || "Invalid email or password", {
-        className: "border !border-red-500/10 !bg-red-500/60 backdrop-blur-sm",
-      });
+      toast.error(error?.response?.data?.error || "Invalid email or password");
     }
   };
 
@@ -58,10 +53,7 @@ const Form = () => {
     for (const field of fieldOrder) {
       const error = errors[field];
       if (error?.message) {
-        toast.error(error.message, {
-          className:
-            "border !border-red-500/10 !bg-red-500/60 backdrop-blur-lg",
-        });
+        toast.error(error.message);
       }
     }
   };

@@ -14,16 +14,17 @@ datasource db {
 }
 
 model User {
-  id                    String                 @id @default(uuid()) @db.Uuid
-  firstName             String
-  lastName              String
-  email                 String                 @unique
-  phone                 String
-  country               String
-  password              String
-  createdAt             DateTime               @default(now())
-  updatedAt             DateTime               @updatedAt
-  passwordResetTokens   PasswordResetToken[]
+  id                  String               @id @default(uuid()) @db.Uuid
+  firstName           String
+  lastName            String
+  email               String               @unique
+  phone               String
+  country             String
+  password            String
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  passwordResetTokens PasswordResetToken[]
+  orders              Order[]
 }
 
 model PasswordResetRequest {
@@ -31,7 +32,7 @@ model PasswordResetRequest {
   email     String
   ip        String
   createdAt DateTime @default(now())
-  
+
   @@index([email])
   @@index([ip])
 }
@@ -44,7 +45,70 @@ model PasswordResetToken {
   used      Boolean  @default(false)
   expiresAt DateTime
   createdAt DateTime @default(now())
-  
+
   @@index([userId])
   @@index([token])
+}
+
+model Order {
+  id String @id @default(uuid()) @db.Uuid
+
+  orderId        String @unique
+  userId         String @db.Uuid
+  trackingNumber String
+  user           User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  totalAmount Float
+  totalItems  Int
+  status      String @default("pending")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items OrderItem[]
+
+  @@index([orderId])
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  
+  id        String @id @default(uuid()) @db.Uuid
+  orderUuid String @map("orderId") @db.Uuid
+  order     Order  @relation(fields: [orderUuid], references: [id], onDelete: Cascade)
+
+  itemType     String
+  itemName     String
+  storeName    String
+  storeOrderId String
+  itemColor    String
+  itemSize     String
+  itemQuantity Int
+  itemPrice    Float
+  remarks      String   @db.Text
+  purchaseDate DateTime
+  itemWeight   String
+
+  images ItemImage[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([orderUuid])
+  @@index([itemName])
+}
+
+model ItemImage {
+  id     String    @id @default(uuid()) @db.Uuid
+  itemId String    @db.Uuid
+  item   OrderItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  imagePath String
+  imageUrl  String
+
+  createdAt DateTime @default(now())
+
+  @@index([itemId])
 }
