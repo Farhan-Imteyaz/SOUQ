@@ -54,9 +54,16 @@ export const ModelName = {
   User: 'User',
   PasswordResetRequest: 'PasswordResetRequest',
   PasswordResetToken: 'PasswordResetToken',
-  Order: 'Order',
-  OrderItem: 'OrderItem',
-  ItemImage: 'ItemImage'
+  ShopNShipOrder: 'ShopNShipOrder',
+  ShopNShipItem: 'ShopNShipItem',
+  ShopNShipItemImage: 'ShopNShipItemImage',
+  AssistedPurchaseOrder: 'AssistedPurchaseOrder',
+  AssistedPurchaseItem: 'AssistedPurchaseItem',
+  AssistedPurchaseItemImage: 'AssistedPurchaseItemImage',
+  InternationalOrder: 'InternationalOrder',
+  InternationalItem: 'InternationalItem',
+  InternationalItemImage: 'InternationalItemImage',
+  Address: 'Address'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -112,7 +119,7 @@ export const PasswordResetTokenScalarFieldEnum = {
 export type PasswordResetTokenScalarFieldEnum = (typeof PasswordResetTokenScalarFieldEnum)[keyof typeof PasswordResetTokenScalarFieldEnum]
 
 
-export const OrderScalarFieldEnum = {
+export const ShopNShipOrderScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   userId: 'userId',
@@ -120,14 +127,15 @@ export const OrderScalarFieldEnum = {
   totalAmount: 'totalAmount',
   totalItems: 'totalItems',
   status: 'status',
+  addressId: 'addressId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
-export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+export type ShopNShipOrderScalarFieldEnum = (typeof ShopNShipOrderScalarFieldEnum)[keyof typeof ShopNShipOrderScalarFieldEnum]
 
 
-export const OrderItemScalarFieldEnum = {
+export const ShopNShipItemScalarFieldEnum = {
   id: 'id',
   orderUuid: 'orderUuid',
   itemType: 'itemType',
@@ -145,10 +153,10 @@ export const OrderItemScalarFieldEnum = {
   updatedAt: 'updatedAt'
 } as const
 
-export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
+export type ShopNShipItemScalarFieldEnum = (typeof ShopNShipItemScalarFieldEnum)[keyof typeof ShopNShipItemScalarFieldEnum]
 
 
-export const ItemImageScalarFieldEnum = {
+export const ShopNShipItemImageScalarFieldEnum = {
   id: 'id',
   itemId: 'itemId',
   imagePath: 'imagePath',
@@ -156,7 +164,122 @@ export const ItemImageScalarFieldEnum = {
   createdAt: 'createdAt'
 } as const
 
-export type ItemImageScalarFieldEnum = (typeof ItemImageScalarFieldEnum)[keyof typeof ItemImageScalarFieldEnum]
+export type ShopNShipItemImageScalarFieldEnum = (typeof ShopNShipItemImageScalarFieldEnum)[keyof typeof ShopNShipItemImageScalarFieldEnum]
+
+
+export const AssistedPurchaseOrderScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  userId: 'userId',
+  trackingNumber: 'trackingNumber',
+  totalAmount: 'totalAmount',
+  totalItems: 'totalItems',
+  status: 'status',
+  addressId: 'addressId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssistedPurchaseOrderScalarFieldEnum = (typeof AssistedPurchaseOrderScalarFieldEnum)[keyof typeof AssistedPurchaseOrderScalarFieldEnum]
+
+
+export const AssistedPurchaseItemScalarFieldEnum = {
+  id: 'id',
+  orderUuid: 'orderUuid',
+  itemType: 'itemType',
+  itemName: 'itemName',
+  storeName: 'storeName',
+  storeOrderId: 'storeOrderId',
+  itemColor: 'itemColor',
+  itemSize: 'itemSize',
+  itemQuantity: 'itemQuantity',
+  itemPrice: 'itemPrice',
+  remarks: 'remarks',
+  purchaseDate: 'purchaseDate',
+  itemWeight: 'itemWeight',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AssistedPurchaseItemScalarFieldEnum = (typeof AssistedPurchaseItemScalarFieldEnum)[keyof typeof AssistedPurchaseItemScalarFieldEnum]
+
+
+export const AssistedPurchaseItemImageScalarFieldEnum = {
+  id: 'id',
+  itemId: 'itemId',
+  imagePath: 'imagePath',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type AssistedPurchaseItemImageScalarFieldEnum = (typeof AssistedPurchaseItemImageScalarFieldEnum)[keyof typeof AssistedPurchaseItemImageScalarFieldEnum]
+
+
+export const InternationalOrderScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  userId: 'userId',
+  trackingNumber: 'trackingNumber',
+  totalAmount: 'totalAmount',
+  totalItems: 'totalItems',
+  status: 'status',
+  addressId: 'addressId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InternationalOrderScalarFieldEnum = (typeof InternationalOrderScalarFieldEnum)[keyof typeof InternationalOrderScalarFieldEnum]
+
+
+export const InternationalItemScalarFieldEnum = {
+  id: 'id',
+  orderUuid: 'orderUuid',
+  itemType: 'itemType',
+  itemName: 'itemName',
+  storeName: 'storeName',
+  storeOrderId: 'storeOrderId',
+  itemColor: 'itemColor',
+  itemSize: 'itemSize',
+  itemQuantity: 'itemQuantity',
+  itemPrice: 'itemPrice',
+  remarks: 'remarks',
+  purchaseDate: 'purchaseDate',
+  itemWeight: 'itemWeight',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type InternationalItemScalarFieldEnum = (typeof InternationalItemScalarFieldEnum)[keyof typeof InternationalItemScalarFieldEnum]
+
+
+export const InternationalItemImageScalarFieldEnum = {
+  id: 'id',
+  itemId: 'itemId',
+  imagePath: 'imagePath',
+  imageUrl: 'imageUrl',
+  createdAt: 'createdAt'
+} as const
+
+export type InternationalItemImageScalarFieldEnum = (typeof InternationalItemImageScalarFieldEnum)[keyof typeof InternationalItemImageScalarFieldEnum]
+
+
+export const AddressScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  streetAddress: 'streetAddress',
+  aptSuitBldgGateCode: 'aptSuitBldgGateCode',
+  city: 'city',
+  phone: 'phone',
+  state: 'state',
+  country: 'country',
+  zipcode: 'zipcode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -173,4 +296,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

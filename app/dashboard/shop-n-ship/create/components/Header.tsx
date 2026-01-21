@@ -10,7 +10,7 @@ const Header = () => {
         </h1>
         <p className="text-gray-600">Manage your package forwarding orders</p>
       </div>
-      <Link href="/dashboard/shop-n-ship/create-order">
+      <Link href="/dashboard/shop-n-ship/create">
         <Button className="cursor-pointer">
           <Plus className="h-10 w-10 " />
           Create Order

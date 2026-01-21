@@ -30,11 +30,7 @@ const items = [
     url: "/dashboard",
     icon: Home,
   },
-  {
-    title: "Locker",
-    url: "#",
-    icon: Inbox,
-  },
+
   {
     title: "Shipments",
     url: "",
@@ -55,11 +51,7 @@ const items = [
     url: "#",
     icon: Tag,
   },
-  {
-    title: "Store Offers",
-    url: "#",
-    icon: Gift,
-  },
+
 ];
 const footerItems = [
   {

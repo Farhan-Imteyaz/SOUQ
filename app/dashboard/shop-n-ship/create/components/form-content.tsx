@@ -24,10 +24,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { UseFormReturn } from "react-hook-form";
-import { OrderItemFormData } from "@/types/order-types";
+import { CompleteOrderFormData } from "@/types/order-types";
 interface FormContentProps {
   index: number;
-  formMethods: UseFormReturn<OrderItemFormData>;
+  formMethods: UseFormReturn<CompleteOrderFormData>; // Changed from OrderItemFormData
 }
 
 const itemTypes = {

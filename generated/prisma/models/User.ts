@@ -215,7 +215,10 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   passwordResetTokens?: Prisma.PasswordResetTokenListRelationFilter
-  orders?: Prisma.OrderListRelationFilter
+  shopNShipOrders?: Prisma.ShopNShipOrderListRelationFilter
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderListRelationFilter
+  internationalOrders?: Prisma.InternationalOrderListRelationFilter
+  addresses?: Prisma.AddressListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -229,7 +232,10 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   passwordResetTokens?: Prisma.PasswordResetTokenOrderByRelationAggregateInput
-  orders?: Prisma.OrderOrderByRelationAggregateInput
+  shopNShipOrders?: Prisma.ShopNShipOrderOrderByRelationAggregateInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderOrderByRelationAggregateInput
+  internationalOrders?: Prisma.InternationalOrderOrderByRelationAggregateInput
+  addresses?: Prisma.AddressOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -246,7 +252,10 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"User"> | Date | string
   passwordResetTokens?: Prisma.PasswordResetTokenListRelationFilter
-  orders?: Prisma.OrderListRelationFilter
+  shopNShipOrders?: Prisma.ShopNShipOrderListRelationFilter
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderListRelationFilter
+  internationalOrders?: Prisma.InternationalOrderListRelationFilter
+  addresses?: Prisma.AddressListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -290,7 +299,10 @@ export type UserCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  shopNShipOrders?: Prisma.ShopNShipOrderCreateNestedManyWithoutUserInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderCreateNestedManyWithoutUserInput
+  internationalOrders?: Prisma.InternationalOrderCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -304,7 +316,10 @@ export type UserUncheckedCreateInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUncheckedCreateNestedManyWithoutUserInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  internationalOrders?: Prisma.InternationalOrderUncheckedCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -318,7 +333,10 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUpdateManyWithoutUserNestedInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUpdateManyWithoutUserNestedInput
+  internationalOrders?: Prisma.InternationalOrderUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -332,7 +350,10 @@ export type UserUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUncheckedUpdateManyWithoutUserNestedInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  internationalOrders?: Prisma.InternationalOrderUncheckedUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -412,11 +433,6 @@ export type UserScalarRelationFilter = {
   isNot?: Prisma.UserWhereInput
 }
 
-export type UserNullableScalarRelationFilter = {
-  is?: Prisma.UserWhereInput | null
-  isNot?: Prisma.UserWhereInput | null
-}
-
 export type StringFieldUpdateOperationsInput = {
   set?: string
 }
@@ -439,20 +455,60 @@ export type UserUpdateOneRequiredWithoutPasswordResetTokensNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutPasswordResetTokensInput, Prisma.UserUpdateWithoutPasswordResetTokensInput>, Prisma.UserUncheckedUpdateWithoutPasswordResetTokensInput>
 }
 
-export type UserCreateNestedOneWithoutOrdersInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
+export type UserCreateNestedOneWithoutShopNShipOrdersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutShopNShipOrdersInput, Prisma.UserUncheckedCreateWithoutShopNShipOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutShopNShipOrdersInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneWithoutOrdersNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOrdersInput
-  upsert?: Prisma.UserUpsertWithoutOrdersInput
-  disconnect?: Prisma.UserWhereInput | boolean
-  delete?: Prisma.UserWhereInput | boolean
+export type UserUpdateOneRequiredWithoutShopNShipOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutShopNShipOrdersInput, Prisma.UserUncheckedCreateWithoutShopNShipOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutShopNShipOrdersInput
+  upsert?: Prisma.UserUpsertWithoutShopNShipOrdersInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOrdersInput, Prisma.UserUpdateWithoutOrdersInput>, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutShopNShipOrdersInput, Prisma.UserUpdateWithoutShopNShipOrdersInput>, Prisma.UserUncheckedUpdateWithoutShopNShipOrdersInput>
+}
+
+export type UserCreateNestedOneWithoutAssistedPurchaseOrdersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssistedPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutAssistedPurchaseOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssistedPurchaseOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAssistedPurchaseOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAssistedPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutAssistedPurchaseOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAssistedPurchaseOrdersInput
+  upsert?: Prisma.UserUpsertWithoutAssistedPurchaseOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAssistedPurchaseOrdersInput, Prisma.UserUpdateWithoutAssistedPurchaseOrdersInput>, Prisma.UserUncheckedUpdateWithoutAssistedPurchaseOrdersInput>
+}
+
+export type UserCreateNestedOneWithoutInternationalOrdersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInternationalOrdersInput, Prisma.UserUncheckedCreateWithoutInternationalOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInternationalOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutInternationalOrdersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutInternationalOrdersInput, Prisma.UserUncheckedCreateWithoutInternationalOrdersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutInternationalOrdersInput
+  upsert?: Prisma.UserUpsertWithoutInternationalOrdersInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInternationalOrdersInput, Prisma.UserUpdateWithoutInternationalOrdersInput>, Prisma.UserUncheckedUpdateWithoutInternationalOrdersInput>
+}
+
+export type UserCreateNestedOneWithoutAddressesInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAddressesInput, Prisma.UserUncheckedCreateWithoutAddressesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAddressesInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutAddressesNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutAddressesInput, Prisma.UserUncheckedCreateWithoutAddressesInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutAddressesInput
+  upsert?: Prisma.UserUpsertWithoutAddressesInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutAddressesInput, Prisma.UserUpdateWithoutAddressesInput>, Prisma.UserUncheckedUpdateWithoutAddressesInput>
 }
 
 export type UserCreateWithoutPasswordResetTokensInput = {
@@ -465,7 +521,10 @@ export type UserCreateWithoutPasswordResetTokensInput = {
   password: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  orders?: Prisma.OrderCreateNestedManyWithoutUserInput
+  shopNShipOrders?: Prisma.ShopNShipOrderCreateNestedManyWithoutUserInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderCreateNestedManyWithoutUserInput
+  internationalOrders?: Prisma.InternationalOrderCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutPasswordResetTokensInput = {
@@ -478,7 +537,10 @@ export type UserUncheckedCreateWithoutPasswordResetTokensInput = {
   password: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  orders?: Prisma.OrderUncheckedCreateNestedManyWithoutUserInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUncheckedCreateNestedManyWithoutUserInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  internationalOrders?: Prisma.InternationalOrderUncheckedCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutPasswordResetTokensInput = {
@@ -507,7 +569,10 @@ export type UserUpdateWithoutPasswordResetTokensInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  orders?: Prisma.OrderUpdateManyWithoutUserNestedInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUpdateManyWithoutUserNestedInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUpdateManyWithoutUserNestedInput
+  internationalOrders?: Prisma.InternationalOrderUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutPasswordResetTokensInput = {
@@ -520,10 +585,13 @@ export type UserUncheckedUpdateWithoutPasswordResetTokensInput = {
   password?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  orders?: Prisma.OrderUncheckedUpdateManyWithoutUserNestedInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUncheckedUpdateManyWithoutUserNestedInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  internationalOrders?: Prisma.InternationalOrderUncheckedUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutUserNestedInput
 }
 
-export type UserCreateWithoutOrdersInput = {
+export type UserCreateWithoutShopNShipOrdersInput = {
   id?: string
   firstName: string
   lastName: string
@@ -534,9 +602,12 @@ export type UserCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderCreateNestedManyWithoutUserInput
+  internationalOrders?: Prisma.InternationalOrderCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutUserInput
 }
 
-export type UserUncheckedCreateWithoutOrdersInput = {
+export type UserUncheckedCreateWithoutShopNShipOrdersInput = {
   id?: string
   firstName: string
   lastName: string
@@ -547,25 +618,28 @@ export type UserUncheckedCreateWithoutOrdersInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  internationalOrders?: Prisma.InternationalOrderUncheckedCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutUserInput
 }
 
-export type UserCreateOrConnectWithoutOrdersInput = {
+export type UserCreateOrConnectWithoutShopNShipOrdersInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutShopNShipOrdersInput, Prisma.UserUncheckedCreateWithoutShopNShipOrdersInput>
 }
 
-export type UserUpsertWithoutOrdersInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutOrdersInput, Prisma.UserUncheckedUpdateWithoutOrdersInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutOrdersInput, Prisma.UserUncheckedCreateWithoutOrdersInput>
+export type UserUpsertWithoutShopNShipOrdersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutShopNShipOrdersInput, Prisma.UserUncheckedUpdateWithoutShopNShipOrdersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutShopNShipOrdersInput, Prisma.UserUncheckedCreateWithoutShopNShipOrdersInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutOrdersInput = {
+export type UserUpdateToOneWithWhereWithoutShopNShipOrdersInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutOrdersInput, Prisma.UserUncheckedUpdateWithoutOrdersInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutShopNShipOrdersInput, Prisma.UserUncheckedUpdateWithoutShopNShipOrdersInput>
 }
 
-export type UserUpdateWithoutOrdersInput = {
+export type UserUpdateWithoutShopNShipOrdersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -576,9 +650,12 @@ export type UserUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUpdateManyWithoutUserNestedInput
+  internationalOrders?: Prisma.InternationalOrderUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutUserNestedInput
 }
 
-export type UserUncheckedUpdateWithoutOrdersInput = {
+export type UserUncheckedUpdateWithoutShopNShipOrdersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   firstName?: Prisma.StringFieldUpdateOperationsInput | string
   lastName?: Prisma.StringFieldUpdateOperationsInput | string
@@ -589,6 +666,249 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  internationalOrders?: Prisma.InternationalOrderUncheckedUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAssistedPurchaseOrdersInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  country: string
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  shopNShipOrders?: Prisma.ShopNShipOrderCreateNestedManyWithoutUserInput
+  internationalOrders?: Prisma.InternationalOrderCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAssistedPurchaseOrdersInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  country: string
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUncheckedCreateNestedManyWithoutUserInput
+  internationalOrders?: Prisma.InternationalOrderUncheckedCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAssistedPurchaseOrdersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssistedPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutAssistedPurchaseOrdersInput>
+}
+
+export type UserUpsertWithoutAssistedPurchaseOrdersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAssistedPurchaseOrdersInput, Prisma.UserUncheckedUpdateWithoutAssistedPurchaseOrdersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAssistedPurchaseOrdersInput, Prisma.UserUncheckedCreateWithoutAssistedPurchaseOrdersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAssistedPurchaseOrdersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAssistedPurchaseOrdersInput, Prisma.UserUncheckedUpdateWithoutAssistedPurchaseOrdersInput>
+}
+
+export type UserUpdateWithoutAssistedPurchaseOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUpdateManyWithoutUserNestedInput
+  internationalOrders?: Prisma.InternationalOrderUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAssistedPurchaseOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUncheckedUpdateManyWithoutUserNestedInput
+  internationalOrders?: Prisma.InternationalOrderUncheckedUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutInternationalOrdersInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  country: string
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  shopNShipOrders?: Prisma.ShopNShipOrderCreateNestedManyWithoutUserInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutInternationalOrdersInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  country: string
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUncheckedCreateNestedManyWithoutUserInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  addresses?: Prisma.AddressUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutInternationalOrdersInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutInternationalOrdersInput, Prisma.UserUncheckedCreateWithoutInternationalOrdersInput>
+}
+
+export type UserUpsertWithoutInternationalOrdersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutInternationalOrdersInput, Prisma.UserUncheckedUpdateWithoutInternationalOrdersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutInternationalOrdersInput, Prisma.UserUncheckedCreateWithoutInternationalOrdersInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutInternationalOrdersInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutInternationalOrdersInput, Prisma.UserUncheckedUpdateWithoutInternationalOrdersInput>
+}
+
+export type UserUpdateWithoutInternationalOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUpdateManyWithoutUserNestedInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutInternationalOrdersInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUncheckedUpdateManyWithoutUserNestedInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  addresses?: Prisma.AddressUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutAddressesInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  country: string
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenCreateNestedManyWithoutUserInput
+  shopNShipOrders?: Prisma.ShopNShipOrderCreateNestedManyWithoutUserInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderCreateNestedManyWithoutUserInput
+  internationalOrders?: Prisma.InternationalOrderCreateNestedManyWithoutUserInput
+}
+
+export type UserUncheckedCreateWithoutAddressesInput = {
+  id?: string
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  country: string
+  password: string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedCreateNestedManyWithoutUserInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUncheckedCreateNestedManyWithoutUserInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUncheckedCreateNestedManyWithoutUserInput
+  internationalOrders?: Prisma.InternationalOrderUncheckedCreateNestedManyWithoutUserInput
+}
+
+export type UserCreateOrConnectWithoutAddressesInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutAddressesInput, Prisma.UserUncheckedCreateWithoutAddressesInput>
+}
+
+export type UserUpsertWithoutAddressesInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutAddressesInput, Prisma.UserUncheckedUpdateWithoutAddressesInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutAddressesInput, Prisma.UserUncheckedCreateWithoutAddressesInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutAddressesInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutAddressesInput, Prisma.UserUncheckedUpdateWithoutAddressesInput>
+}
+
+export type UserUpdateWithoutAddressesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenUpdateManyWithoutUserNestedInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUpdateManyWithoutUserNestedInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUpdateManyWithoutUserNestedInput
+  internationalOrders?: Prisma.InternationalOrderUpdateManyWithoutUserNestedInput
+}
+
+export type UserUncheckedUpdateWithoutAddressesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  firstName?: Prisma.StringFieldUpdateOperationsInput | string
+  lastName?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  passwordResetTokens?: Prisma.PasswordResetTokenUncheckedUpdateManyWithoutUserNestedInput
+  shopNShipOrders?: Prisma.ShopNShipOrderUncheckedUpdateManyWithoutUserNestedInput
+  assistedPurchaseOrders?: Prisma.AssistedPurchaseOrderUncheckedUpdateManyWithoutUserNestedInput
+  internationalOrders?: Prisma.InternationalOrderUncheckedUpdateManyWithoutUserNestedInput
 }
 
 
@@ -598,12 +918,18 @@ export type UserUncheckedUpdateWithoutOrdersInput = {
 
 export type UserCountOutputType = {
   passwordResetTokens: number
-  orders: number
+  shopNShipOrders: number
+  assistedPurchaseOrders: number
+  internationalOrders: number
+  addresses: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   passwordResetTokens?: boolean | UserCountOutputTypeCountPasswordResetTokensArgs
-  orders?: boolean | UserCountOutputTypeCountOrdersArgs
+  shopNShipOrders?: boolean | UserCountOutputTypeCountShopNShipOrdersArgs
+  assistedPurchaseOrders?: boolean | UserCountOutputTypeCountAssistedPurchaseOrdersArgs
+  internationalOrders?: boolean | UserCountOutputTypeCountInternationalOrdersArgs
+  addresses?: boolean | UserCountOutputTypeCountAddressesArgs
 }
 
 /**
@@ -626,8 +952,29 @@ export type UserCountOutputTypeCountPasswordResetTokensArgs<ExtArgs extends runt
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OrderWhereInput
+export type UserCountOutputTypeCountShopNShipOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ShopNShipOrderWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAssistedPurchaseOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssistedPurchaseOrderWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountInternationalOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InternationalOrderWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountAddressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AddressWhereInput
 }
 
 
@@ -642,7 +989,10 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   updatedAt?: boolean
   passwordResetTokens?: boolean | Prisma.User$passwordResetTokensArgs<ExtArgs>
-  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
+  shopNShipOrders?: boolean | Prisma.User$shopNShipOrdersArgs<ExtArgs>
+  assistedPurchaseOrders?: boolean | Prisma.User$assistedPurchaseOrdersArgs<ExtArgs>
+  internationalOrders?: boolean | Prisma.User$internationalOrdersArgs<ExtArgs>
+  addresses?: boolean | Prisma.User$addressesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -685,7 +1035,10 @@ export type UserSelectScalar = {
 export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "firstName" | "lastName" | "email" | "phone" | "country" | "password" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   passwordResetTokens?: boolean | Prisma.User$passwordResetTokensArgs<ExtArgs>
-  orders?: boolean | Prisma.User$ordersArgs<ExtArgs>
+  shopNShipOrders?: boolean | Prisma.User$shopNShipOrdersArgs<ExtArgs>
+  assistedPurchaseOrders?: boolean | Prisma.User$assistedPurchaseOrdersArgs<ExtArgs>
+  internationalOrders?: boolean | Prisma.User$internationalOrdersArgs<ExtArgs>
+  addresses?: boolean | Prisma.User$addressesArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -695,7 +1048,10 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   name: "User"
   objects: {
     passwordResetTokens: Prisma.$PasswordResetTokenPayload<ExtArgs>[]
-    orders: Prisma.$OrderPayload<ExtArgs>[]
+    shopNShipOrders: Prisma.$ShopNShipOrderPayload<ExtArgs>[]
+    assistedPurchaseOrders: Prisma.$AssistedPurchaseOrderPayload<ExtArgs>[]
+    internationalOrders: Prisma.$InternationalOrderPayload<ExtArgs>[]
+    addresses: Prisma.$AddressPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1102,7 +1458,10 @@ readonly fields: UserFieldRefs;
 export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   passwordResetTokens<T extends Prisma.User$passwordResetTokensArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$passwordResetTokensArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PasswordResetTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  orders<T extends Prisma.User$ordersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$ordersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  shopNShipOrders<T extends Prisma.User$shopNShipOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$shopNShipOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShopNShipOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  assistedPurchaseOrders<T extends Prisma.User$assistedPurchaseOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$assistedPurchaseOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssistedPurchaseOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  internationalOrders<T extends Prisma.User$internationalOrdersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$internationalOrdersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InternationalOrderPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  addresses<T extends Prisma.User$addressesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$addressesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AddressPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1553,27 +1912,99 @@ export type User$passwordResetTokensArgs<ExtArgs extends runtime.Types.Extension
 }
 
 /**
- * User.orders
+ * User.shopNShipOrders
  */
-export type User$ordersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$shopNShipOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Order
+   * Select specific fields to fetch from the ShopNShipOrder
    */
-  select?: Prisma.OrderSelect<ExtArgs> | null
+  select?: Prisma.ShopNShipOrderSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Order
+   * Omit specific fields from the ShopNShipOrder
    */
-  omit?: Prisma.OrderOmit<ExtArgs> | null
+  omit?: Prisma.ShopNShipOrderOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.OrderInclude<ExtArgs> | null
-  where?: Prisma.OrderWhereInput
-  orderBy?: Prisma.OrderOrderByWithRelationInput | Prisma.OrderOrderByWithRelationInput[]
-  cursor?: Prisma.OrderWhereUniqueInput
+  include?: Prisma.ShopNShipOrderInclude<ExtArgs> | null
+  where?: Prisma.ShopNShipOrderWhereInput
+  orderBy?: Prisma.ShopNShipOrderOrderByWithRelationInput | Prisma.ShopNShipOrderOrderByWithRelationInput[]
+  cursor?: Prisma.ShopNShipOrderWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.OrderScalarFieldEnum | Prisma.OrderScalarFieldEnum[]
+  distinct?: Prisma.ShopNShipOrderScalarFieldEnum | Prisma.ShopNShipOrderScalarFieldEnum[]
+}
+
+/**
+ * User.assistedPurchaseOrders
+ */
+export type User$assistedPurchaseOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssistedPurchaseOrder
+   */
+  select?: Prisma.AssistedPurchaseOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the AssistedPurchaseOrder
+   */
+  omit?: Prisma.AssistedPurchaseOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssistedPurchaseOrderInclude<ExtArgs> | null
+  where?: Prisma.AssistedPurchaseOrderWhereInput
+  orderBy?: Prisma.AssistedPurchaseOrderOrderByWithRelationInput | Prisma.AssistedPurchaseOrderOrderByWithRelationInput[]
+  cursor?: Prisma.AssistedPurchaseOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssistedPurchaseOrderScalarFieldEnum | Prisma.AssistedPurchaseOrderScalarFieldEnum[]
+}
+
+/**
+ * User.internationalOrders
+ */
+export type User$internationalOrdersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the InternationalOrder
+   */
+  select?: Prisma.InternationalOrderSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the InternationalOrder
+   */
+  omit?: Prisma.InternationalOrderOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InternationalOrderInclude<ExtArgs> | null
+  where?: Prisma.InternationalOrderWhereInput
+  orderBy?: Prisma.InternationalOrderOrderByWithRelationInput | Prisma.InternationalOrderOrderByWithRelationInput[]
+  cursor?: Prisma.InternationalOrderWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InternationalOrderScalarFieldEnum | Prisma.InternationalOrderScalarFieldEnum[]
+}
+
+/**
+ * User.addresses
+ */
+export type User$addressesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Address
+   */
+  select?: Prisma.AddressSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Address
+   */
+  omit?: Prisma.AddressOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AddressInclude<ExtArgs> | null
+  where?: Prisma.AddressWhereInput
+  orderBy?: Prisma.AddressOrderByWithRelationInput | Prisma.AddressOrderByWithRelationInput[]
+  cursor?: Prisma.AddressWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AddressScalarFieldEnum | Prisma.AddressScalarFieldEnum[]
 }
 
 /**

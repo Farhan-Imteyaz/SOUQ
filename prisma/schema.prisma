@@ -14,17 +14,20 @@ datasource db {
 }
 
 model User {
-  id                  String               @id @default(uuid()) @db.Uuid
-  firstName           String
-  lastName            String
-  email               String               @unique
-  phone               String
-  country             String
-  password            String
-  createdAt           DateTime             @default(now())
-  updatedAt           DateTime             @updatedAt
-  passwordResetTokens PasswordResetToken[]
-  orders              Order[]
+  id                     String                  @id @default(uuid()) @db.Uuid
+  firstName              String
+  lastName               String
+  email                  String                  @unique
+  phone                  String
+  country                String
+  password               String
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  passwordResetTokens    PasswordResetToken[]
+  shopNShipOrders        ShopNShipOrder[]
+  assistedPurchaseOrders AssistedPurchaseOrder[]
+  internationalOrders    InternationalOrder[]
+  addresses              Address[]
 }
 
 model PasswordResetRequest {
@@ -50,22 +53,23 @@ model PasswordResetToken {
   @@index([token])
 }
 
-model Order {
-  id String @id @default(uuid()) @db.Uuid
-
-  orderId        String @unique
-  userId         String @db.Uuid
+// ============================================
+// SHOP-N-SHIP ORDERS
+// ============================================
+model ShopNShipOrder {
+  id             String          @id @default(uuid()) @db.Uuid
+  orderId        String          @unique
+  userId         String          @db.Uuid
   trackingNumber String
-  user           User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  totalAmount Float
-  totalItems  Int
-  status      String @default("pending")
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  items OrderItem[]
+  user           User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalAmount    Float
+  totalItems     Int
+  status         String          @default("pending")
+  addressId      String?         @db.Uuid
+  address        Address?        @relation("ShopNShipAddress", fields: [addressId], references: [id])
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  items          ShopNShipItem[]
 
   @@index([orderId])
   @@index([userId])
@@ -73,12 +77,10 @@ model Order {
   @@index([createdAt])
 }
 
-model OrderItem {
-  
-  id        String @id @default(uuid()) @db.Uuid
-  orderUuid String @map("orderId") @db.Uuid
-  order     Order  @relation(fields: [orderUuid], references: [id], onDelete: Cascade)
-
+model ShopNShipItem {
+  id           String               @id @default(uuid()) @db.Uuid
+  orderUuid    String               @map("orderId") @db.Uuid
+  order        ShopNShipOrder       @relation(fields: [orderUuid], references: [id], onDelete: Cascade)
   itemType     String
   itemName     String
   storeName    String
@@ -87,28 +89,165 @@ model OrderItem {
   itemSize     String
   itemQuantity Int
   itemPrice    Float
-  remarks      String   @db.Text
+  remarks      String               @db.Text
   purchaseDate DateTime
   itemWeight   String
-
-  images ItemImage[]
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  images       ShopNShipItemImage[]
+  createdAt    DateTime             @default(now())
+  updatedAt    DateTime             @updatedAt
 
   @@index([orderUuid])
   @@index([itemName])
 }
 
-model ItemImage {
-  id     String    @id @default(uuid()) @db.Uuid
-  itemId String    @db.Uuid
-  item   OrderItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
-
+model ShopNShipItemImage {
+  id        String        @id @default(uuid()) @db.Uuid
+  itemId    String        @db.Uuid
+  item      ShopNShipItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
   imagePath String
   imageUrl  String
-
-  createdAt DateTime @default(now())
+  createdAt DateTime      @default(now())
 
   @@index([itemId])
+}
+
+// ============================================
+// ASSISTED PURCHASE ORDERS
+// ============================================
+model AssistedPurchaseOrder {
+  id             String                 @id @default(uuid()) @db.Uuid
+  orderId        String                 @unique
+  userId         String                 @db.Uuid
+  trackingNumber String
+  user           User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalAmount    Float
+  totalItems     Int
+  status         String                 @default("pending")
+  addressId      String?                @db.Uuid
+  address        Address?               @relation("AssistedPurchaseAddress", fields: [addressId], references: [id])
+  createdAt      DateTime               @default(now())
+  updatedAt      DateTime               @updatedAt
+  items          AssistedPurchaseItem[]
+
+  @@index([orderId])
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model AssistedPurchaseItem {
+  id           String                      @id @default(uuid()) @db.Uuid
+  orderUuid    String                      @map("orderId") @db.Uuid
+  order        AssistedPurchaseOrder       @relation(fields: [orderUuid], references: [id], onDelete: Cascade)
+  itemType     String
+  itemName     String
+  storeName    String
+  storeOrderId String
+  itemColor    String
+  itemSize     String
+  itemQuantity Int
+  itemPrice    Float
+  remarks      String                      @db.Text
+  purchaseDate DateTime
+  itemWeight   String
+  images       AssistedPurchaseItemImage[]
+  createdAt    DateTime                    @default(now())
+  updatedAt    DateTime                    @updatedAt
+
+  @@index([orderUuid])
+  @@index([itemName])
+}
+
+model AssistedPurchaseItemImage {
+  id        String               @id @default(uuid()) @db.Uuid
+  itemId    String               @db.Uuid
+  item      AssistedPurchaseItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  imagePath String
+  imageUrl  String
+  createdAt DateTime             @default(now())
+
+  @@index([itemId])
+}
+
+// ============================================
+// INTERNATIONAL ORDERS
+// ============================================
+model InternationalOrder {
+  id             String              @id @default(uuid()) @db.Uuid
+  orderId        String              @unique
+  userId         String              @db.Uuid
+  trackingNumber String
+  user           User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  totalAmount    Float
+  totalItems     Int
+  status         String              @default("pending")
+  addressId      String?             @db.Uuid
+  address        Address?            @relation("InternationalAddress", fields: [addressId], references: [id])
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  items          InternationalItem[]
+
+  @@index([orderId])
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model InternationalItem {
+  id           String                   @id @default(uuid()) @db.Uuid
+  orderUuid    String                   @map("orderId") @db.Uuid
+  order        InternationalOrder       @relation(fields: [orderUuid], references: [id], onDelete: Cascade)
+  itemType     String
+  itemName     String
+  storeName    String
+  storeOrderId String
+  itemColor    String
+  itemSize     String
+  itemQuantity Int
+  itemPrice    Float
+  remarks      String                   @db.Text
+  purchaseDate DateTime
+  itemWeight   String
+  images       InternationalItemImage[]
+  createdAt    DateTime                 @default(now())
+  updatedAt    DateTime                 @updatedAt
+
+  @@index([orderUuid])
+  @@index([itemName])
+}
+
+model InternationalItemImage {
+  id        String            @id @default(uuid()) @db.Uuid
+  itemId    String            @db.Uuid
+  item      InternationalItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  imagePath String
+  imageUrl  String
+  createdAt DateTime          @default(now())
+
+  @@index([itemId])
+}
+
+// ============================================
+// SHARED ADDRESS MODEL
+// ============================================
+model Address {
+  id                     String                  @id @default(uuid()) @db.Uuid
+  userId                 String                  @db.Uuid
+  user                   User                    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  firstName              String?
+  lastName               String?
+  streetAddress          String
+  aptSuitBldgGateCode    String
+  city                   String
+  phone                  String?
+  state                  String
+  country                String
+  zipcode                String
+  createdAt              DateTime                @default(now())
+  updatedAt              DateTime                @updatedAt
+  shopNShipOrders        ShopNShipOrder[]        @relation("ShopNShipAddress")
+  assistedPurchaseOrders AssistedPurchaseOrder[] @relation("AssistedPurchaseAddress")
+  internationalOrders    InternationalOrder[]    @relation("InternationalAddress")
+
+  @@index([userId])
 }

@@ -3,8 +3,17 @@ import { IndianRupee } from "lucide-react";
 import { Label } from "@radix-ui/react-label";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 import { useOrderContext } from "../context/order-context";
-const OrderSummary = () => {
+const OrderSummary = ({
+  currentStep,
+  handleContinue,
+  handleBack,
+}: {
+  currentStep: number;
+  handleContinue: () => void;
+  handleBack: () => void;
+}) => {
   const { items } = useOrderContext();
   return (
     <div className="bg-white sticky top-4 left-0 h-fit p-4 rounded-xl border border-slate-200">
@@ -41,10 +50,42 @@ const OrderSummary = () => {
           {items.reduce((sum, item) => sum + item.itemPrice, 0)}
         </p>
       </div>
-      <Button className="w-full">Continue</Button>
-      <Button variant={"outline"} className="w-full mt-2 shadow-none">
-        Cancel
-      </Button>
+      {currentStep === 0 ? (
+        <Button
+          type="button"
+          className="w-full"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            handleContinue();
+          }}
+        >
+          Continue
+        </Button>
+      ) : (
+        <Button disabled={currentStep === 0} type="submit" className="w-full">
+          Submit
+        </Button>
+      )}
+      {currentStep === 1 ? (
+        <Button
+          onClick={handleBack}
+          type={"button"}
+          className="w-full bg-black text-white hover:bg-black/90 mt-2"
+        >
+          Back
+        </Button>
+      ) : null}
+
+      <Link href={"/dashboard/shop-n-ship"}>
+        <Button
+          type="button"
+          variant={"outline"}
+          className="w-full mt-2 shadow-none"
+        >
+          Cancel
+        </Button>
+      </Link>
     </div>
   );
 };

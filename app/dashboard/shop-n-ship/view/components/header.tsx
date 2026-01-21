@@ -1,7 +1,18 @@
+"use client";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { Plus } from "lucide-react";
+import AddItemForm from "./Add-item-form";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 const Header = () => {
+  const [showAddForm, setShowAddForm] = useState(false);
+
   return (
     <div className="flex mb-12 justify-between items-center">
       <div className="">
@@ -10,12 +21,22 @@ const Header = () => {
         </h1>
         <p className="text-gray-600">Manage your package forwarding orders</p>
       </div>
-      <Link href="/dashboard/shop-n-ship/create-order">
-        <Button className="cursor-pointer">
-          <Plus className="h-10 w-10 " />
-          Add Item
-        </Button>
-      </Link>
+      <Dialog open={showAddForm} onOpenChange={setShowAddForm}>
+        <DialogTrigger asChild>
+          <Button type="button" className="cursor-pointer">
+            <Plus className="h-10 w-10 " />
+            Add Item
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle>Add item</DialogTitle>
+            <div className="mt-3">
+              <AddItemForm onCancel={() => setShowAddForm(false)} />
+            </div>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };

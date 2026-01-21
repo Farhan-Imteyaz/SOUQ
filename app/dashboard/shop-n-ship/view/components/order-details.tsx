@@ -1,6 +1,14 @@
 "use client";
 import { useState } from "react";
 import { Edit2 } from "lucide-react";
+
+const formatDate = (dateString: string): string => {
+  return new Date(dateString).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "short",
+    year: "2-digit",
+  });
+};
 import {
   Table,
   TableBody,
@@ -115,14 +123,7 @@ const OrderDetails = ({
     }
   };
 
-  const formatDate = (dateString?: string) => {
-    if (!dateString) return "";
-    return new Date(dateString).toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "2-digit",
-    });
-  };
+  console.log(items);
 
   return (
     <div className="bg-white rounded-xl shadow-sm border p-6">
@@ -136,6 +137,7 @@ const OrderDetails = ({
               <TableHead>Souqza Order-ID</TableHead>
               <TableHead>Store Name</TableHead>
               <TableHead>Item Name</TableHead>
+              <TableHead>Purchase Date</TableHead>
               <TableHead>Quantity</TableHead>
               <TableHead>Color</TableHead>
               <TableHead>Order Status</TableHead>
@@ -155,12 +157,22 @@ const OrderDetails = ({
             ) : (
               items.map((order) => (
                 <TableRow key={order.id}>
-                  <TableCell>{formatDate(order.createdAt)}</TableCell>
+                  <TableCell>
+                    {order.createdAt &&
+                      new Date(order.createdAt).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "short",
+                        year: "2-digit",
+                      })}
+                  </TableCell>
                   <TableCell className="font-medium">
                     {order.storeOrderId}
                   </TableCell>
                   <TableCell>{order.storeName}</TableCell>
                   <TableCell>{order.itemName}</TableCell>
+                  <TableCell>
+                    {order.purchaseDate && formatDate(order.purchaseDate)}
+                  </TableCell>
                   <TableCell>{order.itemQuantity}</TableCell>
                   <TableCell>{order.itemColor}</TableCell>
                   <TableCell>

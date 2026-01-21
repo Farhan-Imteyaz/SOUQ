@@ -1,56 +1,48 @@
 import { z } from "zod";
-export interface OrderItem {
-  id: string;
-  itemType: string;
-  itemName: string;
-  storeName: string;
-  storeOrderId: string;
-  itemColor: string;
-  itemSize: string;
-  itemQuantity: number;
-  itemPrice: number;
-  remarks: string;
-  images: File[];
-  purchaseDate: Date;
-  itemWeight: string;
-}
+
+// ============================================
+// Shared Schemas & Utilities
+// ============================================
+
+const requiredString = (field: string, min = 1) =>
+  z.string().min(min, `${field} is required`);
+
+const optionalString = (maxLength?: number) =>
+  maxLength
+    ? z.string().max(maxLength).optional().or(z.literal(""))
+    : z.string().optional().or(z.literal(""));
+
+const phoneSchema = z.object({
+  countryCode: z.string().min(1),
+  number: z.string().min(10, "Valid phone number is required"),
+});
+
+// ============================================
+// Order Item Schema & Types
+// ============================================
 
 export const orderItemSchema = z.object({
   items: z.array(
     z.object({
-      itemType: z.string().min(1, "Item type is required"),
-      itemName: z
-        .string()
-        .min(1, "Item name is required")
-        .max(30, "Item name is too long"),
-      storeName: z
-        .string()
-        .min(1, "Online store is required")
-        .max(12, "Store name is too long"),
-      storeOrderId: z
-        .string()
-        .min(3, "Order ID is required")
-        .max(25, "Order ID is too long"),
-      itemColor: z
-        .string()
-        .min(1, "Color name is required")
-        .max(10, "Color name is too long"),
-      itemSize: z
-        .string()
-        .max(30, "Size is too long")
-        .optional()
-        .or(z.literal("")),
+      itemType: requiredString("Item type"),
+      itemName: requiredString("Item name").max(30, "Item name is too long"),
+      storeName: requiredString("Online store").max(
+        12,
+        "Store name is too long",
+      ),
+      storeOrderId: requiredString("Order ID", 3).max(
+        25,
+        "Order ID is too long",
+      ),
+      itemColor: requiredString("Color name").max(10, "Color name is too long"),
+      itemSize: optionalString(30),
       itemQuantity: z.number().int().min(1, "Quantity must be at least 1"),
-      itemPrice: z.number().min(0.01, "Price must be greater than 0"),
-      remarks: z
-        .string()
-        .max(500, "Remarks is too long")
-        .optional()
-        .or(z.literal("")),
-      purchaseDate: z.date().min(1, "Purchase date is required"),
-      itemWeight: z.string().max(5, "weight not supported").optional(),
+      itemPrice: z.number().positive("Price must be greater than 0"),
+      remarks: optionalString(500),
+      purchaseDate: z.date().refine((date) => date !== null, "Purchase date is required"),
+      itemWeight: optionalString(5),
       images: z
-        .array(z.any())
+        .array(z.instanceof(File))
         .min(2, "At least 2 images are required")
         .max(6, "Maximum 6 images allowed"),
     }),
@@ -58,31 +50,45 @@ export const orderItemSchema = z.object({
 });
 
 export type OrderItemFormData = z.infer<typeof orderItemSchema>;
+export type OrderItem = OrderItemFormData["items"][number] & { id: string };
 
-export interface AddressFormData {
-  fullName: string;
-  phoneNumber: string;
-  addressLine1: string;
-  addressLine2?: string;
-  city: string;
-  state: string;
-  pincode: string;
-  country: string;
-  addressType: "home" | "office";
-}
+// ============================================
+// Address Schema & Types
+// ============================================
 
 export const addressSchema = z.object({
-  fullName: z.string().min(2, "Full name is required"),
-  phoneNumber: z.string().min(10, "Valid phone number is required"),
-  addressLine1: z.string().min(5, "Address line 1 is required"),
-  addressLine2: z.string().optional(),
-  city: z.string().min(2, "City is required"),
-  state: z.string().min(2, "State is required"),
-  pincode: z.string().regex(/^\d{6}$/, "Valid 6-digit pincode required"),
-  country: z.string().min(2, "Country is required"),
-  addressType: z
-    .enum(["home", "office"])
-    .refine((value) => value !== undefined, {
-      message: "Please select address type",
-    }),
+  firstName: z
+    .string()
+    .min(2, "First name must be at least 2 characters")
+    .optional(),
+  lastName: z
+    .string()
+    .min(2, "Last name must be at least 2 characters")
+    .optional(),
+  streetAddress: requiredString("Street address", 5),
+  aptSuitBldgGateCode: requiredString("Apt/Suite/Building/Gate code"),
+  city: requiredString("City", 2),
+  phone: z.string().min(10, "Valid phone number is required").optional(),
+  state: requiredString("State", 2),
+  country: requiredString("Country", 2),
+  zipcode: z.string().regex(/^\d{6}$/, "Valid 6-digit zipcode required"),
 });
+
+export type AddressFormData = z.infer<typeof addressSchema>;
+
+// ============================================
+// Combined Form Schema (Items + Address)
+// ============================================
+
+export const completeOrderSchema = z.object({
+  items: orderItemSchema.shape.items,
+  address: addressSchema,
+});
+
+export type CompleteOrderFormData = z.infer<typeof completeOrderSchema>;
+
+// ============================================
+// Type Exports
+// ============================================
+
+export type Phone = z.infer<typeof phoneSchema>;

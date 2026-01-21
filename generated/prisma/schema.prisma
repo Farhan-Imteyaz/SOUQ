@@ -1,0 +1,138 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id                  String               @id @default(uuid()) @db.Uuid
+  firstName           String
+  lastName            String
+  email               String               @unique
+  phone               String
+  country             String
+  password            String
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  passwordResetTokens PasswordResetToken[]
+  orders              Order[]
+  addresses           Address[]
+}
+
+model PasswordResetRequest {
+  id        Int      @id @default(autoincrement())
+  email     String
+  ip        String
+  createdAt DateTime @default(now())
+
+  @@index([email])
+  @@index([ip])
+}
+
+model PasswordResetToken {
+  id        Int      @id @default(autoincrement())
+  userId    String   @db.Uuid
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  token     String   @unique
+  used      Boolean  @default(false)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([token])
+}
+
+model Order {
+  id String @id @default(uuid()) @db.Uuid
+
+  orderId        String @unique
+  userId         String @db.Uuid
+  trackingNumber String
+  user           User?  @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  totalAmount Float
+  totalItems  Int
+  status      String   @default("pending")
+  addressId   String?  @db.Uuid
+  address     Address? @relation(fields: [addressId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items OrderItem[]
+
+  @@index([orderId])
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model OrderItem {
+  id        String @id @default(uuid()) @db.Uuid
+  orderUuid String @map("orderId") @db.Uuid
+  order     Order  @relation(fields: [orderUuid], references: [id], onDelete: Cascade)
+
+  itemType     String
+  itemName     String
+  storeName    String
+  storeOrderId String
+  itemColor    String
+  itemSize     String
+  itemQuantity Int
+  itemPrice    Float
+  remarks      String   @db.Text
+  purchaseDate DateTime
+  itemWeight   String
+
+  images ItemImage[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  addressId String? @db.Uuid
+
+  @@index([orderUuid])
+  @@index([itemName])
+}
+
+model ItemImage {
+  id     String    @id @default(uuid()) @db.Uuid
+  itemId String    @db.Uuid
+  item   OrderItem @relation(fields: [itemId], references: [id], onDelete: Cascade)
+
+  imagePath String
+  imageUrl  String
+
+  createdAt DateTime @default(now())
+
+  @@index([itemId])
+}
+
+model Address {
+  id                  String   @id @default(uuid()) @db.Uuid
+  userId              String   @db.Uuid
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  firstName           String?
+  lastName            String?
+  streetAddress       String
+  aptSuitBldgGateCode String
+  city                String
+  phone               String?
+  state               String
+  country             String
+  zipcode             String
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  orders              Order[]
+
+  @@index([userId])
+}
