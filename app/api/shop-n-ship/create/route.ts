@@ -1,4 +1,4 @@
-// app/api/orders/route.ts
+// app/api/shop-n-ship/create/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
@@ -20,6 +20,7 @@ const orderItemApiSchema = z.object({
   itemWeight: z.string(),
   images: z.array(z.string()).optional(), // Will be overwritten
 });
+
 const orderDataSchema = z.object({
   items: z.array(orderItemApiSchema).min(1),
 });
@@ -45,11 +46,21 @@ export async function POST(request: NextRequest) {
 
     const formData = await request.formData();
 
+    // ============================================
+    // 1. Extract addressId if present
+    // ============================================
+    const addressId = formData.get("addressId");
+    const selectedAddressId =
+      addressId && typeof addressId === "string" ? addressId : null;
+
+    // ============================================
+    // 2. Parse and validate items data
+    // ============================================
     const itemsField = formData.get("items");
     if (!itemsField || typeof itemsField !== "string") {
       return NextResponse.json(
         { success: false, message: "Items data is required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -60,14 +71,14 @@ export async function POST(request: NextRequest) {
     } catch (e) {
       return NextResponse.json(
         { success: false, message: "Invalid JSON in 'items'" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     if (!parsedData.items || !Array.isArray(parsedData.items)) {
       return NextResponse.json(
         { success: false, message: "Invalid data format" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -80,12 +91,39 @@ export async function POST(request: NextRequest) {
           message: "Validation failed",
           errors: validationResult.error.issues,
         },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
     const { items } = validationResult.data;
 
+    // ============================================
+    // 3. Verify addressId exists if provided
+    // ============================================
+    if (selectedAddressId) {
+      const addressExists = await prisma.address.findUnique({
+        where: { id: selectedAddressId },
+      });
+
+      if (!addressExists) {
+        return NextResponse.json(
+          { success: false, message: "Selected address not found" },
+          { status: 404 },
+        );
+      }
+
+      // Verify the address belongs to the user
+      if (addressExists.userId !== userId) {
+        return NextResponse.json(
+          { success: false, message: "Unauthorized access to address" },
+          { status: 403 },
+        );
+      }
+    }
+
+    // ============================================
+    // 4. Create upload directory and process images
+    // ============================================
     const orderId = generateOrderId();
     const uploadDir = join(process.cwd(), "public", "uploads", orderId);
     await mkdir(uploadDir, { recursive: true });
@@ -117,7 +155,9 @@ export async function POST(request: NextRequest) {
       "image/webp": "webp",
     };
 
-    // 🔄 Process items and save images
+    // ============================================
+    // 5. Process items and save images
+    // ============================================
     const processedItems = await Promise.all(
       items.map(async (item, itemIndex) => {
         const images: string[] = [];
@@ -126,7 +166,7 @@ export async function POST(request: NextRequest) {
         for (let i = 0; i < files.length; i++) {
           const file = files[i];
 
-          // 🔒 Validate file
+          // Validate file
           if (file.size > 5 * 1024 * 1024) {
             throw new Error(`File too large: ${file.name}`);
           }
@@ -147,16 +187,20 @@ export async function POST(request: NextRequest) {
           ...item,
           images,
         };
-      })
+      }),
     );
 
-    // 💰 Calculate totals
+    // ============================================
+    // 6. Calculate totals
+    // ============================================
     const totalAmount = processedItems.reduce(
       (sum, item) => sum + item.itemPrice * item.itemQuantity,
-      0
+      0,
     );
 
-    // 💾 Save to database
+    // ============================================
+    // 7. Create order in database with addressId if provided
+    // ============================================
     const order = await prisma.order.create({
       data: {
         orderId,
@@ -165,6 +209,7 @@ export async function POST(request: NextRequest) {
         status: "pending",
         userId,
         trackingNumber: "",
+        addressId: selectedAddressId, // Link to existing address if selected
         items: {
           create: processedItems.map((item) => ({
             itemType: item.itemType,
@@ -182,7 +227,7 @@ export async function POST(request: NextRequest) {
             images: {
               create: item.images.map((imagePath) => ({
                 imagePath,
-                imageUrl: imagePath, // or construct full URL if needed
+                imageUrl: imagePath,
               })),
             },
           })),
@@ -192,6 +237,7 @@ export async function POST(request: NextRequest) {
         items: {
           include: { images: true },
         },
+        address: true, // Include address details in response
       },
     });
 
@@ -202,7 +248,7 @@ export async function POST(request: NextRequest) {
         message: "Order created successfully",
         data: order,
       },
-      { status: 201 }
+      { status: 201 },
     );
   } catch (error) {
     console.error("Order creation error:", error);
@@ -212,7 +258,7 @@ export async function POST(request: NextRequest) {
         message: "Failed to create order",
         error: error instanceof Error ? error.message : "Unknown error",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

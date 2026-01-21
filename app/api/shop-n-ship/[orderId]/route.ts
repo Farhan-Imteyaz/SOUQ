@@ -81,7 +81,169 @@ const validateAndUploadImage = async (
     imageUrl: relativePath,
   };
 };
+export async function POST(
+  request: NextRequest,
+  { params }: { params: Promise<{ orderId: string }> },
+) {
+  try {
+    const userId = getUserId(request);
+    if (!userId) return unauthorizedResponse();
 
+    const { orderId } = await params;
+
+    // Verify order exists and belongs to user
+    const existingOrder = await prisma.order.findUnique({
+      where: { orderId, userId },
+      select: {
+        orderId: true,
+        totalItems: true,
+        totalAmount: true,
+      },
+    });
+
+    if (!existingOrder) {
+      return NextResponse.json(
+        { success: false, message: "Order not found or unauthorized" },
+        { status: 404 },
+      );
+    }
+
+    const formData = await request.formData();
+
+    // Extract and validate form data
+    const purchaseDate = formData.get("purchaseDate") as string;
+    const itemName = formData.get("itemName") as string;
+    const itemQuantity = formData.get("itemQuantity") as string;
+    const itemColor = formData.get("itemColor") as string;
+    const storeName = formData.get("storeName") as string;
+    const itemPrice = formData.get("itemPrice") as string;
+    const itemSize = formData.get("itemSize") as string;
+    const itemWeight = formData.get("itemWeight") as string;
+    const storeOrderId = formData.get("storeOrderId") as string;
+    const remarks = (formData.get("remarks") as string) || "";
+    const newImageFiles = formData.getAll("images") as File[];
+
+    // Validate required fields
+    if (
+      !purchaseDate ||
+      !itemName ||
+      !itemQuantity ||
+      !itemColor ||
+      !storeName ||
+      !itemPrice ||
+      !storeOrderId
+    ) {
+      return NextResponse.json(
+        { success: false, message: "Missing required fields" },
+        { status: 400 },
+      );
+    }
+
+    // Validate images (minimum 2 required)
+    if (newImageFiles.length < 2) {
+      return NextResponse.json(
+        { success: false, message: "At least 2 images are required" },
+        { status: 400 },
+      );
+    }
+
+    // Upload new images
+    const uploadedImages = await Promise.all(
+      newImageFiles.map((file, i) =>
+        validateAndUploadImage(file, i, orderId, existingOrder.orderId),
+      ),
+    );
+
+    const validUploadedImages = uploadedImages.filter(Boolean) as Array<{
+      imagePath: string;
+      imageUrl: string;
+    }>;
+
+    if (validUploadedImages.length < 2) {
+      return NextResponse.json(
+        { success: false, message: "Failed to upload required images" },
+        { status: 400 },
+      );
+    }
+
+    // Create new item and update order in transaction
+    const newItem = await prisma.$transaction(async (tx) => {
+      // Create the new item
+      const item = await tx.orderItem.create({
+        data: {
+          order: {
+            connect: {
+              orderId: existingOrder.orderId,
+            },
+          },
+          itemType: "Shop n Ship",
+          purchaseDate: new Date(purchaseDate),
+          itemName,
+          itemQuantity: parseInt(itemQuantity),
+          itemColor,
+          storeName,
+          itemPrice: parseFloat(itemPrice),
+          itemSize: itemSize,
+          itemWeight: itemWeight,
+          storeOrderId,
+          remarks,
+          images: {
+            createMany: {
+              data: validUploadedImages.map((img) => ({
+                imagePath: img.imagePath,
+                imageUrl: img.imageUrl,
+              })),
+            },
+          },
+        },
+        include: {
+          images: {
+            select: {
+              id: true,
+              imagePath: true,
+              imageUrl: true,
+            },
+          },
+        },
+      });
+
+      // Update order totals
+      const newTotalAmount = existingOrder.totalAmount + parseFloat(itemPrice);
+      const newTotalItems = existingOrder.totalItems + parseInt(itemQuantity);
+
+      await tx.order.update({
+        where: { orderId: existingOrder.orderId },
+        data: {
+          totalAmount: newTotalAmount,
+          totalItems: newTotalItems,
+        },
+      });
+
+      return item;
+    });
+
+    revalidatePath(`/shop-n-ship/${existingOrder.orderId}`);
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Item added successfully",
+        item: newItem,
+      },
+      { status: 201 },
+    );
+  } catch (error) {
+    console.error("Error adding item:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Failed to add item",
+        error: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 },
+    );
+  }
+}
 // GET endpoint - Fetch order with pagination
 export async function GET(
   request: NextRequest,
@@ -108,6 +270,7 @@ export async function GET(
           totalItems: true,
           createdAt: true,
           updatedAt: true,
+          addressId: true,
           items: {
             select: {
               id: true,
@@ -122,6 +285,7 @@ export async function GET(
               itemWeight: true,
               remarks: true,
               purchaseDate: true,
+              createdAt: true,
               images: {
                 select: {
                   id: true,
