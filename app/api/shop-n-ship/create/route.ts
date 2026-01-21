@@ -201,7 +201,7 @@ export async function POST(request: NextRequest) {
     // ============================================
     // 7. Create order in database with addressId if provided
     // ============================================
-    const order = await prisma.order.create({
+    const order = await prisma.shopNShipOrder.create({
       data: {
         orderId,
         totalAmount,

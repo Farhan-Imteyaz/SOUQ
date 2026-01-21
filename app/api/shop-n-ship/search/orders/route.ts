@@ -85,12 +85,12 @@ export async function GET(request: NextRequest) {
     }
 
     // Get total count for pagination
-    const total = await prisma.order.count({
+    const total = await prisma.shopNShipItem.count({
       where: whereClause,
     });
 
     // Get paginated orders
-    const orders = await prisma.order.findMany({
+    const orders = await prisma.shopNShipOrder.findMany({
       where: whereClause,
       include: {
         items: {

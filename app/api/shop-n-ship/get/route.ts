@@ -16,7 +16,7 @@ export async function GET(request: NextRequest) {
     // Run queries in parallel for better performance
     const [orders, total, statusCounts] = await Promise.all([
       // Get paginated orders
-      prisma.order.findMany({
+      prisma.shopNShipOrder.findMany({
         where: { userId },
         select: {
           orderId: true,
@@ -52,12 +52,12 @@ export async function GET(request: NextRequest) {
       }),
 
       // Get total count for pagination
-      prisma.order.count({
+      prisma.shopNShipOrder.count({
         where: { userId },
       }),
 
       // Get status counts (grouped by status)
-      prisma.order.groupBy({
+      prisma.shopNShipOrder.groupBy({
         by: ["status"],
         where: { userId },
         _count: {

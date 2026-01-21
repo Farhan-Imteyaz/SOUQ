@@ -92,7 +92,7 @@ export async function POST(
     const { orderId } = await params;
 
     // Verify order exists and belongs to user
-    const existingOrder = await prisma.order.findUnique({
+    const existingOrder = await prisma.shopNShipOrder.findUnique({
       where: { orderId, userId },
       select: {
         orderId: true,
@@ -169,7 +169,7 @@ export async function POST(
     // Create new item and update order in transaction
     const newItem = await prisma.$transaction(async (tx) => {
       // Create the new item
-      const item = await tx.orderItem.create({
+      const item = await tx.shopNShipItem.create({
         data: {
           order: {
             connect: {
@@ -211,7 +211,7 @@ export async function POST(
       const newTotalAmount = existingOrder.totalAmount + parseFloat(itemPrice);
       const newTotalItems = existingOrder.totalItems + parseInt(itemQuantity);
 
-      await tx.order.update({
+      await tx.shopNShipOrder.update({
         where: { orderId: existingOrder.orderId },
         data: {
           totalAmount: newTotalAmount,
@@ -261,7 +261,7 @@ export async function GET(
 
     // Fetch order with items and total count in a single optimized query
     const [order, total] = await Promise.all([
-      prisma.order.findUnique({
+      prisma.shopNShipOrder.findUnique({
         where: { orderId, userId },
         select: {
           orderId: true,
@@ -300,7 +300,7 @@ export async function GET(
           },
         },
       }),
-      prisma.orderItem.count({
+      prisma.shopNShipItem.count({
         where: { order: { orderId, userId } },
       }),
     ]);
@@ -344,7 +344,7 @@ export async function PUT(
     const { orderId } = await params;
 
     // Verify item ownership
-    const existingItem = await prisma.orderItem.findFirst({
+    const existingItem = await prisma.shopNShipItem.findFirst({
       where: { id: orderId, order: { userId } },
       select: {
         id: true,
@@ -407,7 +407,7 @@ export async function PUT(
     if (imagesToDelete.length > 0) {
       await Promise.all([
         deleteImageFiles(imagesToDelete),
-        prisma.itemImage.deleteMany({
+        prisma.shopNShipItemImage.deleteMany({
           where: { id: { in: imagesToDelete.map((img) => img.id) } },
         }),
       ]);
@@ -428,7 +428,7 @@ export async function PUT(
     // Update item and add new images in transaction
     const updatedItem = await prisma.$transaction(async (tx) => {
       // Update the item
-      const updated = await tx.orderItem.update({
+      const updated = await tx.shopNShipItem.update({
         where: { id: orderId },
         data: {
           purchaseDate: purchaseDate || existingItem.purchaseDate,
@@ -456,7 +456,7 @@ export async function PUT(
 
       // Add new images if any
       if (validUploadedImages.length > 0) {
-        await tx.itemImage.createMany({
+        await tx.shopNShipItemImage.createMany({
           data: validUploadedImages.map((img) => ({
             itemId: orderId,
             imagePath: img.imagePath,
@@ -465,7 +465,7 @@ export async function PUT(
         });
 
         // Fetch updated images
-        const allImages = await tx.itemImage.findMany({
+        const allImages = await tx.shopNShipItemImage.findMany({
           where: { itemId: orderId },
           select: {
             id: true,
@@ -524,7 +524,7 @@ export async function DELETE(
     }
 
     // Verify item ownership and get images
-    const existingItem = await prisma.orderItem.findFirst({
+    const existingItem = await prisma.shopNShipItem.findFirst({
       where: { id: itemId, order: { userId } },
       select: {
         id: true,
@@ -547,7 +547,7 @@ export async function DELETE(
     // Delete images from filesystem and item from database in parallel
     await Promise.all([
       deleteImageFiles(existingItem.images),
-      prisma.orderItem.delete({ where: { id: itemId } }),
+      prisma.shopNShipItem.delete({ where: { id: itemId } }),
     ]);
 
     revalidatePath(`/shop-n-ship/${existingItem.order.orderId}`);
