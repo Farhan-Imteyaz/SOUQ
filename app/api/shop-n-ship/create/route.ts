@@ -4,7 +4,7 @@ import { writeFile, mkdir } from "fs/promises";
 import { join } from "path";
 import { z } from "zod";
 import prisma from "@/lib/prisma";
-
+import { sendEmail } from "@/lib/sendEmail";
 const orderItemApiSchema = z.object({
   id: z.string().uuid(),
   itemType: z.string().min(1),
@@ -16,9 +16,9 @@ const orderItemApiSchema = z.object({
   itemQuantity: z.number().int().min(1),
   itemPrice: z.number().min(0),
   remarks: z.string(),
-  purchaseDate: z.string().datetime(), // ISO 8601 format
+  purchaseDate: z.string().datetime(),
   itemWeight: z.string(),
-  images: z.array(z.string()).optional(), // Will be overwritten
+  images: z.array(z.string()).optional(),
 });
 
 const orderDataSchema = z.object({
@@ -41,7 +41,10 @@ export async function POST(request: NextRequest) {
   try {
     const userId = request.headers.get("x-user-id");
     if (!userId) {
-      return NextResponse.json({ message: "User ID missing" }, { status: 500 });
+      return NextResponse.json(
+        { message: "Failed to Authenticate" },
+        { status: 500 },
+      );
     }
 
     const formData = await request.formData();
@@ -237,10 +240,32 @@ export async function POST(request: NextRequest) {
         items: {
           include: { images: true },
         },
-        address: true, // Include address details in response
+        address: true,
       },
     });
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+      select: {
+        email: true,
+        firstName: true,
+      },
+    });
+    const emailItems = processedItems.map((item) => ({
+      name: item.itemName,
+      quantity: item.itemQuantity,
+      price: item.itemPrice,
+    }));
 
+    await sendEmail({
+      to: user?.email || "",
+      type: "createOrder",
+      props: {
+        name: user?.firstName || "Customer Name",
+        orderId: order.orderId,
+        items: emailItems,
+        currency: "₹",
+      },
+    });
     return NextResponse.json(
       {
         success: true,

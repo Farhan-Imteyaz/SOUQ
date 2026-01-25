@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     if (!email || !password) {
       return NextResponse.json(
         { error: "Email and password required" },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -20,7 +20,7 @@ export async function POST(req: NextRequest) {
     if (!user) {
       return NextResponse.json(
         { error: "Invalid Email or Password" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -28,12 +28,12 @@ export async function POST(req: NextRequest) {
     if (!valid) {
       return NextResponse.json(
         { error: "Invalid Email or Password" },
-        { status: 401 }
+        { status: 401 },
       );
     }
 
     const token = jwt.sign({ id: user.id, email: user.email }, SECRET, {
-      expiresIn: "7d",
+      expiresIn: "1d",
     });
 
     // Set token in an httpOnly cookie
@@ -44,7 +44,7 @@ export async function POST(req: NextRequest) {
       httpOnly: true,
       secure: false,
       path: "/",
-      maxAge: 60 * 60 * 24 * 7,
+      maxAge: 24 * 60 * 60,
     });
 
     return response;

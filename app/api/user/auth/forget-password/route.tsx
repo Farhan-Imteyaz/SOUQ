@@ -1,23 +1,16 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
-import { Resend } from "resend";
 import getClientIP from "@/lib/get-client-ip";
-
+import { sendEmail } from "@/lib/sendEmail";
 const EMAIL_LIMIT = 3;
-const IP_LIMIT = 10;
-const WINDOW_MINUTES = 15;
-function getResend() {
-  const key = process.env.RESEND_API_KEY;
-  if (!key) throw new Error("RESEND_API_KEY missing");
-  return new Resend(key);
-}
-
+const IP_LIMIT = 5;
+const WINDOW_MINUTES = 10;
 export async function POST(req: NextRequest) {
   try {
     const { email } = await req.json();
     const ip = getClientIP(req);
-
+    console.log("Password reset request from IP:", ip);
     if (!email) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 });
     }
@@ -39,7 +32,7 @@ export async function POST(req: NextRequest) {
     if (emailCount >= EMAIL_LIMIT || ipCount >= IP_LIMIT) {
       return NextResponse.json(
         { error: "Too many reset attempts. Please try again later." },
-        { status: 429 }
+        { status: 429 },
       );
     }
 
@@ -58,7 +51,7 @@ export async function POST(req: NextRequest) {
     if (!user) {
       return NextResponse.json(
         { message: "If the account exists, a reset link was sent." },
-        { status: 200 }
+        { status: 200 },
       );
     }
 
@@ -73,8 +66,18 @@ export async function POST(req: NextRequest) {
         email: user.email,
       },
       process.env.JWT_SECRET!,
-      { expiresIn: "1h" }
+      { expiresIn: "1h" },
     );
+    await prisma.passwordResetToken.updateMany({
+  where: {
+    userId: user.id,
+    used: false,
+    expiresAt: { gt: new Date() },
+  },
+  data: {
+    used: true,
+  },
+});
 
     await prisma.passwordResetToken.create({
       data: {
@@ -85,69 +88,31 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    const resetUrl = `${
-      process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
-    }/reset-password?token=${token}`;
-
     /* ----------------------------------
        Send email
     ---------------------------------- */
     try {
-      const resend = getResend();
-      const mail = await resend.emails.send({
-        from: "no-reply@souqza.com",
-        to: [email],
-        subject: "Reset Your Password",
-        html: `
-<!DOCTYPE html>
-<html>
-<body style="margin:0;padding:0;background:#f4f4f4;font-family:Arial">
-  <table width="100%" cellpadding="0" cellspacing="0">
-    <tr>
-      <td align="center" style="padding:40px">
-        <table width="600" style="background:#fff;border-radius:8px;padding:40px">
-          <tr>
-            <td align="center">
-              <h2>Reset Your Password</h2>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p>Hi ${user.firstName},</p>
-              <p>Click the button below to reset your password:</p>
-              <div style="text-align:center;margin:30px 0">
-                <a href="${resetUrl}"
-                  style="padding:14px 32px;background:#007bff;color:#fff;text-decoration:none;border-radius:5px;font-weight:bold">
-                  Reset Password
-                </a>
-              </div>
-              <p>This link will expire in 1 hour.</p>
-              <p>If you didn't request this, you can safely ignore this email.</p>
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-  </table>
-</body>
-</html>
-        `,
-        text: `Reset your password: ${resetUrl}`,
+      await sendEmail({
+        to: email,
+        type: "resetPassword",
+        props: {
+          name: user.firstName,
+          resetToken: token,
+        },
       });
-      console.log("Password reset email sent:", mail);
     } catch (emailError) {
       console.error("Email sending failed:", emailError);
     }
 
     return NextResponse.json(
       { message: "If the account exists, a reset link was sent." },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error(error);
     return NextResponse.json(
       { error: "Something went wrong" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

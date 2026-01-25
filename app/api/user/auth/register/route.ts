@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 import bcrypt from "bcryptjs";
+import { sendEmail } from "@/lib/sendEmail";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,7 +16,7 @@ export async function POST(req: NextRequest) {
     if (findUser) {
       return NextResponse.json(
         { error: "Email already Registered" },
-        { status: 400 }
+        { status: 400 },
       );
     }
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -30,6 +31,13 @@ export async function POST(req: NextRequest) {
         password: hashedPassword,
       },
     });
+   await sendEmail({
+      to: user.email,
+      type: "signupSuccess",
+      props: {
+        name: user.firstName,
+      },
+    })
 
     return NextResponse.json(user, { status: 201 });
   } catch (error: any) {

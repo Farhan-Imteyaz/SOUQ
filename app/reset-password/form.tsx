@@ -8,6 +8,7 @@ import { Icon } from "@/app/register/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
 import { Lock } from "lucide-react";
+import { useRouter } from "next/navigation";
 const formSchema = z
   .object({
     password: z.string().min(8, "Password must be at least 8 characters"),
@@ -32,6 +33,7 @@ const Form = ({ token }: { token: string }) => {
       confirmPassword: "",
     },
   });
+  const router = useRouter()
   const onSubmit = async (data: FormType) => {
     try {
       const res = await axios.post("/api/user/auth/reset-password", {
@@ -40,6 +42,7 @@ const Form = ({ token }: { token: string }) => {
       });
       if (res.status === 200) {
         toast.success("Password reset successfully. You can now log in.");
+        router.push("/login");
       }
     } catch (error: any) {
       const message = error.response?.data?.error || "Something went wrong";
