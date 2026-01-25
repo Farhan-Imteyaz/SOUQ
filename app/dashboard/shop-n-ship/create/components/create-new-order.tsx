@@ -15,11 +15,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   completeOrderSchema,
   CompleteOrderFormData,
-  AddressFormData,
 } from "@/types/order-types";
 import { prepareOrderFormData } from "../context/order-context";
 import { FieldErrors, FieldError } from "react-hook-form";
-
+import { useRouter } from "next/navigation";
 const STEPS = ["Add item", "Add address"] as const;
 const DEBOUNCE_DELAY = 500;
 const CONTEXT_UPDATE_DELAY = 100;
@@ -32,6 +31,8 @@ const CreateNewOrder = () => {
   const [selectedAddressId, setSelectedAddressId] = useState<string | null>(
     null,
   );
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const isInitialMount = useRef(true);
   const isUpdatingFromContext = useRef(false);
   const updateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -286,6 +287,7 @@ const CreateNewOrder = () => {
   };
 
   const onSubmit = async (data: CompleteOrderFormData) => {
+    setIsSubmitting(true);
     clearUpdateTimeout();
     await new Promise((resolve) => setTimeout(resolve, CONTEXT_UPDATE_DELAY));
 
@@ -315,9 +317,7 @@ const CreateNewOrder = () => {
       // If using a saved address, we're done
       if (selectedAddressId) {
         toast.success("Order created successfully!", { id: toastId });
-        // Reset form or redirect
-        // formMethods.reset();
-        // router.push("/dashboard/shop-n-ship");
+
         return;
       }
 
@@ -340,15 +340,15 @@ const CreateNewOrder = () => {
       }
 
       toast.success("Order and address created successfully!", { id: toastId });
-
-      // Reset form or redirect
-      // formMethods.reset();
-      // router.push("/dashboard/shop-n-ship");
+      setIsSubmitting(false);
+      router.push("/dashboard/shop-n-ship");
     } catch (error) {
-      console.error(error);
+      setIsSubmitting(false);
       const errorMessage =
         error instanceof Error ? error.message : "Failed to create order";
       toast.error(errorMessage, { id: toastId });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -497,6 +497,7 @@ const CreateNewOrder = () => {
           </div>
         )}
         <OrderSummary
+          isSubmitting={isSubmitting}
           handleContinue={handleContinue}
           handleBack={handleBack}
           currentStep={currentStep}

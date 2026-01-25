@@ -9,12 +9,15 @@ const OrderSummary = ({
   currentStep,
   handleContinue,
   handleBack,
+  isSubmitting,
 }: {
   currentStep: number;
   handleContinue: () => void;
   handleBack: () => void;
+  isSubmitting?: boolean;
 }) => {
-  const { items } = useOrderContext();
+  const { items, isCompressing } = useOrderContext();
+
   return (
     <div className="bg-white sticky top-4 left-0 h-fit p-4 rounded-xl border border-slate-200">
       <h3 className="font-medium text-xl">Order Summary</h3>
@@ -52,6 +55,7 @@ const OrderSummary = ({
       </div>
       {currentStep === 0 ? (
         <Button
+          disabled={isCompressing}
           type="button"
           className="w-full"
           onClick={(e) => {
@@ -63,13 +67,19 @@ const OrderSummary = ({
           Continue
         </Button>
       ) : (
-        <Button disabled={currentStep === 0} type="submit" className="w-full">
+        <Button
+          disabled={currentStep === 0 || isCompressing || isSubmitting}
+          isLoading={isSubmitting}
+          type="submit"
+          className="w-full"
+        >
           Submit
         </Button>
       )}
       {currentStep === 1 ? (
         <Button
           onClick={handleBack}
+          disabled={isCompressing || isSubmitting}
           type={"button"}
           className="w-full bg-black text-white hover:bg-black/90 mt-2"
         >
@@ -79,6 +89,7 @@ const OrderSummary = ({
 
       <Link href={"/dashboard/shop-n-ship"}>
         <Button
+          disabled={isSubmitting}
           type="button"
           variant={"outline"}
           className="w-full mt-2 shadow-none"

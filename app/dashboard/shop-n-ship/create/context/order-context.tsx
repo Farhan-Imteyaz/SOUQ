@@ -17,6 +17,7 @@ interface OrderContextType {
   ) => Promise<void>;
   removeImageFromItem: (id: string, fileIndex: number) => void;
   getTotalPrice: () => number;
+  isCompressing: boolean;
 }
 
 const OrderContext = createContext<OrderContextType | null>(null);
@@ -39,7 +40,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
   };
 
   const [items, setItems] = useState<OrderItem[]>([orderValues]);
-
+  const [isCompressing, setIsCompressing] = useState(false);
   const addItem = (e: FormEvent) => {
     e.preventDefault();
 
@@ -102,12 +103,10 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
     itemId: string,
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
-    const toastId = toast.loading("Compressing images...");
-
+    setIsCompressing(true);
     try {
       const selectedFiles = event.target.files;
       if (!selectedFiles) {
-        toast.dismiss(toastId);
         return;
       }
 
@@ -118,20 +117,20 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
         (file) => file.size > 8 * 1024 * 1024,
       );
       if (oversizedFiles.length > 0) {
-        toast.error("Each image must be less than 8MB", { id: toastId });
+        toast.error("Each image must be less than 8MB");
         return;
       }
 
       // ✅ Check image count BEFORE compressing
       const currentItem = items.find((item) => item.id === itemId);
       if (!currentItem) {
-        toast.error("Item not found", { id: toastId });
+        toast.error("Item not found");
         return;
       }
 
       if (currentItem.images.length + newFiles.length > 6) {
-        toast.error("Maximum 6 images allowed per item", { id: toastId });
-        return; // ✅ Exit early
+        toast.error("Maximum 6 images allowed per item");
+        return;
       }
 
       // Compress images
@@ -161,14 +160,12 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
         ),
       );
 
-      toast.success(`${compressedFiles.length} image(s) added successfully`, {
-        id: toastId,
-      });
+      setIsCompressing(false);
 
       event.target.value = "";
     } catch (error) {
-      console.error(error);
-      toast.error("Failed to compress images", { id: toastId });
+      toast.error("Failed to compress images");
+      setIsCompressing(false);
     }
   };
 
@@ -195,8 +192,9 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
       handleFileUpload,
       removeImageFromItem,
       getTotalPrice,
+      isCompressing,
     }),
-    [items],
+    [items,isCompressing],
   );
 
   return (

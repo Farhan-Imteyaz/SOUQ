@@ -15,7 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ChevronDown } from "lucide-react";
 import { Calendar } from "@/components/ui/calendar";
 import { toast } from "sonner";
-
+import { compressImages } from "@/lib/image-compressor";
 const editFormSchema = z.object({
   purchaseDate: z
     .date()
@@ -56,7 +56,8 @@ const editFormSchema = z.object({
 });
 
 type FormData = z.infer<typeof editFormSchema>;
-
+const MAX_IMAGES = 6;
+const MAX_SIZE_MB = 8;
 type ImageType = {
   id?: string;
   imageUrl: string;
@@ -120,15 +121,76 @@ const EditForm = ({ item, onUpdate }: EditFormProps) => {
     });
   };
 
-  const handleAddImages = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    const newUrls = files.map((file) => URL.createObjectURL(file));
+  const handleAddImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const toastId = toast.loading("Compressing images...");
 
-    setNewImages((prev) => [...prev, ...files]);
-    setPreviewUrls((prev) => [...prev, ...newUrls]);
+    try {
+      const selectedFiles = e.target.files;
+      if (!selectedFiles) {
+        toast.dismiss(toastId);
+        return;
+      }
 
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
+      const files = Array.from(selectedFiles);
+
+      // ❌ Size validation
+      const oversizedFiles = files.filter(
+        (file) => file.size > MAX_SIZE_MB * 1024 * 1024,
+      );
+
+      if (oversizedFiles.length) {
+        toast.error(`Each image must be under ${MAX_SIZE_MB}MB`, {
+          id: toastId,
+        });
+        return;
+      }
+
+      // ❌ Count validation
+      if (newImages.length + files.length > MAX_IMAGES) {
+        toast.error(`Maximum ${MAX_IMAGES} images allowed`, {
+          id: toastId,
+        });
+        return;
+      }
+
+      // ✅ Compress
+      const result = await compressImages(files, {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        quality: 0.8,
+      });
+
+      if (!("files" in result)) {
+        toast.error("Image compression failed", { id: toastId });
+        return;
+      }
+
+      const compressedFiles = result.files;
+
+      const previewUrls = compressedFiles.map((file) =>
+        URL.createObjectURL(file),
+      );
+
+      setNewImages((prev) => [...prev, ...compressedFiles]);
+      setPreviewUrls((prev) => [...prev, ...previewUrls]);
+
+      // ⚠️ Partial failure info
+      if (result.failed.length) {
+        toast.warning(
+          `${result.failed.length} image(s) could not be compressed`,
+          { id: toastId },
+        );
+        return;
+      }
+
+      toast.success(`${compressedFiles.length} image(s) added successfully`, {
+        id: toastId,
+      });
+
+      e.target.value = "";
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to process images", { id: toastId });
     }
   };
 
