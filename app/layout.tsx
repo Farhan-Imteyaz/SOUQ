@@ -27,7 +27,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       >
         <AuthProvider>
           <AuthGate>
-            <Toaster position="top-right" />
+            <Toaster position="bottom-right" />
             {children}
           </AuthGate>
         </AuthProvider>
