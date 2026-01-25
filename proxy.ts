@@ -11,6 +11,8 @@ const PUBLIC_API_PREFIXES = [
   "/api/system-health",
   "/api/user/auth/login",
   "/api/user/auth/register",
+  "/api/user/auth/forget-password",
+  "/api/user/auth/reset-password",
 ];
 
 export function proxy(req: NextRequest) {
@@ -22,7 +24,7 @@ export function proxy(req: NextRequest) {
   ───────────────────────────────────────────── */
   const isPublicRoute = PUBLIC_API_PREFIXES.some((path) => {
     const matches = currentPath.startsWith(path);
- 
+
     return matches;
   });
 
@@ -85,7 +87,7 @@ export function proxy(req: NextRequest) {
     } catch (error) {
       return NextResponse.json(
         { message: "Invalid or expired token" },
-        { status: 401 }
+        { status: 401 },
       );
     }
   }
