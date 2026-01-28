@@ -42,6 +42,16 @@ const items = [
     icon: ShoppingCart,
   },
   {
+    title: "Assisted Shop N Ship",
+    url: "/dashboard/assisted-shop-n-ship",
+    icon: ShoppingCart,
+  },
+  {
+    title: "International Shipment",
+    url: "/dashboard/international-shipment",
+    icon: ShoppingCart,
+  },
+  {
     title: "Personal Shopper",
     url: "#",
     icon: Search,
@@ -51,7 +61,6 @@ const items = [
     url: "#",
     icon: Tag,
   },
-
 ];
 const footerItems = [
   {
@@ -73,7 +82,10 @@ const footerItems = [
 export function AppSidebar() {
   const path = usePathname();
   return (
-    <Sidebar variant="inset" className="w-[var(--sidebar-width)] bg-gray-900 sidebar-width">
+    <Sidebar
+      variant="inset"
+      className="w-[var(--sidebar-width)] bg-gray-900 sidebar-width"
+    >
       <SidebarContent className="bg-gray-900">
         <SidebarHeader className=" ">
           <Logo className="text-white flex justify-center" />
