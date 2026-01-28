@@ -99,13 +99,6 @@ jobs:
               exit 1
             fi
 
-        
-            npm install --omit=dev
-
-
-            # Generate Prisma client
-            npx prisma generate
-
             # Run migrations
             npx prisma migrate deploy
             rm -rf deploy.tar.gz
