@@ -2,13 +2,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import ImgUpload from "./img-upload";
+
 import AddressForm from "./address-form";
 import {
   CircleCheck,
   Plus,
   Trash2,
-  Shield,
   Gift,
   Box,
   User2Icon,
@@ -98,16 +97,12 @@ const CreateNewOrder = () => {
       itemType: item.itemType ?? "",
       itemName: item.itemName ?? "",
       storeName: item.storeName ?? "",
-      storeOrderId: item.storeOrderId ?? "",
       itemColor: item.itemColor ?? "",
       itemSize: item.itemSize ?? "",
       itemQuantity: item.itemQuantity ?? 1,
       itemPrice: item.itemPrice ?? 0,
       remarks: item.remarks ?? "",
-      purchaseDate:
-        item.purchaseDate instanceof Date ? item.purchaseDate : new Date(),
       itemWeight: item.itemWeight ?? "",
-      images: item.images ?? [],
     }));
 
   const formMethods = useForm<CompleteOrderFormData>({
@@ -198,13 +193,11 @@ const CreateNewOrder = () => {
             itemType: formItem.itemType || "",
             itemName: formItem.itemName || "",
             storeName: formItem.storeName || "",
-            storeOrderId: formItem.storeOrderId || "",
             itemColor: formItem.itemColor || "",
             itemSize: formItem.itemSize || "",
             itemQuantity: formItem.itemQuantity ?? 1,
             itemPrice: formItem.itemPrice ?? 0,
             remarks: formItem.remarks || "",
-            purchaseDate: formItem.purchaseDate || new Date(),
             itemWeight: formItem.itemWeight || "",
           });
         });
@@ -248,17 +241,6 @@ const CreateNewOrder = () => {
   // ============================================
   // Sync images separately
   // ============================================
-
-  useEffect(() => {
-    items.forEach((item, index) => {
-      const currentImages = formMethods.getValues(`items.${index}.images`);
-      if (JSON.stringify(currentImages) !== JSON.stringify(item.images)) {
-        formMethods.setValue(`items.${index}.images`, item.images, {
-          shouldValidate: item.images.length > 0,
-        });
-      }
-    });
-  }, [items, formMethods]);
 
   useEffect(() => {
     const fetchAddress = async () => {
@@ -460,16 +442,6 @@ const CreateNewOrder = () => {
                 </div>
                 <FormContent index={idx} formMethods={formMethods} />
                 <div className="grid mt-4 grid-cols-2 gap-5">
-                  <div>
-                    <Label className="text-md">Attach Product Images</Label>
-                    <ImgUpload
-                      itemId={items[idx].id}
-                      errors={
-                        formMethods.formState.errors?.items?.[idx]?.images
-                          ?.message
-                      }
-                    />
-                  </div>
                   <div>
                     <Label className="text-md">Remarks</Label>
                     <textarea

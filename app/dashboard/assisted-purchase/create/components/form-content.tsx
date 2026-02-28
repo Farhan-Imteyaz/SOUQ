@@ -79,59 +79,6 @@ const FormContent = ({ index, formMethods }: FormContentProps) => {
           <div className="grid grid-cols-1 px-2 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-3 mt-2 ">
             <div>
               <Label className="text-slate-600">
-                Purchase Date <span className="text-red-500">*</span>
-              </Label>
-
-              <Controller
-                control={formMethods.control}
-                name={`items.${index}.purchaseDate`}
-                defaultValue={new Date()}
-                render={() => (
-                  <div className="w-full">
-                    <Popover open={open} onOpenChange={setOpen}>
-                      <PopoverTrigger asChild>
-                        <Button
-                          variant="outline"
-                          id="date"
-                          className={cn(
-                            `w-full justify-between font-normal`,
-                            errors.items?.[index]?.purchaseDate &&
-                              "border-red-500",
-                          )}
-                        >
-                          {purchaseDate
-                            ? format(new Date(purchaseDate), "dd MMM yyyy")
-                            : format(new Date(), "dd MMM yyyy")}
-                          <ChevronDownIcon />
-                        </Button>
-                      </PopoverTrigger>
-                      <PopoverContent
-                        className="relative overflow-hidden p-0"
-                        align="start"
-                      >
-                        <Calendar
-                          mode="single"
-                          disabled={(date) => date > new Date()}
-                          selected={purchaseDate ?? new Date()}
-                          captionLayout="dropdown"
-                          className="w-auto rounded-lg border-none"
-                          onSelect={(date) => {
-                            if (date) {
-                              setValue(`items.${index}.purchaseDate`, date, {
-                                shouldValidate: true,
-                              });
-                            }
-                            setOpen(false);
-                          }}
-                        />
-                      </PopoverContent>
-                    </Popover>
-                  </div>
-                )}
-              />
-            </div>
-            <div>
-              <Label className="text-slate-600">
                 Item Type <span className="text-red-500">*</span>
               </Label>
               <Select

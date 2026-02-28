@@ -56,8 +56,6 @@ type Props = {
 const OrderDetails = ({
   items,
   page,
-  total,
-  pageSize,
   totalPages,
   onPageChange,
   loading,
@@ -126,10 +124,10 @@ const OrderDetails = ({
           <TableHeader>
             <TableRow>
               <TableHead>Date</TableHead>
-              <TableHead>Souqza Order-ID</TableHead>
+
               <TableHead>Store Name</TableHead>
               <TableHead>Item Name</TableHead>
-              <TableHead>Purchase Date</TableHead>
+
               <TableHead>Quantity</TableHead>
               <TableHead>Color</TableHead>
               <TableHead>Order Status</TableHead>
@@ -157,14 +155,10 @@ const OrderDetails = ({
                         year: "2-digit",
                       })}
                   </TableCell>
-                  <TableCell className="font-medium">
-                    {order.storeOrderId}
-                  </TableCell>
+
                   <TableCell>{order.storeName}</TableCell>
                   <TableCell>{order.itemName}</TableCell>
-                  <TableCell>
-                    {order.purchaseDate && formatDate(order.purchaseDate)}
-                  </TableCell>
+
                   <TableCell>{order.itemQuantity}</TableCell>
                   <TableCell>{order.itemColor}</TableCell>
                   <TableCell>

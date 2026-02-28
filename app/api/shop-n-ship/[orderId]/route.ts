@@ -117,8 +117,8 @@ export async function POST(
     const itemColor = formData.get("itemColor") as string;
     const storeName = formData.get("storeName") as string;
     const itemPrice = formData.get("itemPrice") as string;
-    const itemSize = formData.get("itemSize") as string;
-    const itemWeight = formData.get("itemWeight") as string;
+    const itemSize = (formData.get("itemSize") as string) ?? "";
+    const itemWeight = (formData.get("itemWeight") as string) ?? "";
     const storeOrderId = formData.get("storeOrderId") as string;
     const remarks = (formData.get("remarks") as string) || "";
     const newImageFiles = formData.getAll("images") as File[];
@@ -183,8 +183,8 @@ export async function POST(
           itemColor,
           storeName,
           itemPrice: parseFloat(itemPrice),
-          itemSize: itemSize,
-          itemWeight: itemWeight,
+          itemSize,
+          itemWeight,
           storeOrderId,
           remarks,
           images: {
@@ -271,6 +271,8 @@ export async function GET(
           createdAt: true,
           updatedAt: true,
           addressId: true,
+          order_type: true,
+          courier_Type: true,
           items: {
             select: {
               id: true,

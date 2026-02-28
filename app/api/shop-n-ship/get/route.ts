@@ -23,6 +23,8 @@ export async function GET(request: NextRequest) {
           status: true,
           totalAmount: true,
           totalItems: true,
+          order_type: true,
+          courier_Type: true,
           createdAt: true,
           items: {
             select: {
@@ -90,13 +92,13 @@ export async function GET(request: NextRequest) {
         totalPages: Math.ceil(total / limit),
         statusCounts: counts,
       },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error) {
     console.error("Error fetching orders:", error);
     return NextResponse.json(
       { success: false, message: "Failed to fetch orders" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

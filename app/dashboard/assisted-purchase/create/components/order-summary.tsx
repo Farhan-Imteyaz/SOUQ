@@ -16,7 +16,7 @@ const OrderSummary = ({
   handleBack: () => void;
   isSubmitting?: boolean;
 }) => {
-  const { items, isCompressing } = useOrderContext();
+  const { items } = useOrderContext();
 
   return (
     <div className="bg-white sticky top-4 left-0 h-fit p-4 rounded-xl border border-slate-200">
@@ -55,7 +55,6 @@ const OrderSummary = ({
       </div>
       {currentStep < 2 ? (
         <Button
-          disabled={isCompressing}
           type="button"
           className="w-full"
           onClick={(e) => {
@@ -68,7 +67,7 @@ const OrderSummary = ({
         </Button>
       ) : (
         <Button
-          disabled={currentStep < 2 || isCompressing || isSubmitting}
+          disabled={currentStep < 2 || isSubmitting}
           isLoading={isSubmitting}
           type="submit"
           className="w-full"
@@ -79,7 +78,7 @@ const OrderSummary = ({
       {currentStep < 2 ? (
         <Button
           onClick={handleBack}
-          disabled={isCompressing || isSubmitting}
+          disabled={isSubmitting}
           type={"button"}
           className="w-full bg-black text-white hover:bg-black/90 mt-2"
         >

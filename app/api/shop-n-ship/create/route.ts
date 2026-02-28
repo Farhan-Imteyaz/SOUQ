@@ -53,6 +53,14 @@ export async function POST(request: NextRequest) {
     // 1. Extract addressId if present
     // ============================================
     const addressId = formData.get("addressId");
+    const orderTypeField = formData.get("order_type");
+    const courierTypeField = formData.get("courier_Type");
+
+    const order_type =
+      typeof orderTypeField === "string" ? orderTypeField : "commercial";
+
+    const courier_Type =
+      typeof courierTypeField === "string" ? courierTypeField : "normal";
     const selectedAddressId =
       addressId && typeof addressId === "string" ? addressId : null;
 
@@ -212,7 +220,9 @@ export async function POST(request: NextRequest) {
         status: "pending",
         userId,
         trackingNumber: "",
-        addressId: selectedAddressId, // Link to existing address if selected
+        order_type,
+        courier_Type,
+        addressId: selectedAddressId,
         items: {
           create: processedItems.map((item) => ({
             itemType: item.itemType,
@@ -226,7 +236,6 @@ export async function POST(request: NextRequest) {
             remarks: item.remarks,
             purchaseDate: new Date(item.purchaseDate),
             itemWeight: item.itemWeight,
-
             images: {
               create: item.images.map((imagePath) => ({
                 imagePath,

@@ -70,6 +70,8 @@ model ShopNShipOrder {
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
   items          ShopNShipItem[]
+  order_type     String          @default("commercial")
+  courier_Type   String          @default("normal")
 
   @@index([orderId])
   @@index([userId])

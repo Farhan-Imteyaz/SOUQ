@@ -47,6 +47,8 @@ export type ShopNShipOrderMinAggregateOutputType = {
   addressId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  order_type: string | null
+  courier_Type: string | null
 }
 
 export type ShopNShipOrderMaxAggregateOutputType = {
@@ -60,6 +62,8 @@ export type ShopNShipOrderMaxAggregateOutputType = {
   addressId: string | null
   createdAt: Date | null
   updatedAt: Date | null
+  order_type: string | null
+  courier_Type: string | null
 }
 
 export type ShopNShipOrderCountAggregateOutputType = {
@@ -73,6 +77,8 @@ export type ShopNShipOrderCountAggregateOutputType = {
   addressId: number
   createdAt: number
   updatedAt: number
+  order_type: number
+  courier_Type: number
   _all: number
 }
 
@@ -98,6 +104,8 @@ export type ShopNShipOrderMinAggregateInputType = {
   addressId?: true
   createdAt?: true
   updatedAt?: true
+  order_type?: true
+  courier_Type?: true
 }
 
 export type ShopNShipOrderMaxAggregateInputType = {
@@ -111,6 +119,8 @@ export type ShopNShipOrderMaxAggregateInputType = {
   addressId?: true
   createdAt?: true
   updatedAt?: true
+  order_type?: true
+  courier_Type?: true
 }
 
 export type ShopNShipOrderCountAggregateInputType = {
@@ -124,6 +134,8 @@ export type ShopNShipOrderCountAggregateInputType = {
   addressId?: true
   createdAt?: true
   updatedAt?: true
+  order_type?: true
+  courier_Type?: true
   _all?: true
 }
 
@@ -224,6 +236,8 @@ export type ShopNShipOrderGroupByOutputType = {
   addressId: string | null
   createdAt: Date
   updatedAt: Date
+  order_type: string
+  courier_Type: string
   _count: ShopNShipOrderCountAggregateOutputType | null
   _avg: ShopNShipOrderAvgAggregateOutputType | null
   _sum: ShopNShipOrderSumAggregateOutputType | null
@@ -260,6 +274,8 @@ export type ShopNShipOrderWhereInput = {
   addressId?: Prisma.UuidNullableFilter<"ShopNShipOrder"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
+  order_type?: Prisma.StringFilter<"ShopNShipOrder"> | string
+  courier_Type?: Prisma.StringFilter<"ShopNShipOrder"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   address?: Prisma.XOR<Prisma.AddressNullableScalarRelationFilter, Prisma.AddressWhereInput> | null
   items?: Prisma.ShopNShipItemListRelationFilter
@@ -276,6 +292,8 @@ export type ShopNShipOrderOrderByWithRelationInput = {
   addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  order_type?: Prisma.SortOrder
+  courier_Type?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   address?: Prisma.AddressOrderByWithRelationInput
   items?: Prisma.ShopNShipItemOrderByRelationAggregateInput
@@ -295,6 +313,8 @@ export type ShopNShipOrderWhereUniqueInput = Prisma.AtLeast<{
   addressId?: Prisma.UuidNullableFilter<"ShopNShipOrder"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
+  order_type?: Prisma.StringFilter<"ShopNShipOrder"> | string
+  courier_Type?: Prisma.StringFilter<"ShopNShipOrder"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   address?: Prisma.XOR<Prisma.AddressNullableScalarRelationFilter, Prisma.AddressWhereInput> | null
   items?: Prisma.ShopNShipItemListRelationFilter
@@ -311,6 +331,8 @@ export type ShopNShipOrderOrderByWithAggregationInput = {
   addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  order_type?: Prisma.SortOrder
+  courier_Type?: Prisma.SortOrder
   _count?: Prisma.ShopNShipOrderCountOrderByAggregateInput
   _avg?: Prisma.ShopNShipOrderAvgOrderByAggregateInput
   _max?: Prisma.ShopNShipOrderMaxOrderByAggregateInput
@@ -332,6 +354,8 @@ export type ShopNShipOrderScalarWhereWithAggregatesInput = {
   addressId?: Prisma.UuidNullableWithAggregatesFilter<"ShopNShipOrder"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ShopNShipOrder"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ShopNShipOrder"> | Date | string
+  order_type?: Prisma.StringWithAggregatesFilter<"ShopNShipOrder"> | string
+  courier_Type?: Prisma.StringWithAggregatesFilter<"ShopNShipOrder"> | string
 }
 
 export type ShopNShipOrderCreateInput = {
@@ -343,6 +367,8 @@ export type ShopNShipOrderCreateInput = {
   status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
   user: Prisma.UserCreateNestedOneWithoutShopNShipOrdersInput
   address?: Prisma.AddressCreateNestedOneWithoutShopNShipOrdersInput
   items?: Prisma.ShopNShipItemCreateNestedManyWithoutOrderInput
@@ -359,6 +385,8 @@ export type ShopNShipOrderUncheckedCreateInput = {
   addressId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
   items?: Prisma.ShopNShipItemUncheckedCreateNestedManyWithoutOrderInput
 }
 
@@ -371,6 +399,8 @@ export type ShopNShipOrderUpdateInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutShopNShipOrdersNestedInput
   address?: Prisma.AddressUpdateOneWithoutShopNShipOrdersNestedInput
   items?: Prisma.ShopNShipItemUpdateManyWithoutOrderNestedInput
@@ -387,6 +417,8 @@ export type ShopNShipOrderUncheckedUpdateInput = {
   addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   items?: Prisma.ShopNShipItemUncheckedUpdateManyWithoutOrderNestedInput
 }
 
@@ -401,6 +433,8 @@ export type ShopNShipOrderCreateManyInput = {
   addressId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
 }
 
 export type ShopNShipOrderUpdateManyMutationInput = {
@@ -412,6 +446,8 @@ export type ShopNShipOrderUpdateManyMutationInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ShopNShipOrderUncheckedUpdateManyInput = {
@@ -425,6 +461,8 @@ export type ShopNShipOrderUncheckedUpdateManyInput = {
   addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ShopNShipOrderListRelationFilter = {
@@ -448,6 +486,8 @@ export type ShopNShipOrderCountOrderByAggregateInput = {
   addressId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  order_type?: Prisma.SortOrder
+  courier_Type?: Prisma.SortOrder
 }
 
 export type ShopNShipOrderAvgOrderByAggregateInput = {
@@ -466,6 +506,8 @@ export type ShopNShipOrderMaxOrderByAggregateInput = {
   addressId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  order_type?: Prisma.SortOrder
+  courier_Type?: Prisma.SortOrder
 }
 
 export type ShopNShipOrderMinOrderByAggregateInput = {
@@ -479,6 +521,8 @@ export type ShopNShipOrderMinOrderByAggregateInput = {
   addressId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  order_type?: Prisma.SortOrder
+  courier_Type?: Prisma.SortOrder
 }
 
 export type ShopNShipOrderSumOrderByAggregateInput = {
@@ -610,6 +654,8 @@ export type ShopNShipOrderCreateWithoutUserInput = {
   status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
   address?: Prisma.AddressCreateNestedOneWithoutShopNShipOrdersInput
   items?: Prisma.ShopNShipItemCreateNestedManyWithoutOrderInput
 }
@@ -624,6 +670,8 @@ export type ShopNShipOrderUncheckedCreateWithoutUserInput = {
   addressId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
   items?: Prisma.ShopNShipItemUncheckedCreateNestedManyWithoutOrderInput
 }
 
@@ -667,6 +715,8 @@ export type ShopNShipOrderScalarWhereInput = {
   addressId?: Prisma.UuidNullableFilter<"ShopNShipOrder"> | string | null
   createdAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
+  order_type?: Prisma.StringFilter<"ShopNShipOrder"> | string
+  courier_Type?: Prisma.StringFilter<"ShopNShipOrder"> | string
 }
 
 export type ShopNShipOrderCreateWithoutItemsInput = {
@@ -678,6 +728,8 @@ export type ShopNShipOrderCreateWithoutItemsInput = {
   status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
   user: Prisma.UserCreateNestedOneWithoutShopNShipOrdersInput
   address?: Prisma.AddressCreateNestedOneWithoutShopNShipOrdersInput
 }
@@ -693,6 +745,8 @@ export type ShopNShipOrderUncheckedCreateWithoutItemsInput = {
   addressId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
 }
 
 export type ShopNShipOrderCreateOrConnectWithoutItemsInput = {
@@ -720,6 +774,8 @@ export type ShopNShipOrderUpdateWithoutItemsInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutShopNShipOrdersNestedInput
   address?: Prisma.AddressUpdateOneWithoutShopNShipOrdersNestedInput
 }
@@ -735,6 +791,8 @@ export type ShopNShipOrderUncheckedUpdateWithoutItemsInput = {
   addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ShopNShipOrderCreateWithoutAddressInput = {
@@ -746,6 +804,8 @@ export type ShopNShipOrderCreateWithoutAddressInput = {
   status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
   user: Prisma.UserCreateNestedOneWithoutShopNShipOrdersInput
   items?: Prisma.ShopNShipItemCreateNestedManyWithoutOrderInput
 }
@@ -760,6 +820,8 @@ export type ShopNShipOrderUncheckedCreateWithoutAddressInput = {
   status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
   items?: Prisma.ShopNShipItemUncheckedCreateNestedManyWithoutOrderInput
 }
 
@@ -799,6 +861,8 @@ export type ShopNShipOrderCreateManyUserInput = {
   addressId?: string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
 }
 
 export type ShopNShipOrderUpdateWithoutUserInput = {
@@ -810,6 +874,8 @@ export type ShopNShipOrderUpdateWithoutUserInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.AddressUpdateOneWithoutShopNShipOrdersNestedInput
   items?: Prisma.ShopNShipItemUpdateManyWithoutOrderNestedInput
 }
@@ -824,6 +890,8 @@ export type ShopNShipOrderUncheckedUpdateWithoutUserInput = {
   addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   items?: Prisma.ShopNShipItemUncheckedUpdateManyWithoutOrderNestedInput
 }
 
@@ -837,6 +905,8 @@ export type ShopNShipOrderUncheckedUpdateManyWithoutUserInput = {
   addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ShopNShipOrderCreateManyAddressInput = {
@@ -849,6 +919,8 @@ export type ShopNShipOrderCreateManyAddressInput = {
   status?: string
   createdAt?: Date | string
   updatedAt?: Date | string
+  order_type?: string
+  courier_Type?: string
 }
 
 export type ShopNShipOrderUpdateWithoutAddressInput = {
@@ -860,6 +932,8 @@ export type ShopNShipOrderUpdateWithoutAddressInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutShopNShipOrdersNestedInput
   items?: Prisma.ShopNShipItemUpdateManyWithoutOrderNestedInput
 }
@@ -874,6 +948,8 @@ export type ShopNShipOrderUncheckedUpdateWithoutAddressInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   items?: Prisma.ShopNShipItemUncheckedUpdateManyWithoutOrderNestedInput
 }
 
@@ -887,6 +963,8 @@ export type ShopNShipOrderUncheckedUpdateManyWithoutAddressInput = {
   status?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  order_type?: Prisma.StringFieldUpdateOperationsInput | string
+  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -931,6 +1009,8 @@ export type ShopNShipOrderSelect<ExtArgs extends runtime.Types.Extensions.Intern
   addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  order_type?: boolean
+  courier_Type?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.ShopNShipOrder$addressArgs<ExtArgs>
   items?: boolean | Prisma.ShopNShipOrder$itemsArgs<ExtArgs>
@@ -948,6 +1028,8 @@ export type ShopNShipOrderSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  order_type?: boolean
+  courier_Type?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.ShopNShipOrder$addressArgs<ExtArgs>
 }, ExtArgs["result"]["shopNShipOrder"]>
@@ -963,6 +1045,8 @@ export type ShopNShipOrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  order_type?: boolean
+  courier_Type?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.ShopNShipOrder$addressArgs<ExtArgs>
 }, ExtArgs["result"]["shopNShipOrder"]>
@@ -978,9 +1062,11 @@ export type ShopNShipOrderSelectScalar = {
   addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  order_type?: boolean
+  courier_Type?: boolean
 }
 
-export type ShopNShipOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "userId" | "trackingNumber" | "totalAmount" | "totalItems" | "status" | "addressId" | "createdAt" | "updatedAt", ExtArgs["result"]["shopNShipOrder"]>
+export type ShopNShipOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "userId" | "trackingNumber" | "totalAmount" | "totalItems" | "status" | "addressId" | "createdAt" | "updatedAt" | "order_type" | "courier_Type", ExtArgs["result"]["shopNShipOrder"]>
 export type ShopNShipOrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.ShopNShipOrder$addressArgs<ExtArgs>
@@ -1014,6 +1100,8 @@ export type $ShopNShipOrderPayload<ExtArgs extends runtime.Types.Extensions.Inte
     addressId: string | null
     createdAt: Date
     updatedAt: Date
+    order_type: string
+    courier_Type: string
   }, ExtArgs["result"]["shopNShipOrder"]>
   composites: {}
 }
@@ -1450,6 +1538,8 @@ export interface ShopNShipOrderFieldRefs {
   readonly addressId: Prisma.FieldRef<"ShopNShipOrder", 'String'>
   readonly createdAt: Prisma.FieldRef<"ShopNShipOrder", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ShopNShipOrder", 'DateTime'>
+  readonly order_type: Prisma.FieldRef<"ShopNShipOrder", 'String'>
+  readonly courier_Type: Prisma.FieldRef<"ShopNShipOrder", 'String'>
 }
     
 

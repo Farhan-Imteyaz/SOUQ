@@ -39,7 +39,9 @@ export const orderItemSchema = z.object({
       itemQuantity: z.number().int().min(1, "Quantity must be at least 1"),
       itemPrice: z.number().positive("Price must be greater than 0"),
       remarks: optionalString(500),
-      purchaseDate: z.date().refine((date) => date !== null, "Purchase date is required"),
+      purchaseDate: z
+        .date()
+        .refine((date) => date !== null, "Purchase date is required"),
       itemWeight: optionalString(5),
       images: z
         .array(z.instanceof(File))

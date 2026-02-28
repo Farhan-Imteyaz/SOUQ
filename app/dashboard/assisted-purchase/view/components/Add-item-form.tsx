@@ -19,12 +19,6 @@ import axios from "axios";
 import { useParams } from "next/navigation";
 import { compressImages } from "@/lib/image-compressor";
 const addFormSchema = z.object({
-  purchaseDate: z
-    .date()
-    .optional()
-    .refine((date) => date instanceof Date, {
-      message: "Purchase date is required",
-    }),
   itemName: z
     .string()
     .min(1, "Item name is required")
@@ -51,10 +45,6 @@ const addFormSchema = z.object({
     }),
   itemSize: z.string().max(30, "Size is too long").optional(),
   itemWeight: z.string().max(5, "Weight not supported").optional(),
-  storeOrderId: z
-    .string()
-    .min(3, "Order ID is required")
-    .max(25, "Order ID is too long"),
 });
 
 type FormData = z.infer<typeof addFormSchema>;
@@ -75,7 +65,6 @@ const AddItemForm = ({ onCancel, onSuccess }: AddFormProps) => {
   } = useForm<FormData>({
     resolver: zodResolver(addFormSchema),
     defaultValues: {
-      purchaseDate: undefined,
       itemName: "",
       itemQuantity: "",
       itemColor: "",
@@ -83,7 +72,6 @@ const AddItemForm = ({ onCancel, onSuccess }: AddFormProps) => {
       itemPrice: "",
       itemSize: "",
       itemWeight: "",
-      storeOrderId: "",
     },
   });
 
@@ -93,52 +81,12 @@ const AddItemForm = ({ onCancel, onSuccess }: AddFormProps) => {
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const purchaseDate = useWatch({
-    control,
-    name: "purchaseDate",
-  });
 
   useEffect(() => {
     return () => {
       previewUrls.forEach((url) => URL.revokeObjectURL(url));
     };
   }, [previewUrls]);
-
-  const handleDeleteImage = (index: number) => {
-    setImages((prev) => prev.filter((_, idx) => idx !== index));
-    setPreviewUrls((prev) => {
-      const newPreviews = prev.filter((_, idx) => idx !== index);
-      URL.revokeObjectURL(prev[index]);
-      return newPreviews;
-    });
-  };
-
-  const handleAddImages = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = Array.from(e.target.files || []);
-    if (!files.length) return;
-
-    try {
-      const result = await compressImages(files);
-
-      const compressedFiles =
-        "files" in result ? result.files : (result as File[]);
-
-      const newUrls = compressedFiles.map((file) => URL.createObjectURL(file));
-
-      setImages((prev) => [...prev, ...compressedFiles]);
-      setPreviewUrls((prev) => [...prev, ...newUrls]);
-
-      if ("failed" in result && result.failed.length > 0) {
-        console.warn("Compression failed for:", result.failed);
-      }
-    } catch (error) {
-      console.error("Compression error:", error);
-    }
-
-    if (fileInputRef.current) {
-      fileInputRef.current.value = "";
-    }
-  };
 
   const formFields: Array<{
     key: keyof Omit<FormData, "purchaseDate">;
@@ -168,7 +116,6 @@ const AddItemForm = ({ onCancel, onSuccess }: AddFormProps) => {
       type: "number",
     },
     { key: "itemWeight", label: "Item Weight", placeholder: "Item Weight" },
-    { key: "storeOrderId", label: "Store Order ID", placeholder: "Order ID" },
   ];
 
   const onError = (errors: FieldErrors<FormData>) => {
@@ -189,18 +136,12 @@ const AddItemForm = ({ onCancel, onSuccess }: AddFormProps) => {
 
   const onSubmit = async (data: FormData) => {
     // Validate images before submission
-    if (images.length < 2) {
-      toast.error("Please add at least two images");
-      return;
-    }
 
     setIsSubmitting(true);
 
     try {
       const formData = new FormData();
 
-      // Append all text fields
-      formData.append("purchaseDate", data.purchaseDate!.toISOString());
       formData.append("itemName", data.itemName);
       formData.append("itemQuantity", data.itemQuantity);
       formData.append("itemColor", data.itemColor);
@@ -213,13 +154,6 @@ const AddItemForm = ({ onCancel, onSuccess }: AddFormProps) => {
       if (data.itemWeight) {
         formData.append("itemWeight", data.itemWeight);
       }
-
-      formData.append("storeOrderId", data.storeOrderId);
-
-      // Append all image files
-      images.forEach((file: File) => {
-        formData.append("images", file);
-      });
 
       // Make the API call
       const response = await axios.post(
@@ -259,45 +193,6 @@ const AddItemForm = ({ onCancel, onSuccess }: AddFormProps) => {
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        <div>
-          <Label className="text-slate-600">
-            Purchase Date <span className="text-red-500">*</span>
-          </Label>
-          <Controller
-            name="purchaseDate"
-            control={control}
-            render={({ field }) => (
-              <Popover open={open} onOpenChange={setOpen}>
-                <PopoverTrigger asChild>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="w-full shadow-none justify-between"
-                  >
-                    {purchaseDate
-                      ? new Date(purchaseDate).toLocaleDateString("en-In")
-                      : "Select date"}
-                    <ChevronDown className="ml-2 h-4 w-4 opacity-60" />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent align="start" className="p-0">
-                  <Calendar
-                    mode="single"
-                    selected={purchaseDate}
-                    onSelect={(date) => {
-                      setValue("purchaseDate", date);
-                      setOpen(false);
-                    }}
-                    disabled={(date) => date > new Date()}
-                    captionLayout="dropdown"
-                    className="rounded-md border w-full"
-                  />
-                </PopoverContent>
-              </Popover>
-            )}
-          />
-        </div>
-
         {formFields.map(({ key, label, placeholder, type = "text" }) => (
           <div key={key}>
             <Label htmlFor={key}>
@@ -308,7 +203,6 @@ const AddItemForm = ({ onCancel, onSuccess }: AddFormProps) => {
                 "itemColor",
                 "storeName",
                 "itemPrice",
-                "storeOrderId",
               ].includes(key) && <span className="text-red-500"> *</span>}
             </Label>
             <Input
@@ -326,68 +220,6 @@ const AddItemForm = ({ onCancel, onSuccess }: AddFormProps) => {
         ))}
       </div>
 
-      {/* Images Section */}
-      <div>
-        <div className="flex items-center justify-between mb-3">
-          <Label>
-            Product Images ({images.length})
-            <span className="text-red-500"> * (minimum 2)</span>
-          </Label>
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() => fileInputRef.current?.click()}
-          >
-            <Upload className="w-4 h-4 mr-2" />
-            Add Images
-          </Button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            multiple
-            accept="image/*"
-            className="hidden"
-            onChange={handleAddImages}
-          />
-        </div>
-
-        {images.length === 0 ? (
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center">
-            <p className="text-gray-500">
-              No images yet. Click "Add Images" to upload at least 2 images.
-            </p>
-          </div>
-        ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-7 gap-3">
-            {images.map((_, idx) => (
-              <div key={`new-${idx}`} className="relative group">
-                <div className="relative aspect-square rounded-md overflow-hidden border border-green-400">
-                  <Image
-                    src={previewUrls[idx]}
-                    fill
-                    alt={`New ${idx + 1}`}
-                    className="object-cover"
-                  />
-                  <div className="absolute top-1 left-1 bg-green-500 text-white text-xs px-1.5 py-0.5 rounded">
-                    New
-                  </div>
-                </div>
-                <button
-                  type="button"
-                  onClick={() => handleDeleteImage(idx)}
-                  className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity shadow-md hover:bg-red-600"
-                  aria-label="Delete image"
-                >
-                  <X className="w-3 h-3" />
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Form Actions */}
       <div className="flex justify-end gap-3 pt-4 border-t">
         {onCancel && (
           <Button type="button" variant="outline" onClick={onCancel}>
