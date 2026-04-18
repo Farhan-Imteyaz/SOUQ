@@ -43,7 +43,7 @@ const items = [
   },
   {
     title: "Assisted Shop N Ship",
-    url: "/dashboard/assisted-shop-n-ship",
+    url: "/dashboard/assisted-purchase",
     icon: ShoppingCart,
   },
   {
@@ -84,7 +84,7 @@ export function AppSidebar() {
   return (
     <Sidebar
       variant="inset"
-      className="w-[var(--sidebar-width)] bg-gray-900 sidebar-width"
+      className="w-(--sidebar-width) bg-gray-900 sidebar-width"
     >
       <SidebarContent className="bg-gray-900">
         <SidebarHeader className=" ">

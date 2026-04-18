@@ -40,11 +40,11 @@ export type AssistedPurchaseOrderMinAggregateOutputType = {
   id: string | null
   orderId: string | null
   userId: string | null
+  addressId: string | null
   trackingNumber: string | null
   totalAmount: number | null
   totalItems: number | null
-  status: string | null
-  addressId: string | null
+  status: $Enums.OrderStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -53,11 +53,11 @@ export type AssistedPurchaseOrderMaxAggregateOutputType = {
   id: string | null
   orderId: string | null
   userId: string | null
+  addressId: string | null
   trackingNumber: string | null
   totalAmount: number | null
   totalItems: number | null
-  status: string | null
-  addressId: string | null
+  status: $Enums.OrderStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -66,11 +66,11 @@ export type AssistedPurchaseOrderCountAggregateOutputType = {
   id: number
   orderId: number
   userId: number
+  addressId: number
   trackingNumber: number
   totalAmount: number
   totalItems: number
   status: number
-  addressId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -91,11 +91,11 @@ export type AssistedPurchaseOrderMinAggregateInputType = {
   id?: true
   orderId?: true
   userId?: true
+  addressId?: true
   trackingNumber?: true
   totalAmount?: true
   totalItems?: true
   status?: true
-  addressId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -104,11 +104,11 @@ export type AssistedPurchaseOrderMaxAggregateInputType = {
   id?: true
   orderId?: true
   userId?: true
+  addressId?: true
   trackingNumber?: true
   totalAmount?: true
   totalItems?: true
   status?: true
-  addressId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -117,11 +117,11 @@ export type AssistedPurchaseOrderCountAggregateInputType = {
   id?: true
   orderId?: true
   userId?: true
+  addressId?: true
   trackingNumber?: true
   totalAmount?: true
   totalItems?: true
   status?: true
-  addressId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -217,11 +217,11 @@ export type AssistedPurchaseOrderGroupByOutputType = {
   id: string
   orderId: string
   userId: string
+  addressId: string | null
   trackingNumber: string
   totalAmount: number
   totalItems: number
-  status: string
-  addressId: string | null
+  status: $Enums.OrderStatus
   createdAt: Date
   updatedAt: Date
   _count: AssistedPurchaseOrderCountAggregateOutputType | null
@@ -253,11 +253,11 @@ export type AssistedPurchaseOrderWhereInput = {
   id?: Prisma.UuidFilter<"AssistedPurchaseOrder"> | string
   orderId?: Prisma.StringFilter<"AssistedPurchaseOrder"> | string
   userId?: Prisma.UuidFilter<"AssistedPurchaseOrder"> | string
+  addressId?: Prisma.UuidNullableFilter<"AssistedPurchaseOrder"> | string | null
   trackingNumber?: Prisma.StringFilter<"AssistedPurchaseOrder"> | string
   totalAmount?: Prisma.FloatFilter<"AssistedPurchaseOrder"> | number
   totalItems?: Prisma.IntFilter<"AssistedPurchaseOrder"> | number
-  status?: Prisma.StringFilter<"AssistedPurchaseOrder"> | string
-  addressId?: Prisma.UuidNullableFilter<"AssistedPurchaseOrder"> | string | null
+  status?: Prisma.EnumOrderStatusFilter<"AssistedPurchaseOrder"> | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFilter<"AssistedPurchaseOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AssistedPurchaseOrder"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -269,11 +269,11 @@ export type AssistedPurchaseOrderOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -288,11 +288,11 @@ export type AssistedPurchaseOrderWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.AssistedPurchaseOrderWhereInput[]
   NOT?: Prisma.AssistedPurchaseOrderWhereInput | Prisma.AssistedPurchaseOrderWhereInput[]
   userId?: Prisma.UuidFilter<"AssistedPurchaseOrder"> | string
+  addressId?: Prisma.UuidNullableFilter<"AssistedPurchaseOrder"> | string | null
   trackingNumber?: Prisma.StringFilter<"AssistedPurchaseOrder"> | string
   totalAmount?: Prisma.FloatFilter<"AssistedPurchaseOrder"> | number
   totalItems?: Prisma.IntFilter<"AssistedPurchaseOrder"> | number
-  status?: Prisma.StringFilter<"AssistedPurchaseOrder"> | string
-  addressId?: Prisma.UuidNullableFilter<"AssistedPurchaseOrder"> | string | null
+  status?: Prisma.EnumOrderStatusFilter<"AssistedPurchaseOrder"> | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFilter<"AssistedPurchaseOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AssistedPurchaseOrder"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -304,11 +304,11 @@ export type AssistedPurchaseOrderOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.AssistedPurchaseOrderCountOrderByAggregateInput
@@ -325,11 +325,11 @@ export type AssistedPurchaseOrderScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"AssistedPurchaseOrder"> | string
   orderId?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseOrder"> | string
   userId?: Prisma.UuidWithAggregatesFilter<"AssistedPurchaseOrder"> | string
+  addressId?: Prisma.UuidNullableWithAggregatesFilter<"AssistedPurchaseOrder"> | string | null
   trackingNumber?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseOrder"> | string
   totalAmount?: Prisma.FloatWithAggregatesFilter<"AssistedPurchaseOrder"> | number
   totalItems?: Prisma.IntWithAggregatesFilter<"AssistedPurchaseOrder"> | number
-  status?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseOrder"> | string
-  addressId?: Prisma.UuidNullableWithAggregatesFilter<"AssistedPurchaseOrder"> | string | null
+  status?: Prisma.EnumOrderStatusWithAggregatesFilter<"AssistedPurchaseOrder"> | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AssistedPurchaseOrder"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AssistedPurchaseOrder"> | Date | string
 }
@@ -337,10 +337,10 @@ export type AssistedPurchaseOrderScalarWhereWithAggregatesInput = {
 export type AssistedPurchaseOrderCreateInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAssistedPurchaseOrdersInput
@@ -352,11 +352,11 @@ export type AssistedPurchaseOrderUncheckedCreateInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.AssistedPurchaseItemUncheckedCreateNestedManyWithoutOrderInput
@@ -368,7 +368,7 @@ export type AssistedPurchaseOrderUpdateInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutAssistedPurchaseOrdersNestedInput
@@ -380,11 +380,11 @@ export type AssistedPurchaseOrderUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.AssistedPurchaseItemUncheckedUpdateManyWithoutOrderNestedInput
@@ -394,11 +394,11 @@ export type AssistedPurchaseOrderCreateManyInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -409,7 +409,7 @@ export type AssistedPurchaseOrderUpdateManyMutationInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -418,11 +418,11 @@ export type AssistedPurchaseOrderUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -441,11 +441,11 @@ export type AssistedPurchaseOrderCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -459,11 +459,11 @@ export type AssistedPurchaseOrderMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -472,11 +472,11 @@ export type AssistedPurchaseOrderMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -533,20 +533,6 @@ export type AssistedPurchaseOrderUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.AssistedPurchaseOrderScalarWhereInput | Prisma.AssistedPurchaseOrderScalarWhereInput[]
 }
 
-export type AssistedPurchaseOrderCreateNestedOneWithoutItemsInput = {
-  create?: Prisma.XOR<Prisma.AssistedPurchaseOrderCreateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.AssistedPurchaseOrderCreateOrConnectWithoutItemsInput
-  connect?: Prisma.AssistedPurchaseOrderWhereUniqueInput
-}
-
-export type AssistedPurchaseOrderUpdateOneRequiredWithoutItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.AssistedPurchaseOrderCreateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.AssistedPurchaseOrderCreateOrConnectWithoutItemsInput
-  upsert?: Prisma.AssistedPurchaseOrderUpsertWithoutItemsInput
-  connect?: Prisma.AssistedPurchaseOrderWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.AssistedPurchaseOrderUpdateToOneWithWhereWithoutItemsInput, Prisma.AssistedPurchaseOrderUpdateWithoutItemsInput>, Prisma.AssistedPurchaseOrderUncheckedUpdateWithoutItemsInput>
-}
-
 export type AssistedPurchaseOrderCreateNestedManyWithoutAddressInput = {
   create?: Prisma.XOR<Prisma.AssistedPurchaseOrderCreateWithoutAddressInput, Prisma.AssistedPurchaseOrderUncheckedCreateWithoutAddressInput> | Prisma.AssistedPurchaseOrderCreateWithoutAddressInput[] | Prisma.AssistedPurchaseOrderUncheckedCreateWithoutAddressInput[]
   connectOrCreate?: Prisma.AssistedPurchaseOrderCreateOrConnectWithoutAddressInput | Prisma.AssistedPurchaseOrderCreateOrConnectWithoutAddressInput[]
@@ -589,13 +575,27 @@ export type AssistedPurchaseOrderUncheckedUpdateManyWithoutAddressNestedInput = 
   deleteMany?: Prisma.AssistedPurchaseOrderScalarWhereInput | Prisma.AssistedPurchaseOrderScalarWhereInput[]
 }
 
+export type AssistedPurchaseOrderCreateNestedOneWithoutItemsInput = {
+  create?: Prisma.XOR<Prisma.AssistedPurchaseOrderCreateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.AssistedPurchaseOrderCreateOrConnectWithoutItemsInput
+  connect?: Prisma.AssistedPurchaseOrderWhereUniqueInput
+}
+
+export type AssistedPurchaseOrderUpdateOneRequiredWithoutItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.AssistedPurchaseOrderCreateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.AssistedPurchaseOrderCreateOrConnectWithoutItemsInput
+  upsert?: Prisma.AssistedPurchaseOrderUpsertWithoutItemsInput
+  connect?: Prisma.AssistedPurchaseOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AssistedPurchaseOrderUpdateToOneWithWhereWithoutItemsInput, Prisma.AssistedPurchaseOrderUpdateWithoutItemsInput>, Prisma.AssistedPurchaseOrderUncheckedUpdateWithoutItemsInput>
+}
+
 export type AssistedPurchaseOrderCreateWithoutUserInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   address?: Prisma.AddressCreateNestedOneWithoutAssistedPurchaseOrdersInput
@@ -605,11 +605,11 @@ export type AssistedPurchaseOrderCreateWithoutUserInput = {
 export type AssistedPurchaseOrderUncheckedCreateWithoutUserInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.AssistedPurchaseItemUncheckedCreateNestedManyWithoutOrderInput
@@ -648,90 +648,22 @@ export type AssistedPurchaseOrderScalarWhereInput = {
   id?: Prisma.UuidFilter<"AssistedPurchaseOrder"> | string
   orderId?: Prisma.StringFilter<"AssistedPurchaseOrder"> | string
   userId?: Prisma.UuidFilter<"AssistedPurchaseOrder"> | string
+  addressId?: Prisma.UuidNullableFilter<"AssistedPurchaseOrder"> | string | null
   trackingNumber?: Prisma.StringFilter<"AssistedPurchaseOrder"> | string
   totalAmount?: Prisma.FloatFilter<"AssistedPurchaseOrder"> | number
   totalItems?: Prisma.IntFilter<"AssistedPurchaseOrder"> | number
-  status?: Prisma.StringFilter<"AssistedPurchaseOrder"> | string
-  addressId?: Prisma.UuidNullableFilter<"AssistedPurchaseOrder"> | string | null
+  status?: Prisma.EnumOrderStatusFilter<"AssistedPurchaseOrder"> | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFilter<"AssistedPurchaseOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AssistedPurchaseOrder"> | Date | string
-}
-
-export type AssistedPurchaseOrderCreateWithoutItemsInput = {
-  id?: string
-  orderId: string
-  trackingNumber: string
-  totalAmount: number
-  totalItems: number
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutAssistedPurchaseOrdersInput
-  address?: Prisma.AddressCreateNestedOneWithoutAssistedPurchaseOrdersInput
-}
-
-export type AssistedPurchaseOrderUncheckedCreateWithoutItemsInput = {
-  id?: string
-  orderId: string
-  userId: string
-  trackingNumber: string
-  totalAmount: number
-  totalItems: number
-  status?: string
-  addressId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type AssistedPurchaseOrderCreateOrConnectWithoutItemsInput = {
-  where: Prisma.AssistedPurchaseOrderWhereUniqueInput
-  create: Prisma.XOR<Prisma.AssistedPurchaseOrderCreateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedCreateWithoutItemsInput>
-}
-
-export type AssistedPurchaseOrderUpsertWithoutItemsInput = {
-  update: Prisma.XOR<Prisma.AssistedPurchaseOrderUpdateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedUpdateWithoutItemsInput>
-  create: Prisma.XOR<Prisma.AssistedPurchaseOrderCreateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedCreateWithoutItemsInput>
-  where?: Prisma.AssistedPurchaseOrderWhereInput
-}
-
-export type AssistedPurchaseOrderUpdateToOneWithWhereWithoutItemsInput = {
-  where?: Prisma.AssistedPurchaseOrderWhereInput
-  data: Prisma.XOR<Prisma.AssistedPurchaseOrderUpdateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedUpdateWithoutItemsInput>
-}
-
-export type AssistedPurchaseOrderUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutAssistedPurchaseOrdersNestedInput
-  address?: Prisma.AddressUpdateOneWithoutAssistedPurchaseOrdersNestedInput
-}
-
-export type AssistedPurchaseOrderUncheckedUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AssistedPurchaseOrderCreateWithoutAddressInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutAssistedPurchaseOrdersInput
@@ -742,10 +674,10 @@ export type AssistedPurchaseOrderUncheckedCreateWithoutAddressInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.AssistedPurchaseItemUncheckedCreateNestedManyWithoutOrderInput
@@ -777,14 +709,82 @@ export type AssistedPurchaseOrderUpdateManyWithWhereWithoutAddressInput = {
   data: Prisma.XOR<Prisma.AssistedPurchaseOrderUpdateManyMutationInput, Prisma.AssistedPurchaseOrderUncheckedUpdateManyWithoutAddressInput>
 }
 
+export type AssistedPurchaseOrderCreateWithoutItemsInput = {
+  id?: string
+  orderId: string
+  trackingNumber?: string
+  totalAmount: number
+  totalItems: number
+  status?: $Enums.OrderStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutAssistedPurchaseOrdersInput
+  address?: Prisma.AddressCreateNestedOneWithoutAssistedPurchaseOrdersInput
+}
+
+export type AssistedPurchaseOrderUncheckedCreateWithoutItemsInput = {
+  id?: string
+  orderId: string
+  userId: string
+  addressId?: string | null
+  trackingNumber?: string
+  totalAmount: number
+  totalItems: number
+  status?: $Enums.OrderStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type AssistedPurchaseOrderCreateOrConnectWithoutItemsInput = {
+  where: Prisma.AssistedPurchaseOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.AssistedPurchaseOrderCreateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedCreateWithoutItemsInput>
+}
+
+export type AssistedPurchaseOrderUpsertWithoutItemsInput = {
+  update: Prisma.XOR<Prisma.AssistedPurchaseOrderUpdateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedUpdateWithoutItemsInput>
+  create: Prisma.XOR<Prisma.AssistedPurchaseOrderCreateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedCreateWithoutItemsInput>
+  where?: Prisma.AssistedPurchaseOrderWhereInput
+}
+
+export type AssistedPurchaseOrderUpdateToOneWithWhereWithoutItemsInput = {
+  where?: Prisma.AssistedPurchaseOrderWhereInput
+  data: Prisma.XOR<Prisma.AssistedPurchaseOrderUpdateWithoutItemsInput, Prisma.AssistedPurchaseOrderUncheckedUpdateWithoutItemsInput>
+}
+
+export type AssistedPurchaseOrderUpdateWithoutItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutAssistedPurchaseOrdersNestedInput
+  address?: Prisma.AddressUpdateOneWithoutAssistedPurchaseOrdersNestedInput
+}
+
+export type AssistedPurchaseOrderUncheckedUpdateWithoutItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type AssistedPurchaseOrderCreateManyUserInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -795,7 +795,7 @@ export type AssistedPurchaseOrderUpdateWithoutUserInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   address?: Prisma.AddressUpdateOneWithoutAssistedPurchaseOrdersNestedInput
@@ -805,11 +805,11 @@ export type AssistedPurchaseOrderUpdateWithoutUserInput = {
 export type AssistedPurchaseOrderUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.AssistedPurchaseItemUncheckedUpdateManyWithoutOrderNestedInput
@@ -818,11 +818,11 @@ export type AssistedPurchaseOrderUncheckedUpdateWithoutUserInput = {
 export type AssistedPurchaseOrderUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -831,10 +831,10 @@ export type AssistedPurchaseOrderCreateManyAddressInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -845,7 +845,7 @@ export type AssistedPurchaseOrderUpdateWithoutAddressInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutAssistedPurchaseOrdersNestedInput
@@ -859,7 +859,7 @@ export type AssistedPurchaseOrderUncheckedUpdateWithoutAddressInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.AssistedPurchaseItemUncheckedUpdateManyWithoutOrderNestedInput
@@ -872,7 +872,7 @@ export type AssistedPurchaseOrderUncheckedUpdateManyWithoutAddressInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -912,11 +912,11 @@ export type AssistedPurchaseOrderSelect<ExtArgs extends runtime.Types.Extensions
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -929,11 +929,11 @@ export type AssistedPurchaseOrderSelectCreateManyAndReturn<ExtArgs extends runti
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -944,11 +944,11 @@ export type AssistedPurchaseOrderSelectUpdateManyAndReturn<ExtArgs extends runti
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -959,16 +959,16 @@ export type AssistedPurchaseOrderSelectScalar = {
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AssistedPurchaseOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "userId" | "trackingNumber" | "totalAmount" | "totalItems" | "status" | "addressId" | "createdAt" | "updatedAt", ExtArgs["result"]["assistedPurchaseOrder"]>
+export type AssistedPurchaseOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "userId" | "addressId" | "trackingNumber" | "totalAmount" | "totalItems" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["assistedPurchaseOrder"]>
 export type AssistedPurchaseOrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.AssistedPurchaseOrder$addressArgs<ExtArgs>
@@ -995,11 +995,11 @@ export type $AssistedPurchaseOrderPayload<ExtArgs extends runtime.Types.Extensio
     id: string
     orderId: string
     userId: string
+    addressId: string | null
     trackingNumber: string
     totalAmount: number
     totalItems: number
-    status: string
-    addressId: string | null
+    status: $Enums.OrderStatus
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["assistedPurchaseOrder"]>
@@ -1431,11 +1431,11 @@ export interface AssistedPurchaseOrderFieldRefs {
   readonly id: Prisma.FieldRef<"AssistedPurchaseOrder", 'String'>
   readonly orderId: Prisma.FieldRef<"AssistedPurchaseOrder", 'String'>
   readonly userId: Prisma.FieldRef<"AssistedPurchaseOrder", 'String'>
+  readonly addressId: Prisma.FieldRef<"AssistedPurchaseOrder", 'String'>
   readonly trackingNumber: Prisma.FieldRef<"AssistedPurchaseOrder", 'String'>
   readonly totalAmount: Prisma.FieldRef<"AssistedPurchaseOrder", 'Float'>
   readonly totalItems: Prisma.FieldRef<"AssistedPurchaseOrder", 'Int'>
-  readonly status: Prisma.FieldRef<"AssistedPurchaseOrder", 'String'>
-  readonly addressId: Prisma.FieldRef<"AssistedPurchaseOrder", 'String'>
+  readonly status: Prisma.FieldRef<"AssistedPurchaseOrder", 'OrderStatus'>
   readonly createdAt: Prisma.FieldRef<"AssistedPurchaseOrder", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"AssistedPurchaseOrder", 'DateTime'>
 }

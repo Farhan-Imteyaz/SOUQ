@@ -8,46 +8,34 @@ import {
   FormEvent,
 } from "react";
 import { toast } from "sonner";
-
-import { OrderItem } from "@/types/order-types";
+import { AssistedOrderItem } from "@/types/order-types";
 
 interface OrderContextType {
-  items: Omit<OrderItem, "images" | "purchaseDate" | "storeOrderId">[];
+  items: AssistedOrderItem[];
   addItem: (event: FormEvent) => void;
   removeItem: (id: string) => void;
-  updateItem: (id: string, updates: Partial<OrderItem>) => void;
+  updateItem: (id: string, updates: Partial<AssistedOrderItem>) => void;
   getTotalPrice: () => number;
 }
 
 const OrderContext = createContext<OrderContextType | null>(null);
 
-const DEFAULT_ORDER_VALUES: Omit<
-  OrderItem,
-  "id" | "purchaseDate" | "images" | "storeOrderId"
-> = {
+const createOrderItem = (): AssistedOrderItem => ({
+  id: crypto.randomUUID(),
   itemType: "",
   itemName: "",
   storeName: "",
+  referenceNumber: "",
   itemColor: "",
   itemSize: "",
   itemQuantity: 1,
   itemPrice: 0,
   remarks: "",
   itemWeight: "",
-};
-
-const createOrderItem = (): Omit<
-  OrderItem,
-  "images" | "purchaseDate" | "storeOrderId"
-> => ({
-  ...DEFAULT_ORDER_VALUES,
-  id: crypto.randomUUID(),
 });
 
 export function OrderProvider({ children }: { children: React.ReactNode }) {
-  const [items, setItems] = useState<
-    Omit<OrderItem, "images" | "purchaseDate" | "storeOrderId">[]
-  >([createOrderItem()]);
+  const [items, setItems] = useState<AssistedOrderItem[]>([createOrderItem()]);
 
   const addItem = useCallback((e: FormEvent) => {
     e.preventDefault();
@@ -64,29 +52,22 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  const updateItem = useCallback((id: string, updates: Partial<OrderItem>) => {
-    setItems((prev) =>
-      prev.map((item) => {
-        if (item.id !== id) return item;
-        const hasChanges = Object.keys(updates).some(
-          (key) =>
-            item[
-              key as keyof Omit<
-                OrderItem,
-                "images" | "purchaseDate" | "storeOrderId"
-              >
-            ] !==
-            updates[
-              key as keyof Omit<
-                OrderItem,
-                "images" | "purchaseDate" | "storeOrderId"
-              >
-            ],
-        );
-        return hasChanges ? { ...item, ...updates } : item;
-      }),
-    );
-  }, []);
+  const updateItem = useCallback(
+    (id: string, updates: Partial<AssistedOrderItem>) => {
+      setItems((prev) =>
+        prev.map((item) => {
+          if (item.id !== id) return item;
+          const hasChanges = Object.keys(updates).some(
+            (key) =>
+              item[key as keyof AssistedOrderItem] !==
+              updates[key as keyof AssistedOrderItem],
+          );
+          return hasChanges ? { ...item, ...updates } : item;
+        }),
+      );
+    },
+    [],
+  );
 
   const getTotalPrice = useCallback(
     () =>
@@ -98,13 +79,7 @@ export function OrderProvider({ children }: { children: React.ReactNode }) {
   );
 
   const value = useMemo(
-    () => ({
-      items,
-      addItem,
-      removeItem,
-      updateItem,
-      getTotalPrice,
-    }),
+    () => ({ items, addItem, removeItem, updateItem, getTotalPrice }),
     [items, addItem, removeItem, updateItem, getTotalPrice],
   );
 
@@ -120,18 +95,8 @@ export const useOrderContext = () => {
   return context;
 };
 
-export const prepareOrderFormData = (
-  items: Omit<OrderItem, "purchaseDate" | "images" | "storeOrderId">[],
-): FormData => {
+export const prepareOrderFormData = (items: AssistedOrderItem[]): FormData => {
   const formData = new FormData();
-  formData.append(
-    "items",
-    JSON.stringify(
-      items.map(({ ...item }) => ({
-        ...item,
-      })),
-    ),
-  );
-
+  formData.append("items", JSON.stringify(items));
   return formData;
 };

@@ -40,11 +40,11 @@ export type InternationalOrderMinAggregateOutputType = {
   id: string | null
   orderId: string | null
   userId: string | null
+  addressId: string | null
   trackingNumber: string | null
   totalAmount: number | null
   totalItems: number | null
-  status: string | null
-  addressId: string | null
+  status: $Enums.OrderStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -53,11 +53,11 @@ export type InternationalOrderMaxAggregateOutputType = {
   id: string | null
   orderId: string | null
   userId: string | null
+  addressId: string | null
   trackingNumber: string | null
   totalAmount: number | null
   totalItems: number | null
-  status: string | null
-  addressId: string | null
+  status: $Enums.OrderStatus | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -66,11 +66,11 @@ export type InternationalOrderCountAggregateOutputType = {
   id: number
   orderId: number
   userId: number
+  addressId: number
   trackingNumber: number
   totalAmount: number
   totalItems: number
   status: number
-  addressId: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -91,11 +91,11 @@ export type InternationalOrderMinAggregateInputType = {
   id?: true
   orderId?: true
   userId?: true
+  addressId?: true
   trackingNumber?: true
   totalAmount?: true
   totalItems?: true
   status?: true
-  addressId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -104,11 +104,11 @@ export type InternationalOrderMaxAggregateInputType = {
   id?: true
   orderId?: true
   userId?: true
+  addressId?: true
   trackingNumber?: true
   totalAmount?: true
   totalItems?: true
   status?: true
-  addressId?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -117,11 +117,11 @@ export type InternationalOrderCountAggregateInputType = {
   id?: true
   orderId?: true
   userId?: true
+  addressId?: true
   trackingNumber?: true
   totalAmount?: true
   totalItems?: true
   status?: true
-  addressId?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -217,11 +217,11 @@ export type InternationalOrderGroupByOutputType = {
   id: string
   orderId: string
   userId: string
+  addressId: string | null
   trackingNumber: string
   totalAmount: number
   totalItems: number
-  status: string
-  addressId: string | null
+  status: $Enums.OrderStatus
   createdAt: Date
   updatedAt: Date
   _count: InternationalOrderCountAggregateOutputType | null
@@ -253,11 +253,11 @@ export type InternationalOrderWhereInput = {
   id?: Prisma.UuidFilter<"InternationalOrder"> | string
   orderId?: Prisma.StringFilter<"InternationalOrder"> | string
   userId?: Prisma.UuidFilter<"InternationalOrder"> | string
+  addressId?: Prisma.UuidNullableFilter<"InternationalOrder"> | string | null
   trackingNumber?: Prisma.StringFilter<"InternationalOrder"> | string
   totalAmount?: Prisma.FloatFilter<"InternationalOrder"> | number
   totalItems?: Prisma.IntFilter<"InternationalOrder"> | number
-  status?: Prisma.StringFilter<"InternationalOrder"> | string
-  addressId?: Prisma.UuidNullableFilter<"InternationalOrder"> | string | null
+  status?: Prisma.EnumOrderStatusFilter<"InternationalOrder"> | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFilter<"InternationalOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InternationalOrder"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -269,11 +269,11 @@ export type InternationalOrderOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
@@ -288,11 +288,11 @@ export type InternationalOrderWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.InternationalOrderWhereInput[]
   NOT?: Prisma.InternationalOrderWhereInput | Prisma.InternationalOrderWhereInput[]
   userId?: Prisma.UuidFilter<"InternationalOrder"> | string
+  addressId?: Prisma.UuidNullableFilter<"InternationalOrder"> | string | null
   trackingNumber?: Prisma.StringFilter<"InternationalOrder"> | string
   totalAmount?: Prisma.FloatFilter<"InternationalOrder"> | number
   totalItems?: Prisma.IntFilter<"InternationalOrder"> | number
-  status?: Prisma.StringFilter<"InternationalOrder"> | string
-  addressId?: Prisma.UuidNullableFilter<"InternationalOrder"> | string | null
+  status?: Prisma.EnumOrderStatusFilter<"InternationalOrder"> | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFilter<"InternationalOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InternationalOrder"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -304,11 +304,11 @@ export type InternationalOrderOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.InternationalOrderCountOrderByAggregateInput
@@ -325,11 +325,11 @@ export type InternationalOrderScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"InternationalOrder"> | string
   orderId?: Prisma.StringWithAggregatesFilter<"InternationalOrder"> | string
   userId?: Prisma.UuidWithAggregatesFilter<"InternationalOrder"> | string
+  addressId?: Prisma.UuidNullableWithAggregatesFilter<"InternationalOrder"> | string | null
   trackingNumber?: Prisma.StringWithAggregatesFilter<"InternationalOrder"> | string
   totalAmount?: Prisma.FloatWithAggregatesFilter<"InternationalOrder"> | number
   totalItems?: Prisma.IntWithAggregatesFilter<"InternationalOrder"> | number
-  status?: Prisma.StringWithAggregatesFilter<"InternationalOrder"> | string
-  addressId?: Prisma.UuidNullableWithAggregatesFilter<"InternationalOrder"> | string | null
+  status?: Prisma.EnumOrderStatusWithAggregatesFilter<"InternationalOrder"> | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"InternationalOrder"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"InternationalOrder"> | Date | string
 }
@@ -337,10 +337,10 @@ export type InternationalOrderScalarWhereWithAggregatesInput = {
 export type InternationalOrderCreateInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutInternationalOrdersInput
@@ -352,11 +352,11 @@ export type InternationalOrderUncheckedCreateInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.InternationalItemUncheckedCreateNestedManyWithoutOrderInput
@@ -368,7 +368,7 @@ export type InternationalOrderUpdateInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutInternationalOrdersNestedInput
@@ -380,11 +380,11 @@ export type InternationalOrderUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.InternationalItemUncheckedUpdateManyWithoutOrderNestedInput
@@ -394,11 +394,11 @@ export type InternationalOrderCreateManyInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -409,7 +409,7 @@ export type InternationalOrderUpdateManyMutationInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -418,11 +418,11 @@ export type InternationalOrderUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -441,11 +441,11 @@ export type InternationalOrderCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -459,11 +459,11 @@ export type InternationalOrderMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -472,11 +472,11 @@ export type InternationalOrderMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -533,20 +533,6 @@ export type InternationalOrderUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.InternationalOrderScalarWhereInput | Prisma.InternationalOrderScalarWhereInput[]
 }
 
-export type InternationalOrderCreateNestedOneWithoutItemsInput = {
-  create?: Prisma.XOR<Prisma.InternationalOrderCreateWithoutItemsInput, Prisma.InternationalOrderUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.InternationalOrderCreateOrConnectWithoutItemsInput
-  connect?: Prisma.InternationalOrderWhereUniqueInput
-}
-
-export type InternationalOrderUpdateOneRequiredWithoutItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.InternationalOrderCreateWithoutItemsInput, Prisma.InternationalOrderUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.InternationalOrderCreateOrConnectWithoutItemsInput
-  upsert?: Prisma.InternationalOrderUpsertWithoutItemsInput
-  connect?: Prisma.InternationalOrderWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.InternationalOrderUpdateToOneWithWhereWithoutItemsInput, Prisma.InternationalOrderUpdateWithoutItemsInput>, Prisma.InternationalOrderUncheckedUpdateWithoutItemsInput>
-}
-
 export type InternationalOrderCreateNestedManyWithoutAddressInput = {
   create?: Prisma.XOR<Prisma.InternationalOrderCreateWithoutAddressInput, Prisma.InternationalOrderUncheckedCreateWithoutAddressInput> | Prisma.InternationalOrderCreateWithoutAddressInput[] | Prisma.InternationalOrderUncheckedCreateWithoutAddressInput[]
   connectOrCreate?: Prisma.InternationalOrderCreateOrConnectWithoutAddressInput | Prisma.InternationalOrderCreateOrConnectWithoutAddressInput[]
@@ -589,13 +575,27 @@ export type InternationalOrderUncheckedUpdateManyWithoutAddressNestedInput = {
   deleteMany?: Prisma.InternationalOrderScalarWhereInput | Prisma.InternationalOrderScalarWhereInput[]
 }
 
+export type InternationalOrderCreateNestedOneWithoutItemsInput = {
+  create?: Prisma.XOR<Prisma.InternationalOrderCreateWithoutItemsInput, Prisma.InternationalOrderUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.InternationalOrderCreateOrConnectWithoutItemsInput
+  connect?: Prisma.InternationalOrderWhereUniqueInput
+}
+
+export type InternationalOrderUpdateOneRequiredWithoutItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.InternationalOrderCreateWithoutItemsInput, Prisma.InternationalOrderUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.InternationalOrderCreateOrConnectWithoutItemsInput
+  upsert?: Prisma.InternationalOrderUpsertWithoutItemsInput
+  connect?: Prisma.InternationalOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.InternationalOrderUpdateToOneWithWhereWithoutItemsInput, Prisma.InternationalOrderUpdateWithoutItemsInput>, Prisma.InternationalOrderUncheckedUpdateWithoutItemsInput>
+}
+
 export type InternationalOrderCreateWithoutUserInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   address?: Prisma.AddressCreateNestedOneWithoutInternationalOrdersInput
@@ -605,11 +605,11 @@ export type InternationalOrderCreateWithoutUserInput = {
 export type InternationalOrderUncheckedCreateWithoutUserInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.InternationalItemUncheckedCreateNestedManyWithoutOrderInput
@@ -648,90 +648,22 @@ export type InternationalOrderScalarWhereInput = {
   id?: Prisma.UuidFilter<"InternationalOrder"> | string
   orderId?: Prisma.StringFilter<"InternationalOrder"> | string
   userId?: Prisma.UuidFilter<"InternationalOrder"> | string
+  addressId?: Prisma.UuidNullableFilter<"InternationalOrder"> | string | null
   trackingNumber?: Prisma.StringFilter<"InternationalOrder"> | string
   totalAmount?: Prisma.FloatFilter<"InternationalOrder"> | number
   totalItems?: Prisma.IntFilter<"InternationalOrder"> | number
-  status?: Prisma.StringFilter<"InternationalOrder"> | string
-  addressId?: Prisma.UuidNullableFilter<"InternationalOrder"> | string | null
+  status?: Prisma.EnumOrderStatusFilter<"InternationalOrder"> | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFilter<"InternationalOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InternationalOrder"> | Date | string
-}
-
-export type InternationalOrderCreateWithoutItemsInput = {
-  id?: string
-  orderId: string
-  trackingNumber: string
-  totalAmount: number
-  totalItems: number
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  user: Prisma.UserCreateNestedOneWithoutInternationalOrdersInput
-  address?: Prisma.AddressCreateNestedOneWithoutInternationalOrdersInput
-}
-
-export type InternationalOrderUncheckedCreateWithoutItemsInput = {
-  id?: string
-  orderId: string
-  userId: string
-  trackingNumber: string
-  totalAmount: number
-  totalItems: number
-  status?: string
-  addressId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type InternationalOrderCreateOrConnectWithoutItemsInput = {
-  where: Prisma.InternationalOrderWhereUniqueInput
-  create: Prisma.XOR<Prisma.InternationalOrderCreateWithoutItemsInput, Prisma.InternationalOrderUncheckedCreateWithoutItemsInput>
-}
-
-export type InternationalOrderUpsertWithoutItemsInput = {
-  update: Prisma.XOR<Prisma.InternationalOrderUpdateWithoutItemsInput, Prisma.InternationalOrderUncheckedUpdateWithoutItemsInput>
-  create: Prisma.XOR<Prisma.InternationalOrderCreateWithoutItemsInput, Prisma.InternationalOrderUncheckedCreateWithoutItemsInput>
-  where?: Prisma.InternationalOrderWhereInput
-}
-
-export type InternationalOrderUpdateToOneWithWhereWithoutItemsInput = {
-  where?: Prisma.InternationalOrderWhereInput
-  data: Prisma.XOR<Prisma.InternationalOrderUpdateWithoutItemsInput, Prisma.InternationalOrderUncheckedUpdateWithoutItemsInput>
-}
-
-export type InternationalOrderUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  user?: Prisma.UserUpdateOneRequiredWithoutInternationalOrdersNestedInput
-  address?: Prisma.AddressUpdateOneWithoutInternationalOrdersNestedInput
-}
-
-export type InternationalOrderUncheckedUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type InternationalOrderCreateWithoutAddressInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutInternationalOrdersInput
@@ -742,10 +674,10 @@ export type InternationalOrderUncheckedCreateWithoutAddressInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   items?: Prisma.InternationalItemUncheckedCreateNestedManyWithoutOrderInput
@@ -777,14 +709,82 @@ export type InternationalOrderUpdateManyWithWhereWithoutAddressInput = {
   data: Prisma.XOR<Prisma.InternationalOrderUpdateManyMutationInput, Prisma.InternationalOrderUncheckedUpdateManyWithoutAddressInput>
 }
 
+export type InternationalOrderCreateWithoutItemsInput = {
+  id?: string
+  orderId: string
+  trackingNumber?: string
+  totalAmount: number
+  totalItems: number
+  status?: $Enums.OrderStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutInternationalOrdersInput
+  address?: Prisma.AddressCreateNestedOneWithoutInternationalOrdersInput
+}
+
+export type InternationalOrderUncheckedCreateWithoutItemsInput = {
+  id?: string
+  orderId: string
+  userId: string
+  addressId?: string | null
+  trackingNumber?: string
+  totalAmount: number
+  totalItems: number
+  status?: $Enums.OrderStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type InternationalOrderCreateOrConnectWithoutItemsInput = {
+  where: Prisma.InternationalOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.InternationalOrderCreateWithoutItemsInput, Prisma.InternationalOrderUncheckedCreateWithoutItemsInput>
+}
+
+export type InternationalOrderUpsertWithoutItemsInput = {
+  update: Prisma.XOR<Prisma.InternationalOrderUpdateWithoutItemsInput, Prisma.InternationalOrderUncheckedUpdateWithoutItemsInput>
+  create: Prisma.XOR<Prisma.InternationalOrderCreateWithoutItemsInput, Prisma.InternationalOrderUncheckedCreateWithoutItemsInput>
+  where?: Prisma.InternationalOrderWhereInput
+}
+
+export type InternationalOrderUpdateToOneWithWhereWithoutItemsInput = {
+  where?: Prisma.InternationalOrderWhereInput
+  data: Prisma.XOR<Prisma.InternationalOrderUpdateWithoutItemsInput, Prisma.InternationalOrderUncheckedUpdateWithoutItemsInput>
+}
+
+export type InternationalOrderUpdateWithoutItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutInternationalOrdersNestedInput
+  address?: Prisma.AddressUpdateOneWithoutInternationalOrdersNestedInput
+}
+
+export type InternationalOrderUncheckedUpdateWithoutItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type InternationalOrderCreateManyUserInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -795,7 +795,7 @@ export type InternationalOrderUpdateWithoutUserInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   address?: Prisma.AddressUpdateOneWithoutInternationalOrdersNestedInput
@@ -805,11 +805,11 @@ export type InternationalOrderUpdateWithoutUserInput = {
 export type InternationalOrderUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.InternationalItemUncheckedUpdateManyWithoutOrderNestedInput
@@ -818,11 +818,11 @@ export type InternationalOrderUncheckedUpdateWithoutUserInput = {
 export type InternationalOrderUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -831,10 +831,10 @@ export type InternationalOrderCreateManyAddressInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -845,7 +845,7 @@ export type InternationalOrderUpdateWithoutAddressInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutInternationalOrdersNestedInput
@@ -859,7 +859,7 @@ export type InternationalOrderUncheckedUpdateWithoutAddressInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   items?: Prisma.InternationalItemUncheckedUpdateManyWithoutOrderNestedInput
@@ -872,7 +872,7 @@ export type InternationalOrderUncheckedUpdateManyWithoutAddressInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -912,11 +912,11 @@ export type InternationalOrderSelect<ExtArgs extends runtime.Types.Extensions.In
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -929,11 +929,11 @@ export type InternationalOrderSelectCreateManyAndReturn<ExtArgs extends runtime.
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -944,11 +944,11 @@ export type InternationalOrderSelectUpdateManyAndReturn<ExtArgs extends runtime.
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -959,16 +959,16 @@ export type InternationalOrderSelectScalar = {
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type InternationalOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "userId" | "trackingNumber" | "totalAmount" | "totalItems" | "status" | "addressId" | "createdAt" | "updatedAt", ExtArgs["result"]["internationalOrder"]>
+export type InternationalOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "userId" | "addressId" | "trackingNumber" | "totalAmount" | "totalItems" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["internationalOrder"]>
 export type InternationalOrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.InternationalOrder$addressArgs<ExtArgs>
@@ -995,11 +995,11 @@ export type $InternationalOrderPayload<ExtArgs extends runtime.Types.Extensions.
     id: string
     orderId: string
     userId: string
+    addressId: string | null
     trackingNumber: string
     totalAmount: number
     totalItems: number
-    status: string
-    addressId: string | null
+    status: $Enums.OrderStatus
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["internationalOrder"]>
@@ -1431,11 +1431,11 @@ export interface InternationalOrderFieldRefs {
   readonly id: Prisma.FieldRef<"InternationalOrder", 'String'>
   readonly orderId: Prisma.FieldRef<"InternationalOrder", 'String'>
   readonly userId: Prisma.FieldRef<"InternationalOrder", 'String'>
+  readonly addressId: Prisma.FieldRef<"InternationalOrder", 'String'>
   readonly trackingNumber: Prisma.FieldRef<"InternationalOrder", 'String'>
   readonly totalAmount: Prisma.FieldRef<"InternationalOrder", 'Float'>
   readonly totalItems: Prisma.FieldRef<"InternationalOrder", 'Int'>
-  readonly status: Prisma.FieldRef<"InternationalOrder", 'String'>
-  readonly addressId: Prisma.FieldRef<"InternationalOrder", 'String'>
+  readonly status: Prisma.FieldRef<"InternationalOrder", 'OrderStatus'>
   readonly createdAt: Prisma.FieldRef<"InternationalOrder", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"InternationalOrder", 'DateTime'>
 }

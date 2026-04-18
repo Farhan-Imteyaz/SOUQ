@@ -33,6 +33,11 @@ export type PasswordResetRequest = Prisma.PasswordResetRequestModel
  */
 export type PasswordResetToken = Prisma.PasswordResetTokenModel
 /**
+ * Model Address
+ * 
+ */
+export type Address = Prisma.AddressModel
+/**
  * Model ShopNShipOrder
  * 
  */
@@ -42,11 +47,6 @@ export type ShopNShipOrder = Prisma.ShopNShipOrderModel
  * 
  */
 export type ShopNShipItem = Prisma.ShopNShipItemModel
-/**
- * Model ShopNShipItemImage
- * 
- */
-export type ShopNShipItemImage = Prisma.ShopNShipItemImageModel
 /**
  * Model AssistedPurchaseOrder
  * 
@@ -58,11 +58,6 @@ export type AssistedPurchaseOrder = Prisma.AssistedPurchaseOrderModel
  */
 export type AssistedPurchaseItem = Prisma.AssistedPurchaseItemModel
 /**
- * Model AssistedPurchaseItemImage
- * 
- */
-export type AssistedPurchaseItemImage = Prisma.AssistedPurchaseItemImageModel
-/**
  * Model InternationalOrder
  * 
  */
@@ -72,13 +67,3 @@ export type InternationalOrder = Prisma.InternationalOrderModel
  * 
  */
 export type InternationalItem = Prisma.InternationalItemModel
-/**
- * Model InternationalItemImage
- * 
- */
-export type InternationalItemImage = Prisma.InternationalItemImageModel
-/**
- * Model Address
- * 
- */
-export type Address = Prisma.AddressModel

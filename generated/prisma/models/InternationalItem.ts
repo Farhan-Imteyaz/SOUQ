@@ -47,9 +47,8 @@ export type InternationalItemMinAggregateOutputType = {
   itemSize: string | null
   itemQuantity: number | null
   itemPrice: number | null
-  remarks: string | null
-  purchaseDate: Date | null
   itemWeight: string | null
+  remarks: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,9 +64,8 @@ export type InternationalItemMaxAggregateOutputType = {
   itemSize: string | null
   itemQuantity: number | null
   itemPrice: number | null
-  remarks: string | null
-  purchaseDate: Date | null
   itemWeight: string | null
+  remarks: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -83,9 +81,8 @@ export type InternationalItemCountAggregateOutputType = {
   itemSize: number
   itemQuantity: number
   itemPrice: number
-  remarks: number
-  purchaseDate: number
   itemWeight: number
+  remarks: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -113,9 +110,8 @@ export type InternationalItemMinAggregateInputType = {
   itemSize?: true
   itemQuantity?: true
   itemPrice?: true
-  remarks?: true
-  purchaseDate?: true
   itemWeight?: true
+  remarks?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -131,9 +127,8 @@ export type InternationalItemMaxAggregateInputType = {
   itemSize?: true
   itemQuantity?: true
   itemPrice?: true
-  remarks?: true
-  purchaseDate?: true
   itemWeight?: true
+  remarks?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -149,9 +144,8 @@ export type InternationalItemCountAggregateInputType = {
   itemSize?: true
   itemQuantity?: true
   itemPrice?: true
-  remarks?: true
-  purchaseDate?: true
   itemWeight?: true
+  remarks?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -254,9 +248,8 @@ export type InternationalItemGroupByOutputType = {
   itemSize: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date
   itemWeight: string
+  remarks: string
   createdAt: Date
   updatedAt: Date
   _count: InternationalItemCountAggregateOutputType | null
@@ -295,13 +288,11 @@ export type InternationalItemWhereInput = {
   itemSize?: Prisma.StringFilter<"InternationalItem"> | string
   itemQuantity?: Prisma.IntFilter<"InternationalItem"> | number
   itemPrice?: Prisma.FloatFilter<"InternationalItem"> | number
-  remarks?: Prisma.StringFilter<"InternationalItem"> | string
-  purchaseDate?: Prisma.DateTimeFilter<"InternationalItem"> | Date | string
   itemWeight?: Prisma.StringFilter<"InternationalItem"> | string
+  remarks?: Prisma.StringFilter<"InternationalItem"> | string
   createdAt?: Prisma.DateTimeFilter<"InternationalItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InternationalItem"> | Date | string
   order?: Prisma.XOR<Prisma.InternationalOrderScalarRelationFilter, Prisma.InternationalOrderWhereInput>
-  images?: Prisma.InternationalItemImageListRelationFilter
 }
 
 export type InternationalItemOrderByWithRelationInput = {
@@ -315,13 +306,11 @@ export type InternationalItemOrderByWithRelationInput = {
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   order?: Prisma.InternationalOrderOrderByWithRelationInput
-  images?: Prisma.InternationalItemImageOrderByRelationAggregateInput
 }
 
 export type InternationalItemWhereUniqueInput = Prisma.AtLeast<{
@@ -338,13 +327,11 @@ export type InternationalItemWhereUniqueInput = Prisma.AtLeast<{
   itemSize?: Prisma.StringFilter<"InternationalItem"> | string
   itemQuantity?: Prisma.IntFilter<"InternationalItem"> | number
   itemPrice?: Prisma.FloatFilter<"InternationalItem"> | number
-  remarks?: Prisma.StringFilter<"InternationalItem"> | string
-  purchaseDate?: Prisma.DateTimeFilter<"InternationalItem"> | Date | string
   itemWeight?: Prisma.StringFilter<"InternationalItem"> | string
+  remarks?: Prisma.StringFilter<"InternationalItem"> | string
   createdAt?: Prisma.DateTimeFilter<"InternationalItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InternationalItem"> | Date | string
   order?: Prisma.XOR<Prisma.InternationalOrderScalarRelationFilter, Prisma.InternationalOrderWhereInput>
-  images?: Prisma.InternationalItemImageListRelationFilter
 }, "id">
 
 export type InternationalItemOrderByWithAggregationInput = {
@@ -358,9 +345,8 @@ export type InternationalItemOrderByWithAggregationInput = {
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.InternationalItemCountOrderByAggregateInput
@@ -384,9 +370,8 @@ export type InternationalItemScalarWhereWithAggregatesInput = {
   itemSize?: Prisma.StringWithAggregatesFilter<"InternationalItem"> | string
   itemQuantity?: Prisma.IntWithAggregatesFilter<"InternationalItem"> | number
   itemPrice?: Prisma.FloatWithAggregatesFilter<"InternationalItem"> | number
-  remarks?: Prisma.StringWithAggregatesFilter<"InternationalItem"> | string
-  purchaseDate?: Prisma.DateTimeWithAggregatesFilter<"InternationalItem"> | Date | string
   itemWeight?: Prisma.StringWithAggregatesFilter<"InternationalItem"> | string
+  remarks?: Prisma.StringWithAggregatesFilter<"InternationalItem"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"InternationalItem"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"InternationalItem"> | Date | string
 }
@@ -397,17 +382,15 @@ export type InternationalItemCreateInput = {
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   order: Prisma.InternationalOrderCreateNestedOneWithoutItemsInput
-  images?: Prisma.InternationalItemImageCreateNestedManyWithoutItemInput
 }
 
 export type InternationalItemUncheckedCreateInput = {
@@ -417,16 +400,14 @@ export type InternationalItemUncheckedCreateInput = {
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  images?: Prisma.InternationalItemImageUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type InternationalItemUpdateInput = {
@@ -439,13 +420,11 @@ export type InternationalItemUpdateInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   order?: Prisma.InternationalOrderUpdateOneRequiredWithoutItemsNestedInput
-  images?: Prisma.InternationalItemImageUpdateManyWithoutItemNestedInput
 }
 
 export type InternationalItemUncheckedUpdateInput = {
@@ -459,12 +438,10 @@ export type InternationalItemUncheckedUpdateInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  images?: Prisma.InternationalItemImageUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type InternationalItemCreateManyInput = {
@@ -474,13 +451,12 @@ export type InternationalItemCreateManyInput = {
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -495,9 +471,8 @@ export type InternationalItemUpdateManyMutationInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -513,9 +488,8 @@ export type InternationalItemUncheckedUpdateManyInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -541,9 +515,8 @@ export type InternationalItemCountOrderByAggregateInput = {
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -564,9 +537,8 @@ export type InternationalItemMaxOrderByAggregateInput = {
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -582,9 +554,8 @@ export type InternationalItemMinOrderByAggregateInput = {
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -592,11 +563,6 @@ export type InternationalItemMinOrderByAggregateInput = {
 export type InternationalItemSumOrderByAggregateInput = {
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-}
-
-export type InternationalItemScalarRelationFilter = {
-  is?: Prisma.InternationalItemWhereInput
-  isNot?: Prisma.InternationalItemWhereInput
 }
 
 export type InternationalItemCreateNestedManyWithoutOrderInput = {
@@ -641,36 +607,20 @@ export type InternationalItemUncheckedUpdateManyWithoutOrderNestedInput = {
   deleteMany?: Prisma.InternationalItemScalarWhereInput | Prisma.InternationalItemScalarWhereInput[]
 }
 
-export type InternationalItemCreateNestedOneWithoutImagesInput = {
-  create?: Prisma.XOR<Prisma.InternationalItemCreateWithoutImagesInput, Prisma.InternationalItemUncheckedCreateWithoutImagesInput>
-  connectOrCreate?: Prisma.InternationalItemCreateOrConnectWithoutImagesInput
-  connect?: Prisma.InternationalItemWhereUniqueInput
-}
-
-export type InternationalItemUpdateOneRequiredWithoutImagesNestedInput = {
-  create?: Prisma.XOR<Prisma.InternationalItemCreateWithoutImagesInput, Prisma.InternationalItemUncheckedCreateWithoutImagesInput>
-  connectOrCreate?: Prisma.InternationalItemCreateOrConnectWithoutImagesInput
-  upsert?: Prisma.InternationalItemUpsertWithoutImagesInput
-  connect?: Prisma.InternationalItemWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.InternationalItemUpdateToOneWithWhereWithoutImagesInput, Prisma.InternationalItemUpdateWithoutImagesInput>, Prisma.InternationalItemUncheckedUpdateWithoutImagesInput>
-}
-
 export type InternationalItemCreateWithoutOrderInput = {
   id?: string
   itemType: string
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  images?: Prisma.InternationalItemImageCreateNestedManyWithoutItemInput
 }
 
 export type InternationalItemUncheckedCreateWithoutOrderInput = {
@@ -679,16 +629,14 @@ export type InternationalItemUncheckedCreateWithoutOrderInput = {
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  images?: Prisma.InternationalItemImageUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type InternationalItemCreateOrConnectWithoutOrderInput = {
@@ -731,99 +679,10 @@ export type InternationalItemScalarWhereInput = {
   itemSize?: Prisma.StringFilter<"InternationalItem"> | string
   itemQuantity?: Prisma.IntFilter<"InternationalItem"> | number
   itemPrice?: Prisma.FloatFilter<"InternationalItem"> | number
-  remarks?: Prisma.StringFilter<"InternationalItem"> | string
-  purchaseDate?: Prisma.DateTimeFilter<"InternationalItem"> | Date | string
   itemWeight?: Prisma.StringFilter<"InternationalItem"> | string
+  remarks?: Prisma.StringFilter<"InternationalItem"> | string
   createdAt?: Prisma.DateTimeFilter<"InternationalItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"InternationalItem"> | Date | string
-}
-
-export type InternationalItemCreateWithoutImagesInput = {
-  id?: string
-  itemType: string
-  itemName: string
-  storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
-  itemQuantity: number
-  itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  order: Prisma.InternationalOrderCreateNestedOneWithoutItemsInput
-}
-
-export type InternationalItemUncheckedCreateWithoutImagesInput = {
-  id?: string
-  orderUuid: string
-  itemType: string
-  itemName: string
-  storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
-  itemQuantity: number
-  itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type InternationalItemCreateOrConnectWithoutImagesInput = {
-  where: Prisma.InternationalItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.InternationalItemCreateWithoutImagesInput, Prisma.InternationalItemUncheckedCreateWithoutImagesInput>
-}
-
-export type InternationalItemUpsertWithoutImagesInput = {
-  update: Prisma.XOR<Prisma.InternationalItemUpdateWithoutImagesInput, Prisma.InternationalItemUncheckedUpdateWithoutImagesInput>
-  create: Prisma.XOR<Prisma.InternationalItemCreateWithoutImagesInput, Prisma.InternationalItemUncheckedCreateWithoutImagesInput>
-  where?: Prisma.InternationalItemWhereInput
-}
-
-export type InternationalItemUpdateToOneWithWhereWithoutImagesInput = {
-  where?: Prisma.InternationalItemWhereInput
-  data: Prisma.XOR<Prisma.InternationalItemUpdateWithoutImagesInput, Prisma.InternationalItemUncheckedUpdateWithoutImagesInput>
-}
-
-export type InternationalItemUpdateWithoutImagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  itemType?: Prisma.StringFieldUpdateOperationsInput | string
-  itemName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
-  itemColor?: Prisma.StringFieldUpdateOperationsInput | string
-  itemSize?: Prisma.StringFieldUpdateOperationsInput | string
-  itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
-  itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.InternationalOrderUpdateOneRequiredWithoutItemsNestedInput
-}
-
-export type InternationalItemUncheckedUpdateWithoutImagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderUuid?: Prisma.StringFieldUpdateOperationsInput | string
-  itemType?: Prisma.StringFieldUpdateOperationsInput | string
-  itemName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
-  itemColor?: Prisma.StringFieldUpdateOperationsInput | string
-  itemSize?: Prisma.StringFieldUpdateOperationsInput | string
-  itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
-  itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type InternationalItemCreateManyOrderInput = {
@@ -832,13 +691,12 @@ export type InternationalItemCreateManyOrderInput = {
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -853,12 +711,10 @@ export type InternationalItemUpdateWithoutOrderInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  images?: Prisma.InternationalItemImageUpdateManyWithoutItemNestedInput
 }
 
 export type InternationalItemUncheckedUpdateWithoutOrderInput = {
@@ -871,12 +727,10 @@ export type InternationalItemUncheckedUpdateWithoutOrderInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  images?: Prisma.InternationalItemImageUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type InternationalItemUncheckedUpdateManyWithoutOrderInput = {
@@ -889,42 +743,12 @@ export type InternationalItemUncheckedUpdateManyWithoutOrderInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-
-/**
- * Count Type InternationalItemCountOutputType
- */
-
-export type InternationalItemCountOutputType = {
-  images: number
-}
-
-export type InternationalItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  images?: boolean | InternationalItemCountOutputTypeCountImagesArgs
-}
-
-/**
- * InternationalItemCountOutputType without action
- */
-export type InternationalItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the InternationalItemCountOutputType
-   */
-  select?: Prisma.InternationalItemCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * InternationalItemCountOutputType without action
- */
-export type InternationalItemCountOutputTypeCountImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.InternationalItemImageWhereInput
-}
 
 
 export type InternationalItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -938,14 +762,11 @@ export type InternationalItemSelect<ExtArgs extends runtime.Types.Extensions.Int
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   order?: boolean | Prisma.InternationalOrderDefaultArgs<ExtArgs>
-  images?: boolean | Prisma.InternationalItem$imagesArgs<ExtArgs>
-  _count?: boolean | Prisma.InternationalItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["internationalItem"]>
 
 export type InternationalItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -959,9 +780,8 @@ export type InternationalItemSelectCreateManyAndReturn<ExtArgs extends runtime.T
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   order?: boolean | Prisma.InternationalOrderDefaultArgs<ExtArgs>
@@ -978,9 +798,8 @@ export type InternationalItemSelectUpdateManyAndReturn<ExtArgs extends runtime.T
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   order?: boolean | Prisma.InternationalOrderDefaultArgs<ExtArgs>
@@ -997,18 +816,15 @@ export type InternationalItemSelectScalar = {
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type InternationalItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderUuid" | "itemType" | "itemName" | "storeName" | "storeOrderId" | "itemColor" | "itemSize" | "itemQuantity" | "itemPrice" | "remarks" | "purchaseDate" | "itemWeight" | "createdAt" | "updatedAt", ExtArgs["result"]["internationalItem"]>
+export type InternationalItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderUuid" | "itemType" | "itemName" | "storeName" | "storeOrderId" | "itemColor" | "itemSize" | "itemQuantity" | "itemPrice" | "itemWeight" | "remarks" | "createdAt" | "updatedAt", ExtArgs["result"]["internationalItem"]>
 export type InternationalItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   order?: boolean | Prisma.InternationalOrderDefaultArgs<ExtArgs>
-  images?: boolean | Prisma.InternationalItem$imagesArgs<ExtArgs>
-  _count?: boolean | Prisma.InternationalItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type InternationalItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   order?: boolean | Prisma.InternationalOrderDefaultArgs<ExtArgs>
@@ -1021,7 +837,6 @@ export type $InternationalItemPayload<ExtArgs extends runtime.Types.Extensions.I
   name: "InternationalItem"
   objects: {
     order: Prisma.$InternationalOrderPayload<ExtArgs>
-    images: Prisma.$InternationalItemImagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1034,9 +849,8 @@ export type $InternationalItemPayload<ExtArgs extends runtime.Types.Extensions.I
     itemSize: string
     itemQuantity: number
     itemPrice: number
-    remarks: string
-    purchaseDate: Date
     itemWeight: string
+    remarks: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["internationalItem"]>
@@ -1434,7 +1248,6 @@ readonly fields: InternationalItemFieldRefs;
 export interface Prisma__InternationalItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   order<T extends Prisma.InternationalOrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InternationalOrderDefaultArgs<ExtArgs>>): Prisma.Prisma__InternationalOrderClient<runtime.Types.Result.GetResult<Prisma.$InternationalOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  images<T extends Prisma.InternationalItem$imagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.InternationalItem$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InternationalItemImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1474,9 +1287,8 @@ export interface InternationalItemFieldRefs {
   readonly itemSize: Prisma.FieldRef<"InternationalItem", 'String'>
   readonly itemQuantity: Prisma.FieldRef<"InternationalItem", 'Int'>
   readonly itemPrice: Prisma.FieldRef<"InternationalItem", 'Float'>
-  readonly remarks: Prisma.FieldRef<"InternationalItem", 'String'>
-  readonly purchaseDate: Prisma.FieldRef<"InternationalItem", 'DateTime'>
   readonly itemWeight: Prisma.FieldRef<"InternationalItem", 'String'>
+  readonly remarks: Prisma.FieldRef<"InternationalItem", 'String'>
   readonly createdAt: Prisma.FieldRef<"InternationalItem", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"InternationalItem", 'DateTime'>
 }
@@ -1872,30 +1684,6 @@ export type InternationalItemDeleteManyArgs<ExtArgs extends runtime.Types.Extens
    * Limit how many InternationalItems to delete.
    */
   limit?: number
-}
-
-/**
- * InternationalItem.images
- */
-export type InternationalItem$imagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the InternationalItemImage
-   */
-  select?: Prisma.InternationalItemImageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the InternationalItemImage
-   */
-  omit?: Prisma.InternationalItemImageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.InternationalItemImageInclude<ExtArgs> | null
-  where?: Prisma.InternationalItemImageWhereInput
-  orderBy?: Prisma.InternationalItemImageOrderByWithRelationInput | Prisma.InternationalItemImageOrderByWithRelationInput[]
-  cursor?: Prisma.InternationalItemImageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.InternationalItemImageScalarFieldEnum | Prisma.InternationalItemImageScalarFieldEnum[]
 }
 
 /**

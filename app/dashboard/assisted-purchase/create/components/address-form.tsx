@@ -3,11 +3,11 @@ import { PhoneInput } from "@/components/ui/phone-input";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { UseFormReturn } from "react-hook-form";
-import { CompleteOrderFormData } from "@/types/order-types";
+import { AssistedPurchaseCompleteFormData } from "@/types/order-types";
 import { cn } from "@/lib/utils";
 
 interface AddressFormProps {
-  formMethods: UseFormReturn<CompleteOrderFormData>;
+  formMethods: UseFormReturn<AssistedPurchaseCompleteFormData>;
 }
 
 const AddressForm = ({ formMethods }: AddressFormProps) => {

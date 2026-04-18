@@ -2,13 +2,6 @@
 import { useState } from "react";
 import { Edit2 } from "lucide-react";
 
-const formatDate = (dateString: string): string => {
-  return new Date(dateString).toLocaleDateString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "2-digit",
-  });
-};
 import {
   Table,
   TableBody,
@@ -96,7 +89,7 @@ const OrderDetails = ({
         });
       }
 
-      await axios.put(`/api/shop-n-ship/${selectedItem.id}`, formData, {
+      await axios.put(`/api/assisted-purchase/${selectedItem.id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

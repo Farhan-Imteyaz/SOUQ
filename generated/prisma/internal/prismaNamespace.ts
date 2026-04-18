@@ -387,16 +387,13 @@ export const ModelName = {
   User: 'User',
   PasswordResetRequest: 'PasswordResetRequest',
   PasswordResetToken: 'PasswordResetToken',
+  Address: 'Address',
   ShopNShipOrder: 'ShopNShipOrder',
   ShopNShipItem: 'ShopNShipItem',
-  ShopNShipItemImage: 'ShopNShipItemImage',
   AssistedPurchaseOrder: 'AssistedPurchaseOrder',
   AssistedPurchaseItem: 'AssistedPurchaseItem',
-  AssistedPurchaseItemImage: 'AssistedPurchaseItemImage',
   InternationalOrder: 'InternationalOrder',
-  InternationalItem: 'InternationalItem',
-  InternationalItemImage: 'InternationalItemImage',
-  Address: 'Address'
+  InternationalItem: 'InternationalItem'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -412,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "passwordResetRequest" | "passwordResetToken" | "shopNShipOrder" | "shopNShipItem" | "shopNShipItemImage" | "assistedPurchaseOrder" | "assistedPurchaseItem" | "assistedPurchaseItemImage" | "internationalOrder" | "internationalItem" | "internationalItemImage" | "address"
+    modelProps: "user" | "passwordResetRequest" | "passwordResetToken" | "address" | "shopNShipOrder" | "shopNShipItem" | "assistedPurchaseOrder" | "assistedPurchaseItem" | "internationalOrder" | "internationalItem"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -638,6 +635,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Address: {
+      payload: Prisma.$AddressPayload<ExtArgs>
+      fields: Prisma.AddressFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.AddressFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.AddressFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
+        }
+        findFirst: {
+          args: Prisma.AddressFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.AddressFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
+        }
+        findMany: {
+          args: Prisma.AddressFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>[]
+        }
+        create: {
+          args: Prisma.AddressCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
+        }
+        createMany: {
+          args: Prisma.AddressCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.AddressCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>[]
+        }
+        delete: {
+          args: Prisma.AddressDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
+        }
+        update: {
+          args: Prisma.AddressUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
+        }
+        deleteMany: {
+          args: Prisma.AddressDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.AddressUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.AddressUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>[]
+        }
+        upsert: {
+          args: Prisma.AddressUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
+        }
+        aggregate: {
+          args: Prisma.AddressAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateAddress>
+        }
+        groupBy: {
+          args: Prisma.AddressGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AddressGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.AddressCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AddressCountAggregateOutputType> | number
+        }
+      }
+    }
     ShopNShipOrder: {
       payload: Prisma.$ShopNShipOrderPayload<ExtArgs>
       fields: Prisma.ShopNShipOrderFieldRefs
@@ -783,80 +854,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ShopNShipItemCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ShopNShipItemCountAggregateOutputType> | number
-        }
-      }
-    }
-    ShopNShipItemImage: {
-      payload: Prisma.$ShopNShipItemImagePayload<ExtArgs>
-      fields: Prisma.ShopNShipItemImageFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.ShopNShipItemImageFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.ShopNShipItemImageFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload>
-        }
-        findFirst: {
-          args: Prisma.ShopNShipItemImageFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.ShopNShipItemImageFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload>
-        }
-        findMany: {
-          args: Prisma.ShopNShipItemImageFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload>[]
-        }
-        create: {
-          args: Prisma.ShopNShipItemImageCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload>
-        }
-        createMany: {
-          args: Prisma.ShopNShipItemImageCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.ShopNShipItemImageCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload>[]
-        }
-        delete: {
-          args: Prisma.ShopNShipItemImageDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload>
-        }
-        update: {
-          args: Prisma.ShopNShipItemImageUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload>
-        }
-        deleteMany: {
-          args: Prisma.ShopNShipItemImageDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.ShopNShipItemImageUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.ShopNShipItemImageUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload>[]
-        }
-        upsert: {
-          args: Prisma.ShopNShipItemImageUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$ShopNShipItemImagePayload>
-        }
-        aggregate: {
-          args: Prisma.ShopNShipItemImageAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateShopNShipItemImage>
-        }
-        groupBy: {
-          args: Prisma.ShopNShipItemImageGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ShopNShipItemImageGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.ShopNShipItemImageCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.ShopNShipItemImageCountAggregateOutputType> | number
         }
       }
     }
@@ -1008,80 +1005,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    AssistedPurchaseItemImage: {
-      payload: Prisma.$AssistedPurchaseItemImagePayload<ExtArgs>
-      fields: Prisma.AssistedPurchaseItemImageFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.AssistedPurchaseItemImageFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.AssistedPurchaseItemImageFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload>
-        }
-        findFirst: {
-          args: Prisma.AssistedPurchaseItemImageFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.AssistedPurchaseItemImageFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload>
-        }
-        findMany: {
-          args: Prisma.AssistedPurchaseItemImageFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload>[]
-        }
-        create: {
-          args: Prisma.AssistedPurchaseItemImageCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload>
-        }
-        createMany: {
-          args: Prisma.AssistedPurchaseItemImageCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.AssistedPurchaseItemImageCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload>[]
-        }
-        delete: {
-          args: Prisma.AssistedPurchaseItemImageDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload>
-        }
-        update: {
-          args: Prisma.AssistedPurchaseItemImageUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload>
-        }
-        deleteMany: {
-          args: Prisma.AssistedPurchaseItemImageDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.AssistedPurchaseItemImageUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.AssistedPurchaseItemImageUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload>[]
-        }
-        upsert: {
-          args: Prisma.AssistedPurchaseItemImageUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AssistedPurchaseItemImagePayload>
-        }
-        aggregate: {
-          args: Prisma.AssistedPurchaseItemImageAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateAssistedPurchaseItemImage>
-        }
-        groupBy: {
-          args: Prisma.AssistedPurchaseItemImageGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AssistedPurchaseItemImageGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.AssistedPurchaseItemImageCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AssistedPurchaseItemImageCountAggregateOutputType> | number
-        }
-      }
-    }
     InternationalOrder: {
       payload: Prisma.$InternationalOrderPayload<ExtArgs>
       fields: Prisma.InternationalOrderFieldRefs
@@ -1230,154 +1153,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    InternationalItemImage: {
-      payload: Prisma.$InternationalItemImagePayload<ExtArgs>
-      fields: Prisma.InternationalItemImageFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.InternationalItemImageFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.InternationalItemImageFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload>
-        }
-        findFirst: {
-          args: Prisma.InternationalItemImageFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.InternationalItemImageFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload>
-        }
-        findMany: {
-          args: Prisma.InternationalItemImageFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload>[]
-        }
-        create: {
-          args: Prisma.InternationalItemImageCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload>
-        }
-        createMany: {
-          args: Prisma.InternationalItemImageCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.InternationalItemImageCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload>[]
-        }
-        delete: {
-          args: Prisma.InternationalItemImageDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload>
-        }
-        update: {
-          args: Prisma.InternationalItemImageUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload>
-        }
-        deleteMany: {
-          args: Prisma.InternationalItemImageDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.InternationalItemImageUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.InternationalItemImageUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload>[]
-        }
-        upsert: {
-          args: Prisma.InternationalItemImageUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$InternationalItemImagePayload>
-        }
-        aggregate: {
-          args: Prisma.InternationalItemImageAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateInternationalItemImage>
-        }
-        groupBy: {
-          args: Prisma.InternationalItemImageGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.InternationalItemImageGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.InternationalItemImageCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.InternationalItemImageCountAggregateOutputType> | number
-        }
-      }
-    }
-    Address: {
-      payload: Prisma.$AddressPayload<ExtArgs>
-      fields: Prisma.AddressFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.AddressFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.AddressFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
-        }
-        findFirst: {
-          args: Prisma.AddressFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.AddressFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
-        }
-        findMany: {
-          args: Prisma.AddressFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>[]
-        }
-        create: {
-          args: Prisma.AddressCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
-        }
-        createMany: {
-          args: Prisma.AddressCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.AddressCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>[]
-        }
-        delete: {
-          args: Prisma.AddressDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
-        }
-        update: {
-          args: Prisma.AddressUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
-        }
-        deleteMany: {
-          args: Prisma.AddressDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.AddressUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.AddressUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>[]
-        }
-        upsert: {
-          args: Prisma.AddressUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$AddressPayload>
-        }
-        aggregate: {
-          args: Prisma.AddressAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateAddress>
-        }
-        groupBy: {
-          args: Prisma.AddressGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AddressGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.AddressCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AddressCountAggregateOutputType> | number
-        }
-      }
-    }
   }
 } & {
   other: {
@@ -1454,19 +1229,38 @@ export const PasswordResetTokenScalarFieldEnum = {
 export type PasswordResetTokenScalarFieldEnum = (typeof PasswordResetTokenScalarFieldEnum)[keyof typeof PasswordResetTokenScalarFieldEnum]
 
 
+export const AddressScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  firstName: 'firstName',
+  lastName: 'lastName',
+  streetAddress: 'streetAddress',
+  aptSuitBldgGateCode: 'aptSuitBldgGateCode',
+  city: 'city',
+  phone: 'phone',
+  state: 'state',
+  country: 'country',
+  zipcode: 'zipcode',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
+
+
 export const ShopNShipOrderScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   userId: 'userId',
+  addressId: 'addressId',
   trackingNumber: 'trackingNumber',
   totalAmount: 'totalAmount',
   totalItems: 'totalItems',
   status: 'status',
-  addressId: 'addressId',
+  orderType: 'orderType',
+  courierType: 'courierType',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  order_type: 'order_type',
-  courier_Type: 'courier_Type'
+  updatedAt: 'updatedAt'
 } as const
 
 export type ShopNShipOrderScalarFieldEnum = (typeof ShopNShipOrderScalarFieldEnum)[keyof typeof ShopNShipOrderScalarFieldEnum]
@@ -1483,9 +1277,8 @@ export const ShopNShipItemScalarFieldEnum = {
   itemSize: 'itemSize',
   itemQuantity: 'itemQuantity',
   itemPrice: 'itemPrice',
-  remarks: 'remarks',
-  purchaseDate: 'purchaseDate',
   itemWeight: 'itemWeight',
+  remarks: 'remarks',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1493,26 +1286,15 @@ export const ShopNShipItemScalarFieldEnum = {
 export type ShopNShipItemScalarFieldEnum = (typeof ShopNShipItemScalarFieldEnum)[keyof typeof ShopNShipItemScalarFieldEnum]
 
 
-export const ShopNShipItemImageScalarFieldEnum = {
-  id: 'id',
-  itemId: 'itemId',
-  imagePath: 'imagePath',
-  imageUrl: 'imageUrl',
-  createdAt: 'createdAt'
-} as const
-
-export type ShopNShipItemImageScalarFieldEnum = (typeof ShopNShipItemImageScalarFieldEnum)[keyof typeof ShopNShipItemImageScalarFieldEnum]
-
-
 export const AssistedPurchaseOrderScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   userId: 'userId',
+  addressId: 'addressId',
   trackingNumber: 'trackingNumber',
   totalAmount: 'totalAmount',
   totalItems: 'totalItems',
   status: 'status',
-  addressId: 'addressId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1526,14 +1308,13 @@ export const AssistedPurchaseItemScalarFieldEnum = {
   itemType: 'itemType',
   itemName: 'itemName',
   storeName: 'storeName',
-  storeOrderId: 'storeOrderId',
+  referenceNumber: 'referenceNumber',
   itemColor: 'itemColor',
   itemSize: 'itemSize',
   itemQuantity: 'itemQuantity',
   itemPrice: 'itemPrice',
-  remarks: 'remarks',
-  purchaseDate: 'purchaseDate',
   itemWeight: 'itemWeight',
+  remarks: 'remarks',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1541,26 +1322,15 @@ export const AssistedPurchaseItemScalarFieldEnum = {
 export type AssistedPurchaseItemScalarFieldEnum = (typeof AssistedPurchaseItemScalarFieldEnum)[keyof typeof AssistedPurchaseItemScalarFieldEnum]
 
 
-export const AssistedPurchaseItemImageScalarFieldEnum = {
-  id: 'id',
-  itemId: 'itemId',
-  imagePath: 'imagePath',
-  imageUrl: 'imageUrl',
-  createdAt: 'createdAt'
-} as const
-
-export type AssistedPurchaseItemImageScalarFieldEnum = (typeof AssistedPurchaseItemImageScalarFieldEnum)[keyof typeof AssistedPurchaseItemImageScalarFieldEnum]
-
-
 export const InternationalOrderScalarFieldEnum = {
   id: 'id',
   orderId: 'orderId',
   userId: 'userId',
+  addressId: 'addressId',
   trackingNumber: 'trackingNumber',
   totalAmount: 'totalAmount',
   totalItems: 'totalItems',
   status: 'status',
-  addressId: 'addressId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
@@ -1579,44 +1349,13 @@ export const InternationalItemScalarFieldEnum = {
   itemSize: 'itemSize',
   itemQuantity: 'itemQuantity',
   itemPrice: 'itemPrice',
-  remarks: 'remarks',
-  purchaseDate: 'purchaseDate',
   itemWeight: 'itemWeight',
+  remarks: 'remarks',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 } as const
 
 export type InternationalItemScalarFieldEnum = (typeof InternationalItemScalarFieldEnum)[keyof typeof InternationalItemScalarFieldEnum]
-
-
-export const InternationalItemImageScalarFieldEnum = {
-  id: 'id',
-  itemId: 'itemId',
-  imagePath: 'imagePath',
-  imageUrl: 'imageUrl',
-  createdAt: 'createdAt'
-} as const
-
-export type InternationalItemImageScalarFieldEnum = (typeof InternationalItemImageScalarFieldEnum)[keyof typeof InternationalItemImageScalarFieldEnum]
-
-
-export const AddressScalarFieldEnum = {
-  id: 'id',
-  userId: 'userId',
-  firstName: 'firstName',
-  lastName: 'lastName',
-  streetAddress: 'streetAddress',
-  aptSuitBldgGateCode: 'aptSuitBldgGateCode',
-  city: 'city',
-  phone: 'phone',
-  state: 'state',
-  country: 'country',
-  zipcode: 'zipcode',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
-} as const
-
-export type AddressScalarFieldEnum = (typeof AddressScalarFieldEnum)[keyof typeof AddressScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1709,6 +1448,48 @@ export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, '
  * Reference to a field of type 'Float[]'
  */
 export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
+ * Reference to a field of type 'OrderStatus'
+ */
+export type EnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderStatus'>
+    
+
+
+/**
+ * Reference to a field of type 'OrderStatus[]'
+ */
+export type ListEnumOrderStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'OrderType'
+ */
+export type EnumOrderTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderType'>
+    
+
+
+/**
+ * Reference to a field of type 'OrderType[]'
+ */
+export type ListEnumOrderTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OrderType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'CourierType'
+ */
+export type EnumCourierTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CourierType'>
+    
+
+
+/**
+ * Reference to a field of type 'CourierType[]'
+ */
+export type ListEnumCourierTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CourierType[]'>
     
 
 /**
@@ -1809,16 +1590,13 @@ export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   passwordResetRequest?: Prisma.PasswordResetRequestOmit
   passwordResetToken?: Prisma.PasswordResetTokenOmit
+  address?: Prisma.AddressOmit
   shopNShipOrder?: Prisma.ShopNShipOrderOmit
   shopNShipItem?: Prisma.ShopNShipItemOmit
-  shopNShipItemImage?: Prisma.ShopNShipItemImageOmit
   assistedPurchaseOrder?: Prisma.AssistedPurchaseOrderOmit
   assistedPurchaseItem?: Prisma.AssistedPurchaseItemOmit
-  assistedPurchaseItemImage?: Prisma.AssistedPurchaseItemImageOmit
   internationalOrder?: Prisma.InternationalOrderOmit
   internationalItem?: Prisma.InternationalItemOmit
-  internationalItemImage?: Prisma.InternationalItemImageOmit
-  address?: Prisma.AddressOmit
 }
 
 /* Types for Logging */

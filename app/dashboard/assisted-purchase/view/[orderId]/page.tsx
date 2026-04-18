@@ -38,7 +38,7 @@ const Page = () => {
 
       try {
         const { data } = await axios.get<FetchOrderResponse>(
-          `/api/shop-n-ship/${orderId}`,
+          `/api/assisted-purchase/${orderId}`,
           {
             params: {
               page: pageNumber,

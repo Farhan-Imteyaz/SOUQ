@@ -5,7 +5,7 @@ const HeroSection = () => {
     <section className="relative h-[90vh] overflow-hidden ">
       <img
         src={
-          "https://ramp.com/_next/static/media/hero-gradient-bg.11b28ffd.webp"
+          "/hero-gradient.webp"
         }
         alt="hero-image"
         className="absolute scale-[1.3] top-0 left-0 w-full h-full object-cover"

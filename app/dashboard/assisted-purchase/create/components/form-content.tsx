@@ -12,22 +12,12 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
-import { Controller } from "react-hook-form";
-import { format } from "date-fns";
-import { ChevronDownIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { useState } from "react";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+
 import { UseFormReturn } from "react-hook-form";
-import { CompleteOrderFormData } from "@/types/order-types";
+import { AssistedPurchaseCompleteFormData } from "@/types/order-types";
 interface FormContentProps {
   index: number;
-  formMethods: UseFormReturn<CompleteOrderFormData>;
+  formMethods: UseFormReturn<AssistedPurchaseCompleteFormData>;
 }
 
 const itemTypes = {
@@ -64,9 +54,6 @@ const FormContent = ({ index, formMethods }: FormContentProps) => {
     watch,
     formState: { errors },
   } = formMethods;
-  const [open, setOpen] = useState(false);
-
-  const purchaseDate = watch(`items.${index}.purchaseDate`);
 
   return (
     <div className="bg-white p-4 border border-slate-200 rounded-lg">
@@ -148,16 +135,13 @@ const FormContent = ({ index, formMethods }: FormContentProps) => {
               />
             </div>
             <div>
-              <Label className="text-slate-600">
-                Order ID/ Reference number{" "}
-                <span className="text-red-500">*</span>
-              </Label>
+              <Label className="text-slate-600">Reference number </Label>
               <Input
-                {...register(`items.${index}.storeOrderId`)}
-                placeholder="Enter order ID"
+                {...register(`items.${index}.referenceNumber`)}
+                placeholder="Enter Reference number"
                 className={cn(
                   `bg-white`,
-                  errors.items?.[index]?.storeOrderId &&
+                  errors.items?.[index]?.referenceNumber &&
                     "border-red-500 bg-red-100  placeholder:text-red-500 ",
                 )}
               />
@@ -183,7 +167,7 @@ const FormContent = ({ index, formMethods }: FormContentProps) => {
           <Label className="text-md">Item Details</Label>
           <div className="mt-2 grid px-3 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-3">
             <div>
-              <Label className="text-slate-600">itemWeight (gms)</Label>
+              <Label className="text-slate-600">Item Weight (gms)</Label>
               <Input
                 {...register(`items.${index}.itemWeight`)}
                 placeholder="Enter Item weight"

@@ -47,9 +47,8 @@ export type ShopNShipItemMinAggregateOutputType = {
   itemSize: string | null
   itemQuantity: number | null
   itemPrice: number | null
-  remarks: string | null
-  purchaseDate: Date | null
   itemWeight: string | null
+  remarks: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -65,9 +64,8 @@ export type ShopNShipItemMaxAggregateOutputType = {
   itemSize: string | null
   itemQuantity: number | null
   itemPrice: number | null
-  remarks: string | null
-  purchaseDate: Date | null
   itemWeight: string | null
+  remarks: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -83,9 +81,8 @@ export type ShopNShipItemCountAggregateOutputType = {
   itemSize: number
   itemQuantity: number
   itemPrice: number
-  remarks: number
-  purchaseDate: number
   itemWeight: number
+  remarks: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -113,9 +110,8 @@ export type ShopNShipItemMinAggregateInputType = {
   itemSize?: true
   itemQuantity?: true
   itemPrice?: true
-  remarks?: true
-  purchaseDate?: true
   itemWeight?: true
+  remarks?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -131,9 +127,8 @@ export type ShopNShipItemMaxAggregateInputType = {
   itemSize?: true
   itemQuantity?: true
   itemPrice?: true
-  remarks?: true
-  purchaseDate?: true
   itemWeight?: true
+  remarks?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -149,9 +144,8 @@ export type ShopNShipItemCountAggregateInputType = {
   itemSize?: true
   itemQuantity?: true
   itemPrice?: true
-  remarks?: true
-  purchaseDate?: true
   itemWeight?: true
+  remarks?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -254,9 +248,8 @@ export type ShopNShipItemGroupByOutputType = {
   itemSize: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date
   itemWeight: string
+  remarks: string
   createdAt: Date
   updatedAt: Date
   _count: ShopNShipItemCountAggregateOutputType | null
@@ -295,13 +288,11 @@ export type ShopNShipItemWhereInput = {
   itemSize?: Prisma.StringFilter<"ShopNShipItem"> | string
   itemQuantity?: Prisma.IntFilter<"ShopNShipItem"> | number
   itemPrice?: Prisma.FloatFilter<"ShopNShipItem"> | number
-  remarks?: Prisma.StringFilter<"ShopNShipItem"> | string
-  purchaseDate?: Prisma.DateTimeFilter<"ShopNShipItem"> | Date | string
   itemWeight?: Prisma.StringFilter<"ShopNShipItem"> | string
+  remarks?: Prisma.StringFilter<"ShopNShipItem"> | string
   createdAt?: Prisma.DateTimeFilter<"ShopNShipItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShopNShipItem"> | Date | string
   order?: Prisma.XOR<Prisma.ShopNShipOrderScalarRelationFilter, Prisma.ShopNShipOrderWhereInput>
-  images?: Prisma.ShopNShipItemImageListRelationFilter
 }
 
 export type ShopNShipItemOrderByWithRelationInput = {
@@ -315,13 +306,11 @@ export type ShopNShipItemOrderByWithRelationInput = {
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   order?: Prisma.ShopNShipOrderOrderByWithRelationInput
-  images?: Prisma.ShopNShipItemImageOrderByRelationAggregateInput
 }
 
 export type ShopNShipItemWhereUniqueInput = Prisma.AtLeast<{
@@ -338,13 +327,11 @@ export type ShopNShipItemWhereUniqueInput = Prisma.AtLeast<{
   itemSize?: Prisma.StringFilter<"ShopNShipItem"> | string
   itemQuantity?: Prisma.IntFilter<"ShopNShipItem"> | number
   itemPrice?: Prisma.FloatFilter<"ShopNShipItem"> | number
-  remarks?: Prisma.StringFilter<"ShopNShipItem"> | string
-  purchaseDate?: Prisma.DateTimeFilter<"ShopNShipItem"> | Date | string
   itemWeight?: Prisma.StringFilter<"ShopNShipItem"> | string
+  remarks?: Prisma.StringFilter<"ShopNShipItem"> | string
   createdAt?: Prisma.DateTimeFilter<"ShopNShipItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShopNShipItem"> | Date | string
   order?: Prisma.XOR<Prisma.ShopNShipOrderScalarRelationFilter, Prisma.ShopNShipOrderWhereInput>
-  images?: Prisma.ShopNShipItemImageListRelationFilter
 }, "id">
 
 export type ShopNShipItemOrderByWithAggregationInput = {
@@ -358,9 +345,8 @@ export type ShopNShipItemOrderByWithAggregationInput = {
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.ShopNShipItemCountOrderByAggregateInput
@@ -384,9 +370,8 @@ export type ShopNShipItemScalarWhereWithAggregatesInput = {
   itemSize?: Prisma.StringWithAggregatesFilter<"ShopNShipItem"> | string
   itemQuantity?: Prisma.IntWithAggregatesFilter<"ShopNShipItem"> | number
   itemPrice?: Prisma.FloatWithAggregatesFilter<"ShopNShipItem"> | number
-  remarks?: Prisma.StringWithAggregatesFilter<"ShopNShipItem"> | string
-  purchaseDate?: Prisma.DateTimeWithAggregatesFilter<"ShopNShipItem"> | Date | string
   itemWeight?: Prisma.StringWithAggregatesFilter<"ShopNShipItem"> | string
+  remarks?: Prisma.StringWithAggregatesFilter<"ShopNShipItem"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ShopNShipItem"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ShopNShipItem"> | Date | string
 }
@@ -397,17 +382,15 @@ export type ShopNShipItemCreateInput = {
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   order: Prisma.ShopNShipOrderCreateNestedOneWithoutItemsInput
-  images?: Prisma.ShopNShipItemImageCreateNestedManyWithoutItemInput
 }
 
 export type ShopNShipItemUncheckedCreateInput = {
@@ -417,16 +400,14 @@ export type ShopNShipItemUncheckedCreateInput = {
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  images?: Prisma.ShopNShipItemImageUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type ShopNShipItemUpdateInput = {
@@ -439,13 +420,11 @@ export type ShopNShipItemUpdateInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   order?: Prisma.ShopNShipOrderUpdateOneRequiredWithoutItemsNestedInput
-  images?: Prisma.ShopNShipItemImageUpdateManyWithoutItemNestedInput
 }
 
 export type ShopNShipItemUncheckedUpdateInput = {
@@ -459,12 +438,10 @@ export type ShopNShipItemUncheckedUpdateInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  images?: Prisma.ShopNShipItemImageUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ShopNShipItemCreateManyInput = {
@@ -474,13 +451,12 @@ export type ShopNShipItemCreateManyInput = {
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -495,9 +471,8 @@ export type ShopNShipItemUpdateManyMutationInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -513,9 +488,8 @@ export type ShopNShipItemUncheckedUpdateManyInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -541,9 +515,8 @@ export type ShopNShipItemCountOrderByAggregateInput = {
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -564,9 +537,8 @@ export type ShopNShipItemMaxOrderByAggregateInput = {
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -582,9 +554,8 @@ export type ShopNShipItemMinOrderByAggregateInput = {
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -592,11 +563,6 @@ export type ShopNShipItemMinOrderByAggregateInput = {
 export type ShopNShipItemSumOrderByAggregateInput = {
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-}
-
-export type ShopNShipItemScalarRelationFilter = {
-  is?: Prisma.ShopNShipItemWhereInput
-  isNot?: Prisma.ShopNShipItemWhereInput
 }
 
 export type ShopNShipItemCreateNestedManyWithoutOrderInput = {
@@ -641,36 +607,20 @@ export type ShopNShipItemUncheckedUpdateManyWithoutOrderNestedInput = {
   deleteMany?: Prisma.ShopNShipItemScalarWhereInput | Prisma.ShopNShipItemScalarWhereInput[]
 }
 
-export type ShopNShipItemCreateNestedOneWithoutImagesInput = {
-  create?: Prisma.XOR<Prisma.ShopNShipItemCreateWithoutImagesInput, Prisma.ShopNShipItemUncheckedCreateWithoutImagesInput>
-  connectOrCreate?: Prisma.ShopNShipItemCreateOrConnectWithoutImagesInput
-  connect?: Prisma.ShopNShipItemWhereUniqueInput
-}
-
-export type ShopNShipItemUpdateOneRequiredWithoutImagesNestedInput = {
-  create?: Prisma.XOR<Prisma.ShopNShipItemCreateWithoutImagesInput, Prisma.ShopNShipItemUncheckedCreateWithoutImagesInput>
-  connectOrCreate?: Prisma.ShopNShipItemCreateOrConnectWithoutImagesInput
-  upsert?: Prisma.ShopNShipItemUpsertWithoutImagesInput
-  connect?: Prisma.ShopNShipItemWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ShopNShipItemUpdateToOneWithWhereWithoutImagesInput, Prisma.ShopNShipItemUpdateWithoutImagesInput>, Prisma.ShopNShipItemUncheckedUpdateWithoutImagesInput>
-}
-
 export type ShopNShipItemCreateWithoutOrderInput = {
   id?: string
   itemType: string
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  images?: Prisma.ShopNShipItemImageCreateNestedManyWithoutItemInput
 }
 
 export type ShopNShipItemUncheckedCreateWithoutOrderInput = {
@@ -679,16 +629,14 @@ export type ShopNShipItemUncheckedCreateWithoutOrderInput = {
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  images?: Prisma.ShopNShipItemImageUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type ShopNShipItemCreateOrConnectWithoutOrderInput = {
@@ -731,99 +679,10 @@ export type ShopNShipItemScalarWhereInput = {
   itemSize?: Prisma.StringFilter<"ShopNShipItem"> | string
   itemQuantity?: Prisma.IntFilter<"ShopNShipItem"> | number
   itemPrice?: Prisma.FloatFilter<"ShopNShipItem"> | number
-  remarks?: Prisma.StringFilter<"ShopNShipItem"> | string
-  purchaseDate?: Prisma.DateTimeFilter<"ShopNShipItem"> | Date | string
   itemWeight?: Prisma.StringFilter<"ShopNShipItem"> | string
+  remarks?: Prisma.StringFilter<"ShopNShipItem"> | string
   createdAt?: Prisma.DateTimeFilter<"ShopNShipItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShopNShipItem"> | Date | string
-}
-
-export type ShopNShipItemCreateWithoutImagesInput = {
-  id?: string
-  itemType: string
-  itemName: string
-  storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
-  itemQuantity: number
-  itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  order: Prisma.ShopNShipOrderCreateNestedOneWithoutItemsInput
-}
-
-export type ShopNShipItemUncheckedCreateWithoutImagesInput = {
-  id?: string
-  orderUuid: string
-  itemType: string
-  itemName: string
-  storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
-  itemQuantity: number
-  itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type ShopNShipItemCreateOrConnectWithoutImagesInput = {
-  where: Prisma.ShopNShipItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.ShopNShipItemCreateWithoutImagesInput, Prisma.ShopNShipItemUncheckedCreateWithoutImagesInput>
-}
-
-export type ShopNShipItemUpsertWithoutImagesInput = {
-  update: Prisma.XOR<Prisma.ShopNShipItemUpdateWithoutImagesInput, Prisma.ShopNShipItemUncheckedUpdateWithoutImagesInput>
-  create: Prisma.XOR<Prisma.ShopNShipItemCreateWithoutImagesInput, Prisma.ShopNShipItemUncheckedCreateWithoutImagesInput>
-  where?: Prisma.ShopNShipItemWhereInput
-}
-
-export type ShopNShipItemUpdateToOneWithWhereWithoutImagesInput = {
-  where?: Prisma.ShopNShipItemWhereInput
-  data: Prisma.XOR<Prisma.ShopNShipItemUpdateWithoutImagesInput, Prisma.ShopNShipItemUncheckedUpdateWithoutImagesInput>
-}
-
-export type ShopNShipItemUpdateWithoutImagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  itemType?: Prisma.StringFieldUpdateOperationsInput | string
-  itemName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
-  itemColor?: Prisma.StringFieldUpdateOperationsInput | string
-  itemSize?: Prisma.StringFieldUpdateOperationsInput | string
-  itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
-  itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.ShopNShipOrderUpdateOneRequiredWithoutItemsNestedInput
-}
-
-export type ShopNShipItemUncheckedUpdateWithoutImagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderUuid?: Prisma.StringFieldUpdateOperationsInput | string
-  itemType?: Prisma.StringFieldUpdateOperationsInput | string
-  itemName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
-  itemColor?: Prisma.StringFieldUpdateOperationsInput | string
-  itemSize?: Prisma.StringFieldUpdateOperationsInput | string
-  itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
-  itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ShopNShipItemCreateManyOrderInput = {
@@ -832,13 +691,12 @@ export type ShopNShipItemCreateManyOrderInput = {
   itemName: string
   storeName: string
   storeOrderId: string
-  itemColor: string
-  itemSize: string
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -853,12 +711,10 @@ export type ShopNShipItemUpdateWithoutOrderInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  images?: Prisma.ShopNShipItemImageUpdateManyWithoutItemNestedInput
 }
 
 export type ShopNShipItemUncheckedUpdateWithoutOrderInput = {
@@ -871,12 +727,10 @@ export type ShopNShipItemUncheckedUpdateWithoutOrderInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  images?: Prisma.ShopNShipItemImageUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type ShopNShipItemUncheckedUpdateManyWithoutOrderInput = {
@@ -889,42 +743,12 @@ export type ShopNShipItemUncheckedUpdateManyWithoutOrderInput = {
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-
-/**
- * Count Type ShopNShipItemCountOutputType
- */
-
-export type ShopNShipItemCountOutputType = {
-  images: number
-}
-
-export type ShopNShipItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  images?: boolean | ShopNShipItemCountOutputTypeCountImagesArgs
-}
-
-/**
- * ShopNShipItemCountOutputType without action
- */
-export type ShopNShipItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ShopNShipItemCountOutputType
-   */
-  select?: Prisma.ShopNShipItemCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * ShopNShipItemCountOutputType without action
- */
-export type ShopNShipItemCountOutputTypeCountImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ShopNShipItemImageWhereInput
-}
 
 
 export type ShopNShipItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -938,14 +762,11 @@ export type ShopNShipItemSelect<ExtArgs extends runtime.Types.Extensions.Interna
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   order?: boolean | Prisma.ShopNShipOrderDefaultArgs<ExtArgs>
-  images?: boolean | Prisma.ShopNShipItem$imagesArgs<ExtArgs>
-  _count?: boolean | Prisma.ShopNShipItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["shopNShipItem"]>
 
 export type ShopNShipItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -959,9 +780,8 @@ export type ShopNShipItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   order?: boolean | Prisma.ShopNShipOrderDefaultArgs<ExtArgs>
@@ -978,9 +798,8 @@ export type ShopNShipItemSelectUpdateManyAndReturn<ExtArgs extends runtime.Types
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   order?: boolean | Prisma.ShopNShipOrderDefaultArgs<ExtArgs>
@@ -997,18 +816,15 @@ export type ShopNShipItemSelectScalar = {
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ShopNShipItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderUuid" | "itemType" | "itemName" | "storeName" | "storeOrderId" | "itemColor" | "itemSize" | "itemQuantity" | "itemPrice" | "remarks" | "purchaseDate" | "itemWeight" | "createdAt" | "updatedAt", ExtArgs["result"]["shopNShipItem"]>
+export type ShopNShipItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderUuid" | "itemType" | "itemName" | "storeName" | "storeOrderId" | "itemColor" | "itemSize" | "itemQuantity" | "itemPrice" | "itemWeight" | "remarks" | "createdAt" | "updatedAt", ExtArgs["result"]["shopNShipItem"]>
 export type ShopNShipItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   order?: boolean | Prisma.ShopNShipOrderDefaultArgs<ExtArgs>
-  images?: boolean | Prisma.ShopNShipItem$imagesArgs<ExtArgs>
-  _count?: boolean | Prisma.ShopNShipItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ShopNShipItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   order?: boolean | Prisma.ShopNShipOrderDefaultArgs<ExtArgs>
@@ -1021,7 +837,6 @@ export type $ShopNShipItemPayload<ExtArgs extends runtime.Types.Extensions.Inter
   name: "ShopNShipItem"
   objects: {
     order: Prisma.$ShopNShipOrderPayload<ExtArgs>
-    images: Prisma.$ShopNShipItemImagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1034,9 +849,8 @@ export type $ShopNShipItemPayload<ExtArgs extends runtime.Types.Extensions.Inter
     itemSize: string
     itemQuantity: number
     itemPrice: number
-    remarks: string
-    purchaseDate: Date
     itemWeight: string
+    remarks: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["shopNShipItem"]>
@@ -1434,7 +1248,6 @@ readonly fields: ShopNShipItemFieldRefs;
 export interface Prisma__ShopNShipItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   order<T extends Prisma.ShopNShipOrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShopNShipOrderDefaultArgs<ExtArgs>>): Prisma.Prisma__ShopNShipOrderClient<runtime.Types.Result.GetResult<Prisma.$ShopNShipOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  images<T extends Prisma.ShopNShipItem$imagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ShopNShipItem$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ShopNShipItemImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1474,9 +1287,8 @@ export interface ShopNShipItemFieldRefs {
   readonly itemSize: Prisma.FieldRef<"ShopNShipItem", 'String'>
   readonly itemQuantity: Prisma.FieldRef<"ShopNShipItem", 'Int'>
   readonly itemPrice: Prisma.FieldRef<"ShopNShipItem", 'Float'>
-  readonly remarks: Prisma.FieldRef<"ShopNShipItem", 'String'>
-  readonly purchaseDate: Prisma.FieldRef<"ShopNShipItem", 'DateTime'>
   readonly itemWeight: Prisma.FieldRef<"ShopNShipItem", 'String'>
+  readonly remarks: Prisma.FieldRef<"ShopNShipItem", 'String'>
   readonly createdAt: Prisma.FieldRef<"ShopNShipItem", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ShopNShipItem", 'DateTime'>
 }
@@ -1872,30 +1684,6 @@ export type ShopNShipItemDeleteManyArgs<ExtArgs extends runtime.Types.Extensions
    * Limit how many ShopNShipItems to delete.
    */
   limit?: number
-}
-
-/**
- * ShopNShipItem.images
- */
-export type ShopNShipItem$imagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the ShopNShipItemImage
-   */
-  select?: Prisma.ShopNShipItemImageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the ShopNShipItemImage
-   */
-  omit?: Prisma.ShopNShipItemImageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ShopNShipItemImageInclude<ExtArgs> | null
-  where?: Prisma.ShopNShipItemImageWhereInput
-  orderBy?: Prisma.ShopNShipItemImageOrderByWithRelationInput | Prisma.ShopNShipItemImageOrderByWithRelationInput[]
-  cursor?: Prisma.ShopNShipItemImageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ShopNShipItemImageScalarFieldEnum | Prisma.ShopNShipItemImageScalarFieldEnum[]
 }
 
 /**

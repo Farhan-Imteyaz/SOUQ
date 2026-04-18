@@ -179,7 +179,7 @@ const RecentOrders = ({
                 <TableCell>{order.status}</TableCell>
                 <TableCell>{order.status}</TableCell>
                 <TableCell>
-                  <Link href={`/dashboard/shop-n-ship/view/${order.orderId}`}>
+                  <Link href={`/dashboard/assisted-purchase/view/${order.orderId}`}>
                     <Button
                       className="cursor-pointer bg-transparent! border text-slate-950 text-xs h-auto! p-2! pb-1.5!"
                       type="button"

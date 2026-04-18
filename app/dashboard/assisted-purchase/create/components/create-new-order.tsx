@@ -2,7 +2,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-
 import AddressForm from "./address-form";
 import {
   CircleCheck,
@@ -19,10 +18,10 @@ import { useOrderContext } from "../context/order-context";
 import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-
 import {
-  completeOrderSchema,
-  CompleteOrderFormData,
+  AssistedOrderItem,
+  AssistedPurchaseCompleteFormData,
+  assistedPurchaseCompleteSchema,
 } from "@/types/order-types";
 import { prepareOrderFormData } from "../context/order-context";
 import { FieldErrors, FieldError } from "react-hook-form";
@@ -92,7 +91,7 @@ const CreateNewOrder = () => {
   const isUpdatingFromContext = useRef(false);
   const updateTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  const mapItemsToFormData = (items: any[]) =>
+  const mapItemsToFormData = (items: AssistedOrderItem[]) =>
     items.map((item) => ({
       itemType: item.itemType ?? "",
       itemName: item.itemName ?? "",
@@ -103,10 +102,11 @@ const CreateNewOrder = () => {
       itemPrice: item.itemPrice ?? 0,
       remarks: item.remarks ?? "",
       itemWeight: item.itemWeight ?? "",
+      referenceNumber: item.referenceNumber ?? "",
     }));
 
-  const formMethods = useForm<CompleteOrderFormData>({
-    resolver: zodResolver(completeOrderSchema),
+  const formMethods = useForm<AssistedPurchaseCompleteFormData>({
+    resolver: zodResolver(assistedPurchaseCompleteSchema),
     mode: "onBlur",
     reValidateMode: "onChange",
     defaultValues: {
@@ -130,7 +130,7 @@ const CreateNewOrder = () => {
   // ============================================
 
   const extractErrors = (
-    errors: FieldErrors<CompleteOrderFormData>,
+    errors: FieldErrors<AssistedPurchaseCompleteFormData>,
   ): string[] => {
     const messages: string[] = [];
 
@@ -138,6 +138,7 @@ const CreateNewOrder = () => {
       errors.items.forEach((itemError, index) => {
         if (!itemError || typeof itemError !== "object") return;
         Object.entries(itemError).forEach(([field, fieldError]) => {
+          // fix destructuring - needs both field and fieldError
           if (
             fieldError &&
             typeof fieldError === "object" &&
@@ -153,6 +154,7 @@ const CreateNewOrder = () => {
 
     if (errors?.address) {
       Object.entries(errors.address).forEach(([field, fieldError]) => {
+        // fix destructuring here too
         if (
           fieldError &&
           typeof fieldError === "object" &&
@@ -199,6 +201,7 @@ const CreateNewOrder = () => {
             itemPrice: formItem.itemPrice ?? 0,
             remarks: formItem.remarks || "",
             itemWeight: formItem.itemWeight || "",
+            referenceNumber: formItem.referenceNumber || "",
           });
         });
       }, DEBOUNCE_DELAY);
@@ -327,7 +330,7 @@ const CreateNewOrder = () => {
     });
   };
 
-  const onSubmit = async (data: CompleteOrderFormData) => {
+  const onSubmit = async (data: AssistedPurchaseCompleteFormData) => {
     setIsSubmitting(true);
     clearUpdateTimeout();
     await new Promise((resolve) => setTimeout(resolve, CONTEXT_UPDATE_DELAY));
@@ -344,7 +347,7 @@ const CreateNewOrder = () => {
         orderFormData.append("addressId", selectedAddressId);
       }
 
-      const orderResponse = await fetch("/api/shop-n-ship/create", {
+      const orderResponse = await fetch("/api/assisted-purchase/create", {
         method: "POST",
         body: orderFormData,
       });
@@ -377,7 +380,7 @@ const CreateNewOrder = () => {
       }
 
       toast.success("Order and address created successfully!", { id: toastId });
-      router.push("/dashboard/shop-n-ship");
+      router.push("/dashboard/assisted-purchase");
     } catch (error) {
       const errorMessage =
         error instanceof Error ? error.message : "Failed to create order";

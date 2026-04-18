@@ -466,11 +466,6 @@ export type AddressOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type AddressNullableScalarRelationFilter = {
-  is?: Prisma.AddressWhereInput | null
-  isNot?: Prisma.AddressWhereInput | null
-}
-
 export type AddressCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
@@ -519,6 +514,11 @@ export type AddressMinOrderByAggregateInput = {
   updatedAt?: Prisma.SortOrder
 }
 
+export type AddressNullableScalarRelationFilter = {
+  is?: Prisma.AddressWhereInput | null
+  isNot?: Prisma.AddressWhereInput | null
+}
+
 export type AddressCreateNestedManyWithoutUserInput = {
   create?: Prisma.XOR<Prisma.AddressCreateWithoutUserInput, Prisma.AddressUncheckedCreateWithoutUserInput> | Prisma.AddressCreateWithoutUserInput[] | Prisma.AddressUncheckedCreateWithoutUserInput[]
   connectOrCreate?: Prisma.AddressCreateOrConnectWithoutUserInput | Prisma.AddressCreateOrConnectWithoutUserInput[]
@@ -559,6 +559,10 @@ export type AddressUncheckedUpdateManyWithoutUserNestedInput = {
   update?: Prisma.AddressUpdateWithWhereUniqueWithoutUserInput | Prisma.AddressUpdateWithWhereUniqueWithoutUserInput[]
   updateMany?: Prisma.AddressUpdateManyWithWhereWithoutUserInput | Prisma.AddressUpdateManyWithWhereWithoutUserInput[]
   deleteMany?: Prisma.AddressScalarWhereInput | Prisma.AddressScalarWhereInput[]
+}
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
 }
 
 export type AddressCreateNestedOneWithoutShopNShipOrdersInput = {

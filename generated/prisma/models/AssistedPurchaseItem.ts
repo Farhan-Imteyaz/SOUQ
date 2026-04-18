@@ -42,14 +42,13 @@ export type AssistedPurchaseItemMinAggregateOutputType = {
   itemType: string | null
   itemName: string | null
   storeName: string | null
-  storeOrderId: string | null
+  referenceNumber: string | null
   itemColor: string | null
   itemSize: string | null
   itemQuantity: number | null
   itemPrice: number | null
-  remarks: string | null
-  purchaseDate: Date | null
   itemWeight: string | null
+  remarks: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -60,14 +59,13 @@ export type AssistedPurchaseItemMaxAggregateOutputType = {
   itemType: string | null
   itemName: string | null
   storeName: string | null
-  storeOrderId: string | null
+  referenceNumber: string | null
   itemColor: string | null
   itemSize: string | null
   itemQuantity: number | null
   itemPrice: number | null
-  remarks: string | null
-  purchaseDate: Date | null
   itemWeight: string | null
+  remarks: string | null
   createdAt: Date | null
   updatedAt: Date | null
 }
@@ -78,14 +76,13 @@ export type AssistedPurchaseItemCountAggregateOutputType = {
   itemType: number
   itemName: number
   storeName: number
-  storeOrderId: number
+  referenceNumber: number
   itemColor: number
   itemSize: number
   itemQuantity: number
   itemPrice: number
-  remarks: number
-  purchaseDate: number
   itemWeight: number
+  remarks: number
   createdAt: number
   updatedAt: number
   _all: number
@@ -108,14 +105,13 @@ export type AssistedPurchaseItemMinAggregateInputType = {
   itemType?: true
   itemName?: true
   storeName?: true
-  storeOrderId?: true
+  referenceNumber?: true
   itemColor?: true
   itemSize?: true
   itemQuantity?: true
   itemPrice?: true
-  remarks?: true
-  purchaseDate?: true
   itemWeight?: true
+  remarks?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -126,14 +122,13 @@ export type AssistedPurchaseItemMaxAggregateInputType = {
   itemType?: true
   itemName?: true
   storeName?: true
-  storeOrderId?: true
+  referenceNumber?: true
   itemColor?: true
   itemSize?: true
   itemQuantity?: true
   itemPrice?: true
-  remarks?: true
-  purchaseDate?: true
   itemWeight?: true
+  remarks?: true
   createdAt?: true
   updatedAt?: true
 }
@@ -144,14 +139,13 @@ export type AssistedPurchaseItemCountAggregateInputType = {
   itemType?: true
   itemName?: true
   storeName?: true
-  storeOrderId?: true
+  referenceNumber?: true
   itemColor?: true
   itemSize?: true
   itemQuantity?: true
   itemPrice?: true
-  remarks?: true
-  purchaseDate?: true
   itemWeight?: true
+  remarks?: true
   createdAt?: true
   updatedAt?: true
   _all?: true
@@ -249,14 +243,13 @@ export type AssistedPurchaseItemGroupByOutputType = {
   itemType: string
   itemName: string
   storeName: string
-  storeOrderId: string
+  referenceNumber: string | null
   itemColor: string
   itemSize: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date
   itemWeight: string
+  remarks: string
   createdAt: Date
   updatedAt: Date
   _count: AssistedPurchaseItemCountAggregateOutputType | null
@@ -290,18 +283,16 @@ export type AssistedPurchaseItemWhereInput = {
   itemType?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   itemName?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   storeName?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
-  storeOrderId?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
+  referenceNumber?: Prisma.StringNullableFilter<"AssistedPurchaseItem"> | string | null
   itemColor?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   itemSize?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   itemQuantity?: Prisma.IntFilter<"AssistedPurchaseItem"> | number
   itemPrice?: Prisma.FloatFilter<"AssistedPurchaseItem"> | number
-  remarks?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
-  purchaseDate?: Prisma.DateTimeFilter<"AssistedPurchaseItem"> | Date | string
   itemWeight?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
+  remarks?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   createdAt?: Prisma.DateTimeFilter<"AssistedPurchaseItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AssistedPurchaseItem"> | Date | string
   order?: Prisma.XOR<Prisma.AssistedPurchaseOrderScalarRelationFilter, Prisma.AssistedPurchaseOrderWhereInput>
-  images?: Prisma.AssistedPurchaseItemImageListRelationFilter
 }
 
 export type AssistedPurchaseItemOrderByWithRelationInput = {
@@ -310,18 +301,16 @@ export type AssistedPurchaseItemOrderByWithRelationInput = {
   itemType?: Prisma.SortOrder
   itemName?: Prisma.SortOrder
   storeName?: Prisma.SortOrder
-  storeOrderId?: Prisma.SortOrder
+  referenceNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   itemColor?: Prisma.SortOrder
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   order?: Prisma.AssistedPurchaseOrderOrderByWithRelationInput
-  images?: Prisma.AssistedPurchaseItemImageOrderByRelationAggregateInput
 }
 
 export type AssistedPurchaseItemWhereUniqueInput = Prisma.AtLeast<{
@@ -333,18 +322,16 @@ export type AssistedPurchaseItemWhereUniqueInput = Prisma.AtLeast<{
   itemType?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   itemName?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   storeName?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
-  storeOrderId?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
+  referenceNumber?: Prisma.StringNullableFilter<"AssistedPurchaseItem"> | string | null
   itemColor?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   itemSize?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   itemQuantity?: Prisma.IntFilter<"AssistedPurchaseItem"> | number
   itemPrice?: Prisma.FloatFilter<"AssistedPurchaseItem"> | number
-  remarks?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
-  purchaseDate?: Prisma.DateTimeFilter<"AssistedPurchaseItem"> | Date | string
   itemWeight?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
+  remarks?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   createdAt?: Prisma.DateTimeFilter<"AssistedPurchaseItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AssistedPurchaseItem"> | Date | string
   order?: Prisma.XOR<Prisma.AssistedPurchaseOrderScalarRelationFilter, Prisma.AssistedPurchaseOrderWhereInput>
-  images?: Prisma.AssistedPurchaseItemImageListRelationFilter
 }, "id">
 
 export type AssistedPurchaseItemOrderByWithAggregationInput = {
@@ -353,14 +340,13 @@ export type AssistedPurchaseItemOrderByWithAggregationInput = {
   itemType?: Prisma.SortOrder
   itemName?: Prisma.SortOrder
   storeName?: Prisma.SortOrder
-  storeOrderId?: Prisma.SortOrder
+  referenceNumber?: Prisma.SortOrderInput | Prisma.SortOrder
   itemColor?: Prisma.SortOrder
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
   _count?: Prisma.AssistedPurchaseItemCountOrderByAggregateInput
@@ -379,14 +365,13 @@ export type AssistedPurchaseItemScalarWhereWithAggregatesInput = {
   itemType?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseItem"> | string
   itemName?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseItem"> | string
   storeName?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseItem"> | string
-  storeOrderId?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseItem"> | string
+  referenceNumber?: Prisma.StringNullableWithAggregatesFilter<"AssistedPurchaseItem"> | string | null
   itemColor?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseItem"> | string
   itemSize?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseItem"> | string
   itemQuantity?: Prisma.IntWithAggregatesFilter<"AssistedPurchaseItem"> | number
   itemPrice?: Prisma.FloatWithAggregatesFilter<"AssistedPurchaseItem"> | number
-  remarks?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseItem"> | string
-  purchaseDate?: Prisma.DateTimeWithAggregatesFilter<"AssistedPurchaseItem"> | Date | string
   itemWeight?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseItem"> | string
+  remarks?: Prisma.StringWithAggregatesFilter<"AssistedPurchaseItem"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"AssistedPurchaseItem"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"AssistedPurchaseItem"> | Date | string
 }
@@ -396,18 +381,16 @@ export type AssistedPurchaseItemCreateInput = {
   itemType: string
   itemName: string
   storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
+  referenceNumber?: string | null
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
   order: Prisma.AssistedPurchaseOrderCreateNestedOneWithoutItemsInput
-  images?: Prisma.AssistedPurchaseItemImageCreateNestedManyWithoutItemInput
 }
 
 export type AssistedPurchaseItemUncheckedCreateInput = {
@@ -416,17 +399,15 @@ export type AssistedPurchaseItemUncheckedCreateInput = {
   itemType: string
   itemName: string
   storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
+  referenceNumber?: string | null
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  images?: Prisma.AssistedPurchaseItemImageUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type AssistedPurchaseItemUpdateInput = {
@@ -434,18 +415,16 @@ export type AssistedPurchaseItemUpdateInput = {
   itemType?: Prisma.StringFieldUpdateOperationsInput | string
   itemName?: Prisma.StringFieldUpdateOperationsInput | string
   storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemColor?: Prisma.StringFieldUpdateOperationsInput | string
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   order?: Prisma.AssistedPurchaseOrderUpdateOneRequiredWithoutItemsNestedInput
-  images?: Prisma.AssistedPurchaseItemImageUpdateManyWithoutItemNestedInput
 }
 
 export type AssistedPurchaseItemUncheckedUpdateInput = {
@@ -454,17 +433,15 @@ export type AssistedPurchaseItemUncheckedUpdateInput = {
   itemType?: Prisma.StringFieldUpdateOperationsInput | string
   itemName?: Prisma.StringFieldUpdateOperationsInput | string
   storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemColor?: Prisma.StringFieldUpdateOperationsInput | string
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  images?: Prisma.AssistedPurchaseItemImageUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type AssistedPurchaseItemCreateManyInput = {
@@ -473,14 +450,13 @@ export type AssistedPurchaseItemCreateManyInput = {
   itemType: string
   itemName: string
   storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
+  referenceNumber?: string | null
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -490,14 +466,13 @@ export type AssistedPurchaseItemUpdateManyMutationInput = {
   itemType?: Prisma.StringFieldUpdateOperationsInput | string
   itemName?: Prisma.StringFieldUpdateOperationsInput | string
   storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemColor?: Prisma.StringFieldUpdateOperationsInput | string
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -508,14 +483,13 @@ export type AssistedPurchaseItemUncheckedUpdateManyInput = {
   itemType?: Prisma.StringFieldUpdateOperationsInput | string
   itemName?: Prisma.StringFieldUpdateOperationsInput | string
   storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemColor?: Prisma.StringFieldUpdateOperationsInput | string
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -536,14 +510,13 @@ export type AssistedPurchaseItemCountOrderByAggregateInput = {
   itemType?: Prisma.SortOrder
   itemName?: Prisma.SortOrder
   storeName?: Prisma.SortOrder
-  storeOrderId?: Prisma.SortOrder
+  referenceNumber?: Prisma.SortOrder
   itemColor?: Prisma.SortOrder
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -559,14 +532,13 @@ export type AssistedPurchaseItemMaxOrderByAggregateInput = {
   itemType?: Prisma.SortOrder
   itemName?: Prisma.SortOrder
   storeName?: Prisma.SortOrder
-  storeOrderId?: Prisma.SortOrder
+  referenceNumber?: Prisma.SortOrder
   itemColor?: Prisma.SortOrder
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -577,14 +549,13 @@ export type AssistedPurchaseItemMinOrderByAggregateInput = {
   itemType?: Prisma.SortOrder
   itemName?: Prisma.SortOrder
   storeName?: Prisma.SortOrder
-  storeOrderId?: Prisma.SortOrder
+  referenceNumber?: Prisma.SortOrder
   itemColor?: Prisma.SortOrder
   itemSize?: Prisma.SortOrder
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-  remarks?: Prisma.SortOrder
-  purchaseDate?: Prisma.SortOrder
   itemWeight?: Prisma.SortOrder
+  remarks?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
 }
@@ -592,11 +563,6 @@ export type AssistedPurchaseItemMinOrderByAggregateInput = {
 export type AssistedPurchaseItemSumOrderByAggregateInput = {
   itemQuantity?: Prisma.SortOrder
   itemPrice?: Prisma.SortOrder
-}
-
-export type AssistedPurchaseItemScalarRelationFilter = {
-  is?: Prisma.AssistedPurchaseItemWhereInput
-  isNot?: Prisma.AssistedPurchaseItemWhereInput
 }
 
 export type AssistedPurchaseItemCreateNestedManyWithoutOrderInput = {
@@ -641,36 +607,20 @@ export type AssistedPurchaseItemUncheckedUpdateManyWithoutOrderNestedInput = {
   deleteMany?: Prisma.AssistedPurchaseItemScalarWhereInput | Prisma.AssistedPurchaseItemScalarWhereInput[]
 }
 
-export type AssistedPurchaseItemCreateNestedOneWithoutImagesInput = {
-  create?: Prisma.XOR<Prisma.AssistedPurchaseItemCreateWithoutImagesInput, Prisma.AssistedPurchaseItemUncheckedCreateWithoutImagesInput>
-  connectOrCreate?: Prisma.AssistedPurchaseItemCreateOrConnectWithoutImagesInput
-  connect?: Prisma.AssistedPurchaseItemWhereUniqueInput
-}
-
-export type AssistedPurchaseItemUpdateOneRequiredWithoutImagesNestedInput = {
-  create?: Prisma.XOR<Prisma.AssistedPurchaseItemCreateWithoutImagesInput, Prisma.AssistedPurchaseItemUncheckedCreateWithoutImagesInput>
-  connectOrCreate?: Prisma.AssistedPurchaseItemCreateOrConnectWithoutImagesInput
-  upsert?: Prisma.AssistedPurchaseItemUpsertWithoutImagesInput
-  connect?: Prisma.AssistedPurchaseItemWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.AssistedPurchaseItemUpdateToOneWithWhereWithoutImagesInput, Prisma.AssistedPurchaseItemUpdateWithoutImagesInput>, Prisma.AssistedPurchaseItemUncheckedUpdateWithoutImagesInput>
-}
-
 export type AssistedPurchaseItemCreateWithoutOrderInput = {
   id?: string
   itemType: string
   itemName: string
   storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
+  referenceNumber?: string | null
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  images?: Prisma.AssistedPurchaseItemImageCreateNestedManyWithoutItemInput
 }
 
 export type AssistedPurchaseItemUncheckedCreateWithoutOrderInput = {
@@ -678,17 +628,15 @@ export type AssistedPurchaseItemUncheckedCreateWithoutOrderInput = {
   itemType: string
   itemName: string
   storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
+  referenceNumber?: string | null
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
-  images?: Prisma.AssistedPurchaseItemImageUncheckedCreateNestedManyWithoutItemInput
 }
 
 export type AssistedPurchaseItemCreateOrConnectWithoutOrderInput = {
@@ -726,104 +674,15 @@ export type AssistedPurchaseItemScalarWhereInput = {
   itemType?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   itemName?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   storeName?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
-  storeOrderId?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
+  referenceNumber?: Prisma.StringNullableFilter<"AssistedPurchaseItem"> | string | null
   itemColor?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   itemSize?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   itemQuantity?: Prisma.IntFilter<"AssistedPurchaseItem"> | number
   itemPrice?: Prisma.FloatFilter<"AssistedPurchaseItem"> | number
-  remarks?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
-  purchaseDate?: Prisma.DateTimeFilter<"AssistedPurchaseItem"> | Date | string
   itemWeight?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
+  remarks?: Prisma.StringFilter<"AssistedPurchaseItem"> | string
   createdAt?: Prisma.DateTimeFilter<"AssistedPurchaseItem"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"AssistedPurchaseItem"> | Date | string
-}
-
-export type AssistedPurchaseItemCreateWithoutImagesInput = {
-  id?: string
-  itemType: string
-  itemName: string
-  storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
-  itemQuantity: number
-  itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  order: Prisma.AssistedPurchaseOrderCreateNestedOneWithoutItemsInput
-}
-
-export type AssistedPurchaseItemUncheckedCreateWithoutImagesInput = {
-  id?: string
-  orderUuid: string
-  itemType: string
-  itemName: string
-  storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
-  itemQuantity: number
-  itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-}
-
-export type AssistedPurchaseItemCreateOrConnectWithoutImagesInput = {
-  where: Prisma.AssistedPurchaseItemWhereUniqueInput
-  create: Prisma.XOR<Prisma.AssistedPurchaseItemCreateWithoutImagesInput, Prisma.AssistedPurchaseItemUncheckedCreateWithoutImagesInput>
-}
-
-export type AssistedPurchaseItemUpsertWithoutImagesInput = {
-  update: Prisma.XOR<Prisma.AssistedPurchaseItemUpdateWithoutImagesInput, Prisma.AssistedPurchaseItemUncheckedUpdateWithoutImagesInput>
-  create: Prisma.XOR<Prisma.AssistedPurchaseItemCreateWithoutImagesInput, Prisma.AssistedPurchaseItemUncheckedCreateWithoutImagesInput>
-  where?: Prisma.AssistedPurchaseItemWhereInput
-}
-
-export type AssistedPurchaseItemUpdateToOneWithWhereWithoutImagesInput = {
-  where?: Prisma.AssistedPurchaseItemWhereInput
-  data: Prisma.XOR<Prisma.AssistedPurchaseItemUpdateWithoutImagesInput, Prisma.AssistedPurchaseItemUncheckedUpdateWithoutImagesInput>
-}
-
-export type AssistedPurchaseItemUpdateWithoutImagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  itemType?: Prisma.StringFieldUpdateOperationsInput | string
-  itemName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
-  itemColor?: Prisma.StringFieldUpdateOperationsInput | string
-  itemSize?: Prisma.StringFieldUpdateOperationsInput | string
-  itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
-  itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order?: Prisma.AssistedPurchaseOrderUpdateOneRequiredWithoutItemsNestedInput
-}
-
-export type AssistedPurchaseItemUncheckedUpdateWithoutImagesInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderUuid?: Prisma.StringFieldUpdateOperationsInput | string
-  itemType?: Prisma.StringFieldUpdateOperationsInput | string
-  itemName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
-  itemColor?: Prisma.StringFieldUpdateOperationsInput | string
-  itemSize?: Prisma.StringFieldUpdateOperationsInput | string
-  itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
-  itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type AssistedPurchaseItemCreateManyOrderInput = {
@@ -831,14 +690,13 @@ export type AssistedPurchaseItemCreateManyOrderInput = {
   itemType: string
   itemName: string
   storeName: string
-  storeOrderId: string
-  itemColor: string
-  itemSize: string
+  referenceNumber?: string | null
+  itemColor?: string
+  itemSize?: string
   itemQuantity: number
   itemPrice: number
-  remarks: string
-  purchaseDate: Date | string
-  itemWeight: string
+  itemWeight?: string
+  remarks?: string
   createdAt?: Date | string
   updatedAt?: Date | string
 }
@@ -848,17 +706,15 @@ export type AssistedPurchaseItemUpdateWithoutOrderInput = {
   itemType?: Prisma.StringFieldUpdateOperationsInput | string
   itemName?: Prisma.StringFieldUpdateOperationsInput | string
   storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemColor?: Prisma.StringFieldUpdateOperationsInput | string
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  images?: Prisma.AssistedPurchaseItemImageUpdateManyWithoutItemNestedInput
 }
 
 export type AssistedPurchaseItemUncheckedUpdateWithoutOrderInput = {
@@ -866,17 +722,15 @@ export type AssistedPurchaseItemUncheckedUpdateWithoutOrderInput = {
   itemType?: Prisma.StringFieldUpdateOperationsInput | string
   itemName?: Prisma.StringFieldUpdateOperationsInput | string
   storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemColor?: Prisma.StringFieldUpdateOperationsInput | string
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  images?: Prisma.AssistedPurchaseItemImageUncheckedUpdateManyWithoutItemNestedInput
 }
 
 export type AssistedPurchaseItemUncheckedUpdateManyWithoutOrderInput = {
@@ -884,47 +738,17 @@ export type AssistedPurchaseItemUncheckedUpdateManyWithoutOrderInput = {
   itemType?: Prisma.StringFieldUpdateOperationsInput | string
   itemName?: Prisma.StringFieldUpdateOperationsInput | string
   storeName?: Prisma.StringFieldUpdateOperationsInput | string
-  storeOrderId?: Prisma.StringFieldUpdateOperationsInput | string
+  referenceNumber?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   itemColor?: Prisma.StringFieldUpdateOperationsInput | string
   itemSize?: Prisma.StringFieldUpdateOperationsInput | string
   itemQuantity?: Prisma.IntFieldUpdateOperationsInput | number
   itemPrice?: Prisma.FloatFieldUpdateOperationsInput | number
-  remarks?: Prisma.StringFieldUpdateOperationsInput | string
-  purchaseDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   itemWeight?: Prisma.StringFieldUpdateOperationsInput | string
+  remarks?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-
-/**
- * Count Type AssistedPurchaseItemCountOutputType
- */
-
-export type AssistedPurchaseItemCountOutputType = {
-  images: number
-}
-
-export type AssistedPurchaseItemCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  images?: boolean | AssistedPurchaseItemCountOutputTypeCountImagesArgs
-}
-
-/**
- * AssistedPurchaseItemCountOutputType without action
- */
-export type AssistedPurchaseItemCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AssistedPurchaseItemCountOutputType
-   */
-  select?: Prisma.AssistedPurchaseItemCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * AssistedPurchaseItemCountOutputType without action
- */
-export type AssistedPurchaseItemCountOutputTypeCountImagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AssistedPurchaseItemImageWhereInput
-}
 
 
 export type AssistedPurchaseItemSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -933,19 +757,16 @@ export type AssistedPurchaseItemSelect<ExtArgs extends runtime.Types.Extensions.
   itemType?: boolean
   itemName?: boolean
   storeName?: boolean
-  storeOrderId?: boolean
+  referenceNumber?: boolean
   itemColor?: boolean
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   order?: boolean | Prisma.AssistedPurchaseOrderDefaultArgs<ExtArgs>
-  images?: boolean | Prisma.AssistedPurchaseItem$imagesArgs<ExtArgs>
-  _count?: boolean | Prisma.AssistedPurchaseItemCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assistedPurchaseItem"]>
 
 export type AssistedPurchaseItemSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -954,14 +775,13 @@ export type AssistedPurchaseItemSelectCreateManyAndReturn<ExtArgs extends runtim
   itemType?: boolean
   itemName?: boolean
   storeName?: boolean
-  storeOrderId?: boolean
+  referenceNumber?: boolean
   itemColor?: boolean
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   order?: boolean | Prisma.AssistedPurchaseOrderDefaultArgs<ExtArgs>
@@ -973,14 +793,13 @@ export type AssistedPurchaseItemSelectUpdateManyAndReturn<ExtArgs extends runtim
   itemType?: boolean
   itemName?: boolean
   storeName?: boolean
-  storeOrderId?: boolean
+  referenceNumber?: boolean
   itemColor?: boolean
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
   order?: boolean | Prisma.AssistedPurchaseOrderDefaultArgs<ExtArgs>
@@ -992,23 +811,20 @@ export type AssistedPurchaseItemSelectScalar = {
   itemType?: boolean
   itemName?: boolean
   storeName?: boolean
-  storeOrderId?: boolean
+  referenceNumber?: boolean
   itemColor?: boolean
   itemSize?: boolean
   itemQuantity?: boolean
   itemPrice?: boolean
-  remarks?: boolean
-  purchaseDate?: boolean
   itemWeight?: boolean
+  remarks?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type AssistedPurchaseItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderUuid" | "itemType" | "itemName" | "storeName" | "storeOrderId" | "itemColor" | "itemSize" | "itemQuantity" | "itemPrice" | "remarks" | "purchaseDate" | "itemWeight" | "createdAt" | "updatedAt", ExtArgs["result"]["assistedPurchaseItem"]>
+export type AssistedPurchaseItemOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderUuid" | "itemType" | "itemName" | "storeName" | "referenceNumber" | "itemColor" | "itemSize" | "itemQuantity" | "itemPrice" | "itemWeight" | "remarks" | "createdAt" | "updatedAt", ExtArgs["result"]["assistedPurchaseItem"]>
 export type AssistedPurchaseItemInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   order?: boolean | Prisma.AssistedPurchaseOrderDefaultArgs<ExtArgs>
-  images?: boolean | Prisma.AssistedPurchaseItem$imagesArgs<ExtArgs>
-  _count?: boolean | Prisma.AssistedPurchaseItemCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AssistedPurchaseItemIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   order?: boolean | Prisma.AssistedPurchaseOrderDefaultArgs<ExtArgs>
@@ -1021,7 +837,6 @@ export type $AssistedPurchaseItemPayload<ExtArgs extends runtime.Types.Extension
   name: "AssistedPurchaseItem"
   objects: {
     order: Prisma.$AssistedPurchaseOrderPayload<ExtArgs>
-    images: Prisma.$AssistedPurchaseItemImagePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1029,14 +844,13 @@ export type $AssistedPurchaseItemPayload<ExtArgs extends runtime.Types.Extension
     itemType: string
     itemName: string
     storeName: string
-    storeOrderId: string
+    referenceNumber: string | null
     itemColor: string
     itemSize: string
     itemQuantity: number
     itemPrice: number
-    remarks: string
-    purchaseDate: Date
     itemWeight: string
+    remarks: string
     createdAt: Date
     updatedAt: Date
   }, ExtArgs["result"]["assistedPurchaseItem"]>
@@ -1434,7 +1248,6 @@ readonly fields: AssistedPurchaseItemFieldRefs;
 export interface Prisma__AssistedPurchaseItemClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   order<T extends Prisma.AssistedPurchaseOrderDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssistedPurchaseOrderDefaultArgs<ExtArgs>>): Prisma.Prisma__AssistedPurchaseOrderClient<runtime.Types.Result.GetResult<Prisma.$AssistedPurchaseOrderPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  images<T extends Prisma.AssistedPurchaseItem$imagesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AssistedPurchaseItem$imagesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssistedPurchaseItemImagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1469,14 +1282,13 @@ export interface AssistedPurchaseItemFieldRefs {
   readonly itemType: Prisma.FieldRef<"AssistedPurchaseItem", 'String'>
   readonly itemName: Prisma.FieldRef<"AssistedPurchaseItem", 'String'>
   readonly storeName: Prisma.FieldRef<"AssistedPurchaseItem", 'String'>
-  readonly storeOrderId: Prisma.FieldRef<"AssistedPurchaseItem", 'String'>
+  readonly referenceNumber: Prisma.FieldRef<"AssistedPurchaseItem", 'String'>
   readonly itemColor: Prisma.FieldRef<"AssistedPurchaseItem", 'String'>
   readonly itemSize: Prisma.FieldRef<"AssistedPurchaseItem", 'String'>
   readonly itemQuantity: Prisma.FieldRef<"AssistedPurchaseItem", 'Int'>
   readonly itemPrice: Prisma.FieldRef<"AssistedPurchaseItem", 'Float'>
-  readonly remarks: Prisma.FieldRef<"AssistedPurchaseItem", 'String'>
-  readonly purchaseDate: Prisma.FieldRef<"AssistedPurchaseItem", 'DateTime'>
   readonly itemWeight: Prisma.FieldRef<"AssistedPurchaseItem", 'String'>
+  readonly remarks: Prisma.FieldRef<"AssistedPurchaseItem", 'String'>
   readonly createdAt: Prisma.FieldRef<"AssistedPurchaseItem", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"AssistedPurchaseItem", 'DateTime'>
 }
@@ -1872,30 +1684,6 @@ export type AssistedPurchaseItemDeleteManyArgs<ExtArgs extends runtime.Types.Ext
    * Limit how many AssistedPurchaseItems to delete.
    */
   limit?: number
-}
-
-/**
- * AssistedPurchaseItem.images
- */
-export type AssistedPurchaseItem$imagesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the AssistedPurchaseItemImage
-   */
-  select?: Prisma.AssistedPurchaseItemImageSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the AssistedPurchaseItemImage
-   */
-  omit?: Prisma.AssistedPurchaseItemImageOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.AssistedPurchaseItemImageInclude<ExtArgs> | null
-  where?: Prisma.AssistedPurchaseItemImageWhereInput
-  orderBy?: Prisma.AssistedPurchaseItemImageOrderByWithRelationInput | Prisma.AssistedPurchaseItemImageOrderByWithRelationInput[]
-  cursor?: Prisma.AssistedPurchaseItemImageWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.AssistedPurchaseItemImageScalarFieldEnum | Prisma.AssistedPurchaseItemImageScalarFieldEnum[]
 }
 
 /**

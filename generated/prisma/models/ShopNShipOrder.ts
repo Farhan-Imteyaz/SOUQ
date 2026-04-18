@@ -40,45 +40,45 @@ export type ShopNShipOrderMinAggregateOutputType = {
   id: string | null
   orderId: string | null
   userId: string | null
+  addressId: string | null
   trackingNumber: string | null
   totalAmount: number | null
   totalItems: number | null
-  status: string | null
-  addressId: string | null
+  status: $Enums.OrderStatus | null
+  orderType: $Enums.OrderType | null
+  courierType: $Enums.CourierType | null
   createdAt: Date | null
   updatedAt: Date | null
-  order_type: string | null
-  courier_Type: string | null
 }
 
 export type ShopNShipOrderMaxAggregateOutputType = {
   id: string | null
   orderId: string | null
   userId: string | null
+  addressId: string | null
   trackingNumber: string | null
   totalAmount: number | null
   totalItems: number | null
-  status: string | null
-  addressId: string | null
+  status: $Enums.OrderStatus | null
+  orderType: $Enums.OrderType | null
+  courierType: $Enums.CourierType | null
   createdAt: Date | null
   updatedAt: Date | null
-  order_type: string | null
-  courier_Type: string | null
 }
 
 export type ShopNShipOrderCountAggregateOutputType = {
   id: number
   orderId: number
   userId: number
+  addressId: number
   trackingNumber: number
   totalAmount: number
   totalItems: number
   status: number
-  addressId: number
+  orderType: number
+  courierType: number
   createdAt: number
   updatedAt: number
-  order_type: number
-  courier_Type: number
   _all: number
 }
 
@@ -97,45 +97,45 @@ export type ShopNShipOrderMinAggregateInputType = {
   id?: true
   orderId?: true
   userId?: true
+  addressId?: true
   trackingNumber?: true
   totalAmount?: true
   totalItems?: true
   status?: true
-  addressId?: true
+  orderType?: true
+  courierType?: true
   createdAt?: true
   updatedAt?: true
-  order_type?: true
-  courier_Type?: true
 }
 
 export type ShopNShipOrderMaxAggregateInputType = {
   id?: true
   orderId?: true
   userId?: true
+  addressId?: true
   trackingNumber?: true
   totalAmount?: true
   totalItems?: true
   status?: true
-  addressId?: true
+  orderType?: true
+  courierType?: true
   createdAt?: true
   updatedAt?: true
-  order_type?: true
-  courier_Type?: true
 }
 
 export type ShopNShipOrderCountAggregateInputType = {
   id?: true
   orderId?: true
   userId?: true
+  addressId?: true
   trackingNumber?: true
   totalAmount?: true
   totalItems?: true
   status?: true
-  addressId?: true
+  orderType?: true
+  courierType?: true
   createdAt?: true
   updatedAt?: true
-  order_type?: true
-  courier_Type?: true
   _all?: true
 }
 
@@ -229,15 +229,15 @@ export type ShopNShipOrderGroupByOutputType = {
   id: string
   orderId: string
   userId: string
+  addressId: string | null
   trackingNumber: string
   totalAmount: number
   totalItems: number
-  status: string
-  addressId: string | null
+  status: $Enums.OrderStatus
+  orderType: $Enums.OrderType
+  courierType: $Enums.CourierType
   createdAt: Date
   updatedAt: Date
-  order_type: string
-  courier_Type: string
   _count: ShopNShipOrderCountAggregateOutputType | null
   _avg: ShopNShipOrderAvgAggregateOutputType | null
   _sum: ShopNShipOrderSumAggregateOutputType | null
@@ -267,15 +267,15 @@ export type ShopNShipOrderWhereInput = {
   id?: Prisma.UuidFilter<"ShopNShipOrder"> | string
   orderId?: Prisma.StringFilter<"ShopNShipOrder"> | string
   userId?: Prisma.UuidFilter<"ShopNShipOrder"> | string
+  addressId?: Prisma.UuidNullableFilter<"ShopNShipOrder"> | string | null
   trackingNumber?: Prisma.StringFilter<"ShopNShipOrder"> | string
   totalAmount?: Prisma.FloatFilter<"ShopNShipOrder"> | number
   totalItems?: Prisma.IntFilter<"ShopNShipOrder"> | number
-  status?: Prisma.StringFilter<"ShopNShipOrder"> | string
-  addressId?: Prisma.UuidNullableFilter<"ShopNShipOrder"> | string | null
+  status?: Prisma.EnumOrderStatusFilter<"ShopNShipOrder"> | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFilter<"ShopNShipOrder"> | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFilter<"ShopNShipOrder"> | $Enums.CourierType
   createdAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
-  order_type?: Prisma.StringFilter<"ShopNShipOrder"> | string
-  courier_Type?: Prisma.StringFilter<"ShopNShipOrder"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   address?: Prisma.XOR<Prisma.AddressNullableScalarRelationFilter, Prisma.AddressWhereInput> | null
   items?: Prisma.ShopNShipItemListRelationFilter
@@ -285,15 +285,15 @@ export type ShopNShipOrderOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
+  orderType?: Prisma.SortOrder
+  courierType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  order_type?: Prisma.SortOrder
-  courier_Type?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   address?: Prisma.AddressOrderByWithRelationInput
   items?: Prisma.ShopNShipItemOrderByRelationAggregateInput
@@ -306,15 +306,15 @@ export type ShopNShipOrderWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ShopNShipOrderWhereInput[]
   NOT?: Prisma.ShopNShipOrderWhereInput | Prisma.ShopNShipOrderWhereInput[]
   userId?: Prisma.UuidFilter<"ShopNShipOrder"> | string
+  addressId?: Prisma.UuidNullableFilter<"ShopNShipOrder"> | string | null
   trackingNumber?: Prisma.StringFilter<"ShopNShipOrder"> | string
   totalAmount?: Prisma.FloatFilter<"ShopNShipOrder"> | number
   totalItems?: Prisma.IntFilter<"ShopNShipOrder"> | number
-  status?: Prisma.StringFilter<"ShopNShipOrder"> | string
-  addressId?: Prisma.UuidNullableFilter<"ShopNShipOrder"> | string | null
+  status?: Prisma.EnumOrderStatusFilter<"ShopNShipOrder"> | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFilter<"ShopNShipOrder"> | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFilter<"ShopNShipOrder"> | $Enums.CourierType
   createdAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
-  order_type?: Prisma.StringFilter<"ShopNShipOrder"> | string
-  courier_Type?: Prisma.StringFilter<"ShopNShipOrder"> | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   address?: Prisma.XOR<Prisma.AddressNullableScalarRelationFilter, Prisma.AddressWhereInput> | null
   items?: Prisma.ShopNShipItemListRelationFilter
@@ -324,15 +324,15 @@ export type ShopNShipOrderOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrderInput | Prisma.SortOrder
+  orderType?: Prisma.SortOrder
+  courierType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  order_type?: Prisma.SortOrder
-  courier_Type?: Prisma.SortOrder
   _count?: Prisma.ShopNShipOrderCountOrderByAggregateInput
   _avg?: Prisma.ShopNShipOrderAvgOrderByAggregateInput
   _max?: Prisma.ShopNShipOrderMaxOrderByAggregateInput
@@ -347,28 +347,28 @@ export type ShopNShipOrderScalarWhereWithAggregatesInput = {
   id?: Prisma.UuidWithAggregatesFilter<"ShopNShipOrder"> | string
   orderId?: Prisma.StringWithAggregatesFilter<"ShopNShipOrder"> | string
   userId?: Prisma.UuidWithAggregatesFilter<"ShopNShipOrder"> | string
+  addressId?: Prisma.UuidNullableWithAggregatesFilter<"ShopNShipOrder"> | string | null
   trackingNumber?: Prisma.StringWithAggregatesFilter<"ShopNShipOrder"> | string
   totalAmount?: Prisma.FloatWithAggregatesFilter<"ShopNShipOrder"> | number
   totalItems?: Prisma.IntWithAggregatesFilter<"ShopNShipOrder"> | number
-  status?: Prisma.StringWithAggregatesFilter<"ShopNShipOrder"> | string
-  addressId?: Prisma.UuidNullableWithAggregatesFilter<"ShopNShipOrder"> | string | null
+  status?: Prisma.EnumOrderStatusWithAggregatesFilter<"ShopNShipOrder"> | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeWithAggregatesFilter<"ShopNShipOrder"> | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeWithAggregatesFilter<"ShopNShipOrder"> | $Enums.CourierType
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"ShopNShipOrder"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"ShopNShipOrder"> | Date | string
-  order_type?: Prisma.StringWithAggregatesFilter<"ShopNShipOrder"> | string
-  courier_Type?: Prisma.StringWithAggregatesFilter<"ShopNShipOrder"> | string
 }
 
 export type ShopNShipOrderCreateInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
   createdAt?: Date | string
   updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
   user: Prisma.UserCreateNestedOneWithoutShopNShipOrdersInput
   address?: Prisma.AddressCreateNestedOneWithoutShopNShipOrdersInput
   items?: Prisma.ShopNShipItemCreateNestedManyWithoutOrderInput
@@ -378,15 +378,15 @@ export type ShopNShipOrderUncheckedCreateInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
   createdAt?: Date | string
   updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
   items?: Prisma.ShopNShipItemUncheckedCreateNestedManyWithoutOrderInput
 }
 
@@ -396,11 +396,11 @@ export type ShopNShipOrderUpdateInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutShopNShipOrdersNestedInput
   address?: Prisma.AddressUpdateOneWithoutShopNShipOrdersNestedInput
   items?: Prisma.ShopNShipItemUpdateManyWithoutOrderNestedInput
@@ -410,15 +410,15 @@ export type ShopNShipOrderUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   items?: Prisma.ShopNShipItemUncheckedUpdateManyWithoutOrderNestedInput
 }
 
@@ -426,15 +426,15 @@ export type ShopNShipOrderCreateManyInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
   createdAt?: Date | string
   updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
 }
 
 export type ShopNShipOrderUpdateManyMutationInput = {
@@ -443,26 +443,26 @@ export type ShopNShipOrderUpdateManyMutationInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ShopNShipOrderUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ShopNShipOrderListRelationFilter = {
@@ -479,15 +479,15 @@ export type ShopNShipOrderCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
+  orderType?: Prisma.SortOrder
+  courierType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  order_type?: Prisma.SortOrder
-  courier_Type?: Prisma.SortOrder
 }
 
 export type ShopNShipOrderAvgOrderByAggregateInput = {
@@ -499,30 +499,30 @@ export type ShopNShipOrderMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
+  orderType?: Prisma.SortOrder
+  courierType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  order_type?: Prisma.SortOrder
-  courier_Type?: Prisma.SortOrder
 }
 
 export type ShopNShipOrderMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   orderId?: Prisma.SortOrder
   userId?: Prisma.SortOrder
+  addressId?: Prisma.SortOrder
   trackingNumber?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   totalItems?: Prisma.SortOrder
   status?: Prisma.SortOrder
-  addressId?: Prisma.SortOrder
+  orderType?: Prisma.SortOrder
+  courierType?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  order_type?: Prisma.SortOrder
-  courier_Type?: Prisma.SortOrder
 }
 
 export type ShopNShipOrderSumOrderByAggregateInput = {
@@ -577,32 +577,6 @@ export type ShopNShipOrderUncheckedUpdateManyWithoutUserNestedInput = {
   deleteMany?: Prisma.ShopNShipOrderScalarWhereInput | Prisma.ShopNShipOrderScalarWhereInput[]
 }
 
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
-export type ShopNShipOrderCreateNestedOneWithoutItemsInput = {
-  create?: Prisma.XOR<Prisma.ShopNShipOrderCreateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.ShopNShipOrderCreateOrConnectWithoutItemsInput
-  connect?: Prisma.ShopNShipOrderWhereUniqueInput
-}
-
-export type ShopNShipOrderUpdateOneRequiredWithoutItemsNestedInput = {
-  create?: Prisma.XOR<Prisma.ShopNShipOrderCreateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedCreateWithoutItemsInput>
-  connectOrCreate?: Prisma.ShopNShipOrderCreateOrConnectWithoutItemsInput
-  upsert?: Prisma.ShopNShipOrderUpsertWithoutItemsInput
-  connect?: Prisma.ShopNShipOrderWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ShopNShipOrderUpdateToOneWithWhereWithoutItemsInput, Prisma.ShopNShipOrderUpdateWithoutItemsInput>, Prisma.ShopNShipOrderUncheckedUpdateWithoutItemsInput>
-}
-
 export type ShopNShipOrderCreateNestedManyWithoutAddressInput = {
   create?: Prisma.XOR<Prisma.ShopNShipOrderCreateWithoutAddressInput, Prisma.ShopNShipOrderUncheckedCreateWithoutAddressInput> | Prisma.ShopNShipOrderCreateWithoutAddressInput[] | Prisma.ShopNShipOrderUncheckedCreateWithoutAddressInput[]
   connectOrCreate?: Prisma.ShopNShipOrderCreateOrConnectWithoutAddressInput | Prisma.ShopNShipOrderCreateOrConnectWithoutAddressInput[]
@@ -645,17 +619,51 @@ export type ShopNShipOrderUncheckedUpdateManyWithoutAddressNestedInput = {
   deleteMany?: Prisma.ShopNShipOrderScalarWhereInput | Prisma.ShopNShipOrderScalarWhereInput[]
 }
 
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
+export type EnumOrderStatusFieldUpdateOperationsInput = {
+  set?: $Enums.OrderStatus
+}
+
+export type EnumOrderTypeFieldUpdateOperationsInput = {
+  set?: $Enums.OrderType
+}
+
+export type EnumCourierTypeFieldUpdateOperationsInput = {
+  set?: $Enums.CourierType
+}
+
+export type ShopNShipOrderCreateNestedOneWithoutItemsInput = {
+  create?: Prisma.XOR<Prisma.ShopNShipOrderCreateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.ShopNShipOrderCreateOrConnectWithoutItemsInput
+  connect?: Prisma.ShopNShipOrderWhereUniqueInput
+}
+
+export type ShopNShipOrderUpdateOneRequiredWithoutItemsNestedInput = {
+  create?: Prisma.XOR<Prisma.ShopNShipOrderCreateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedCreateWithoutItemsInput>
+  connectOrCreate?: Prisma.ShopNShipOrderCreateOrConnectWithoutItemsInput
+  upsert?: Prisma.ShopNShipOrderUpsertWithoutItemsInput
+  connect?: Prisma.ShopNShipOrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ShopNShipOrderUpdateToOneWithWhereWithoutItemsInput, Prisma.ShopNShipOrderUpdateWithoutItemsInput>, Prisma.ShopNShipOrderUncheckedUpdateWithoutItemsInput>
+}
+
 export type ShopNShipOrderCreateWithoutUserInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
   createdAt?: Date | string
   updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
   address?: Prisma.AddressCreateNestedOneWithoutShopNShipOrdersInput
   items?: Prisma.ShopNShipItemCreateNestedManyWithoutOrderInput
 }
@@ -663,15 +671,15 @@ export type ShopNShipOrderCreateWithoutUserInput = {
 export type ShopNShipOrderUncheckedCreateWithoutUserInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
   createdAt?: Date | string
   updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
   items?: Prisma.ShopNShipItemUncheckedCreateNestedManyWithoutOrderInput
 }
 
@@ -708,104 +716,28 @@ export type ShopNShipOrderScalarWhereInput = {
   id?: Prisma.UuidFilter<"ShopNShipOrder"> | string
   orderId?: Prisma.StringFilter<"ShopNShipOrder"> | string
   userId?: Prisma.UuidFilter<"ShopNShipOrder"> | string
+  addressId?: Prisma.UuidNullableFilter<"ShopNShipOrder"> | string | null
   trackingNumber?: Prisma.StringFilter<"ShopNShipOrder"> | string
   totalAmount?: Prisma.FloatFilter<"ShopNShipOrder"> | number
   totalItems?: Prisma.IntFilter<"ShopNShipOrder"> | number
-  status?: Prisma.StringFilter<"ShopNShipOrder"> | string
-  addressId?: Prisma.UuidNullableFilter<"ShopNShipOrder"> | string | null
+  status?: Prisma.EnumOrderStatusFilter<"ShopNShipOrder"> | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFilter<"ShopNShipOrder"> | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFilter<"ShopNShipOrder"> | $Enums.CourierType
   createdAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"ShopNShipOrder"> | Date | string
-  order_type?: Prisma.StringFilter<"ShopNShipOrder"> | string
-  courier_Type?: Prisma.StringFilter<"ShopNShipOrder"> | string
-}
-
-export type ShopNShipOrderCreateWithoutItemsInput = {
-  id?: string
-  orderId: string
-  trackingNumber: string
-  totalAmount: number
-  totalItems: number
-  status?: string
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
-  user: Prisma.UserCreateNestedOneWithoutShopNShipOrdersInput
-  address?: Prisma.AddressCreateNestedOneWithoutShopNShipOrdersInput
-}
-
-export type ShopNShipOrderUncheckedCreateWithoutItemsInput = {
-  id?: string
-  orderId: string
-  userId: string
-  trackingNumber: string
-  totalAmount: number
-  totalItems: number
-  status?: string
-  addressId?: string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
-}
-
-export type ShopNShipOrderCreateOrConnectWithoutItemsInput = {
-  where: Prisma.ShopNShipOrderWhereUniqueInput
-  create: Prisma.XOR<Prisma.ShopNShipOrderCreateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedCreateWithoutItemsInput>
-}
-
-export type ShopNShipOrderUpsertWithoutItemsInput = {
-  update: Prisma.XOR<Prisma.ShopNShipOrderUpdateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedUpdateWithoutItemsInput>
-  create: Prisma.XOR<Prisma.ShopNShipOrderCreateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedCreateWithoutItemsInput>
-  where?: Prisma.ShopNShipOrderWhereInput
-}
-
-export type ShopNShipOrderUpdateToOneWithWhereWithoutItemsInput = {
-  where?: Prisma.ShopNShipOrderWhereInput
-  data: Prisma.XOR<Prisma.ShopNShipOrderUpdateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedUpdateWithoutItemsInput>
-}
-
-export type ShopNShipOrderUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
-  user?: Prisma.UserUpdateOneRequiredWithoutShopNShipOrdersNestedInput
-  address?: Prisma.AddressUpdateOneWithoutShopNShipOrdersNestedInput
-}
-
-export type ShopNShipOrderUncheckedUpdateWithoutItemsInput = {
-  id?: Prisma.StringFieldUpdateOperationsInput | string
-  orderId?: Prisma.StringFieldUpdateOperationsInput | string
-  userId?: Prisma.StringFieldUpdateOperationsInput | string
-  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
-  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
-  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ShopNShipOrderCreateWithoutAddressInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
   createdAt?: Date | string
   updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
   user: Prisma.UserCreateNestedOneWithoutShopNShipOrdersInput
   items?: Prisma.ShopNShipItemCreateNestedManyWithoutOrderInput
 }
@@ -814,14 +746,14 @@ export type ShopNShipOrderUncheckedCreateWithoutAddressInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
   createdAt?: Date | string
   updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
   items?: Prisma.ShopNShipItemUncheckedCreateNestedManyWithoutOrderInput
 }
 
@@ -851,18 +783,94 @@ export type ShopNShipOrderUpdateManyWithWhereWithoutAddressInput = {
   data: Prisma.XOR<Prisma.ShopNShipOrderUpdateManyMutationInput, Prisma.ShopNShipOrderUncheckedUpdateManyWithoutAddressInput>
 }
 
+export type ShopNShipOrderCreateWithoutItemsInput = {
+  id?: string
+  orderId: string
+  trackingNumber?: string
+  totalAmount: number
+  totalItems: number
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutShopNShipOrdersInput
+  address?: Prisma.AddressCreateNestedOneWithoutShopNShipOrdersInput
+}
+
+export type ShopNShipOrderUncheckedCreateWithoutItemsInput = {
+  id?: string
+  orderId: string
+  userId: string
+  addressId?: string | null
+  trackingNumber?: string
+  totalAmount: number
+  totalItems: number
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ShopNShipOrderCreateOrConnectWithoutItemsInput = {
+  where: Prisma.ShopNShipOrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.ShopNShipOrderCreateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedCreateWithoutItemsInput>
+}
+
+export type ShopNShipOrderUpsertWithoutItemsInput = {
+  update: Prisma.XOR<Prisma.ShopNShipOrderUpdateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedUpdateWithoutItemsInput>
+  create: Prisma.XOR<Prisma.ShopNShipOrderCreateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedCreateWithoutItemsInput>
+  where?: Prisma.ShopNShipOrderWhereInput
+}
+
+export type ShopNShipOrderUpdateToOneWithWhereWithoutItemsInput = {
+  where?: Prisma.ShopNShipOrderWhereInput
+  data: Prisma.XOR<Prisma.ShopNShipOrderUpdateWithoutItemsInput, Prisma.ShopNShipOrderUncheckedUpdateWithoutItemsInput>
+}
+
+export type ShopNShipOrderUpdateWithoutItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutShopNShipOrdersNestedInput
+  address?: Prisma.AddressUpdateOneWithoutShopNShipOrdersNestedInput
+}
+
+export type ShopNShipOrderUncheckedUpdateWithoutItemsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
+  totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
+  totalItems?: Prisma.IntFieldUpdateOperationsInput | number
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type ShopNShipOrderCreateManyUserInput = {
   id?: string
   orderId: string
-  trackingNumber: string
+  addressId?: string | null
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
-  addressId?: string | null
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
   createdAt?: Date | string
   updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
 }
 
 export type ShopNShipOrderUpdateWithoutUserInput = {
@@ -871,11 +879,11 @@ export type ShopNShipOrderUpdateWithoutUserInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.AddressUpdateOneWithoutShopNShipOrdersNestedInput
   items?: Prisma.ShopNShipItemUpdateManyWithoutOrderNestedInput
 }
@@ -883,44 +891,44 @@ export type ShopNShipOrderUpdateWithoutUserInput = {
 export type ShopNShipOrderUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   items?: Prisma.ShopNShipItemUncheckedUpdateManyWithoutOrderNestedInput
 }
 
 export type ShopNShipOrderUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   orderId?: Prisma.StringFieldUpdateOperationsInput | string
+  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
-  addressId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ShopNShipOrderCreateManyAddressInput = {
   id?: string
   orderId: string
   userId: string
-  trackingNumber: string
+  trackingNumber?: string
   totalAmount: number
   totalItems: number
-  status?: string
+  status?: $Enums.OrderStatus
+  orderType?: $Enums.OrderType
+  courierType?: $Enums.CourierType
   createdAt?: Date | string
   updatedAt?: Date | string
-  order_type?: string
-  courier_Type?: string
 }
 
 export type ShopNShipOrderUpdateWithoutAddressInput = {
@@ -929,11 +937,11 @@ export type ShopNShipOrderUpdateWithoutAddressInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   user?: Prisma.UserUpdateOneRequiredWithoutShopNShipOrdersNestedInput
   items?: Prisma.ShopNShipItemUpdateManyWithoutOrderNestedInput
 }
@@ -945,11 +953,11 @@ export type ShopNShipOrderUncheckedUpdateWithoutAddressInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
   items?: Prisma.ShopNShipItemUncheckedUpdateManyWithoutOrderNestedInput
 }
 
@@ -960,11 +968,11 @@ export type ShopNShipOrderUncheckedUpdateManyWithoutAddressInput = {
   trackingNumber?: Prisma.StringFieldUpdateOperationsInput | string
   totalAmount?: Prisma.FloatFieldUpdateOperationsInput | number
   totalItems?: Prisma.IntFieldUpdateOperationsInput | number
-  status?: Prisma.StringFieldUpdateOperationsInput | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  orderType?: Prisma.EnumOrderTypeFieldUpdateOperationsInput | $Enums.OrderType
+  courierType?: Prisma.EnumCourierTypeFieldUpdateOperationsInput | $Enums.CourierType
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  order_type?: Prisma.StringFieldUpdateOperationsInput | string
-  courier_Type?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -1002,15 +1010,15 @@ export type ShopNShipOrderSelect<ExtArgs extends runtime.Types.Extensions.Intern
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
+  orderType?: boolean
+  courierType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  order_type?: boolean
-  courier_Type?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.ShopNShipOrder$addressArgs<ExtArgs>
   items?: boolean | Prisma.ShopNShipOrder$itemsArgs<ExtArgs>
@@ -1021,15 +1029,15 @@ export type ShopNShipOrderSelectCreateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
+  orderType?: boolean
+  courierType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  order_type?: boolean
-  courier_Type?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.ShopNShipOrder$addressArgs<ExtArgs>
 }, ExtArgs["result"]["shopNShipOrder"]>
@@ -1038,15 +1046,15 @@ export type ShopNShipOrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Type
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
+  orderType?: boolean
+  courierType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  order_type?: boolean
-  courier_Type?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.ShopNShipOrder$addressArgs<ExtArgs>
 }, ExtArgs["result"]["shopNShipOrder"]>
@@ -1055,18 +1063,18 @@ export type ShopNShipOrderSelectScalar = {
   id?: boolean
   orderId?: boolean
   userId?: boolean
+  addressId?: boolean
   trackingNumber?: boolean
   totalAmount?: boolean
   totalItems?: boolean
   status?: boolean
-  addressId?: boolean
+  orderType?: boolean
+  courierType?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  order_type?: boolean
-  courier_Type?: boolean
 }
 
-export type ShopNShipOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "userId" | "trackingNumber" | "totalAmount" | "totalItems" | "status" | "addressId" | "createdAt" | "updatedAt" | "order_type" | "courier_Type", ExtArgs["result"]["shopNShipOrder"]>
+export type ShopNShipOrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "orderId" | "userId" | "addressId" | "trackingNumber" | "totalAmount" | "totalItems" | "status" | "orderType" | "courierType" | "createdAt" | "updatedAt", ExtArgs["result"]["shopNShipOrder"]>
 export type ShopNShipOrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   address?: boolean | Prisma.ShopNShipOrder$addressArgs<ExtArgs>
@@ -1093,15 +1101,15 @@ export type $ShopNShipOrderPayload<ExtArgs extends runtime.Types.Extensions.Inte
     id: string
     orderId: string
     userId: string
+    addressId: string | null
     trackingNumber: string
     totalAmount: number
     totalItems: number
-    status: string
-    addressId: string | null
+    status: $Enums.OrderStatus
+    orderType: $Enums.OrderType
+    courierType: $Enums.CourierType
     createdAt: Date
     updatedAt: Date
-    order_type: string
-    courier_Type: string
   }, ExtArgs["result"]["shopNShipOrder"]>
   composites: {}
 }
@@ -1531,15 +1539,15 @@ export interface ShopNShipOrderFieldRefs {
   readonly id: Prisma.FieldRef<"ShopNShipOrder", 'String'>
   readonly orderId: Prisma.FieldRef<"ShopNShipOrder", 'String'>
   readonly userId: Prisma.FieldRef<"ShopNShipOrder", 'String'>
+  readonly addressId: Prisma.FieldRef<"ShopNShipOrder", 'String'>
   readonly trackingNumber: Prisma.FieldRef<"ShopNShipOrder", 'String'>
   readonly totalAmount: Prisma.FieldRef<"ShopNShipOrder", 'Float'>
   readonly totalItems: Prisma.FieldRef<"ShopNShipOrder", 'Int'>
-  readonly status: Prisma.FieldRef<"ShopNShipOrder", 'String'>
-  readonly addressId: Prisma.FieldRef<"ShopNShipOrder", 'String'>
+  readonly status: Prisma.FieldRef<"ShopNShipOrder", 'OrderStatus'>
+  readonly orderType: Prisma.FieldRef<"ShopNShipOrder", 'OrderType'>
+  readonly courierType: Prisma.FieldRef<"ShopNShipOrder", 'CourierType'>
   readonly createdAt: Prisma.FieldRef<"ShopNShipOrder", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"ShopNShipOrder", 'DateTime'>
-  readonly order_type: Prisma.FieldRef<"ShopNShipOrder", 'String'>
-  readonly courier_Type: Prisma.FieldRef<"ShopNShipOrder", 'String'>
 }
     
 

@@ -18,7 +18,7 @@ export default function Page() {
   });
   const fetchOrders = async (pageNumber = page) => {
     setLoading(true);
-    const res = await axios.get("/api/shop-n-ship/get", {
+    const res = await axios.get("/api/assisted-purchase/get", {
       params: {
         page: pageNumber,
         limit: PAGE_SIZE,
